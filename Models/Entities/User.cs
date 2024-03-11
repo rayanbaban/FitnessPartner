@@ -15,6 +15,7 @@ namespace FitnessPartner.Models.Entities
         public string FirstName { get; set; } = string.Empty;
         [Required]
         public string Weight { get; set; } = string.Empty;
+        public string Height { get; set; } = string.Empty;
 
         [Required]
         public string LastName { get; set; } = string.Empty;
