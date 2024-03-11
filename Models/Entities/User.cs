@@ -13,6 +13,8 @@ namespace FitnessPartner.Models.Entities
 
         [Required]
         public string FirstName { get; set; } = string.Empty;
+        [Required]
+        public string Weight { get; set; } = string.Empty;
 
         [Required]
         public string LastName { get; set; } = string.Empty;
