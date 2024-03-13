@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj": {}
+    "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj": {
+    "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+        "projectUniqueName": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
         "projectName": "FitnessPartner",
-        "projectPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+        "projectPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
         "packagesPath": "C:\\Users\\Idris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner\\obj\\",
+        "outputPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Idris\\AppData\\Roaming\\NuGet\\NuGet.Config",

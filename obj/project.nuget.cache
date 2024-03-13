@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HcagG5zY1CSKmHAL8YLrUGQ+mqS9CU9W/oSeYEpWVK9IY53sr0oNFzb+mhowT09cBaLvnLjqygqllmR9ZUfp9A==",
+  "dgSpecHash": "hvguy5LI3rPdfDOB5edoUNYHSAH8Q8a6UVgV+0/j2R4uuqFPjCfhSed+UdFe7dKTTObftyoW7iNDRtYiG3eS0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+  "projectFilePath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Idris\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Idris\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.2\\microsoft.aspnetcore.authentication.jwtbearer.8.0.2.nupkg.sha512",
