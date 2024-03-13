@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "wyG7XEeupNqfX8z3P3+XngocICWewCroQjgqufyzuUh+MYneaXLnuvYP5mGuG92904Ri3zDckez8RVcuWHf4cg==",
-=======
-  "dgSpecHash": "hvguy5LI3rPdfDOB5edoUNYHSAH8Q8a6UVgV+0/j2R4uuqFPjCfhSed+UdFe7dKTTObftyoW7iNDRtYiG3eS0w==",
->>>>>>> main
   "success": true,
   "projectFilePath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
   "expectedPackageFiles": [
@@ -39,5 +35,12 @@
     "C:\\Users\\Idris\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
     "C:\\Users\\Idris\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.4.0\\system.identitymodel.tokens.jwt.7.4.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
