@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "wyG7XEeupNqfX8z3P3+XngocICWewCroQjgqufyzuUh+MYneaXLnuvYP5mGuG92904Ri3zDckez8RVcuWHf4cg==",
+=======
+  "dgSpecHash": "hvguy5LI3rPdfDOB5edoUNYHSAH8Q8a6UVgV+0/j2R4uuqFPjCfhSed+UdFe7dKTTObftyoW7iNDRtYiG3eS0w==",
+>>>>>>> main
   "success": true,
   "projectFilePath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
   "expectedPackageFiles": [
