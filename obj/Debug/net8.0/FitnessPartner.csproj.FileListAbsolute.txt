@@ -85,3 +85,7 @@ C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Deb
 C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.pdb
 C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.genruntimeconfig.cache
 C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\ref\FitnessPartner.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\MySqlConnector.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json

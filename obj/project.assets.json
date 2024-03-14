@@ -1485,19 +1485,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Idris\\.nuget\\packages\\": {}
+    "C:\\Users\\rayan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
+      "projectUniqueName": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
       "projectName": "FitnessPartner",
-      "projectPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\FitnessPartner.csproj",
-      "packagesPath": "C:\\Users\\Idris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\obj\\",
+      "projectPath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+      "packagesPath": "C:\\Users\\rayan\\.nuget\\packages\\",
+      "outputPath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Idris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1517,6 +1517,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1571,16 +1576,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\FitnessPartner\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

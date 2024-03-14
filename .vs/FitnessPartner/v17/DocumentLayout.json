@@ -3,52 +3,12 @@
   "WorkspaceRootPath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\mappers\\interfaces\\imapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\interfaces\\imapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\mappers\\userregmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\userregmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\repositories\\iexerciserepository\\iexersicereposiitory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:repositories\\iexerciserepository\\iexersicereposiitory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\repositories\\exercisesessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:repositories\\exercisesessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\data\\migrations\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:data\\migrations\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\extensions\\authenticationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:extensions\\authenticationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,6 +19,46 @@
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\extensions\\authenticationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:extensions\\authenticationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\repositories\\iexerciserepository\\iexersicereposiitory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:repositories\\iexerciserepository\\iexersicereposiitory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\repositories\\exercisesessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:repositories\\exercisesessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\services\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -67,8 +67,8 @@
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\data\\migrations\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data\\migrations\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,57 +86,70 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IExersiceReposiitory.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "RelativeDocumentMoniker": "Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "RelativeToolTip": "Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T11:28:55.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ExerciseSession.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\ExerciseSession.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
-              "RelativeToolTip": "Models\\Entities\\ExerciseSession.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:56:49.467Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AuthenticationExtension.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Extensions\\AuthenticationExtension.cs",
-              "RelativeDocumentMoniker": "Extensions\\AuthenticationExtension.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Extensions\\AuthenticationExtension.cs",
-              "RelativeToolTip": "Extensions\\AuthenticationExtension.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:40:47.98Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "UserRegMapper.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserRegMapper.cs",
               "RelativeDocumentMoniker": "Mappers\\UserRegMapper.cs",
               "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserRegMapper.cs",
               "RelativeToolTip": "Mappers\\UserRegMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T19:41:39.973Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T19:22:47.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FitnessPartner.csproj",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+              "RelativeDocumentMoniker": "FitnessPartner.csproj",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+              "RelativeToolTip": "FitnessPartner.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-11T09:06:17.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T19:09:42.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserMapper.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
+              "RelativeDocumentMoniker": "Mappers\\UserMapper.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
+              "RelativeToolTip": "Mappers\\UserMapper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T19:41:51.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "IMapper.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\Interfaces\\IMapper.cs",
               "RelativeDocumentMoniker": "Mappers\\Interfaces\\IMapper.cs",
@@ -149,20 +162,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\UserDTO.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs*",
+              "RelativeToolTip": "Models\\DTOs\\UserDTO.cs*",
+              "ViewState": "AQIAABIAAAAAAAAAAAAgwCEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T08:40:44.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAiwCMAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T08:52:06.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\User.cs",
               "RelativeDocumentMoniker": "Models\\Entities\\User.cs",
               "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\User.cs",
               "RelativeToolTip": "Models\\Entities\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:45:46.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T19:45:46.474Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
+              "Title": "ExerciseSession.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\ExerciseSession.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
+              "RelativeToolTip": "Models\\Entities\\ExerciseSession.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T10:56:49.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthenticationExtension.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Extensions\\AuthenticationExtension.cs",
+              "RelativeDocumentMoniker": "Extensions\\AuthenticationExtension.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Extensions\\AuthenticationExtension.cs",
+              "RelativeToolTip": "Extensions\\AuthenticationExtension.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T10:40:47.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IExersiceReposiitory.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
+              "RelativeDocumentMoniker": "Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
+              "RelativeToolTip": "Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T11:28:55.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "FitnessPartnerDbContext.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Data\\Migrations\\FitnessPartnerDbContext.cs",
               "RelativeDocumentMoniker": "Data\\Migrations\\FitnessPartnerDbContext.cs",
@@ -174,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "ExerciseSessionRepository.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\ExerciseSessionRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\ExerciseSessionRepository.cs",
@@ -186,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -195,66 +269,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-03-11T09:27:36.278Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAwwDMAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T08:52:06.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\UserDTO.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\UserDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T08:40:44.146Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UserMapper.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
-              "RelativeDocumentMoniker": "Mappers\\UserMapper.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
-              "RelativeToolTip": "Mappers\\UserMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:41:51.936Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAADwvxcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:09:42.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FitnessPartner",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeDocumentMoniker": "FitnessPartner.csproj",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeToolTip": "FitnessPartner.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-11T09:06:17.799Z"
             },
             {
               "$type": "Document",
@@ -279,18 +293,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T19:24:08.428Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:22:47.422Z"
             }
           ]
         }
