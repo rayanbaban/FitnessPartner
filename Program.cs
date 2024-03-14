@@ -9,6 +9,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.AddJwtAuthentication();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,7 +22,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-builder.AddJwtAuthentication();	
 
 app.UseHttpsRedirection();
 

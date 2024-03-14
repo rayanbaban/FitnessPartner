@@ -41,3 +41,5 @@ C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityMod
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\FluentValidation.dll

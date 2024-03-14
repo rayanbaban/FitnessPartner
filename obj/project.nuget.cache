@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SgF2sIV3P/YsgiFY7ePkRCYk6Acpky4iDlA3pK3lAdxvhpt1P1yvwsK+BebZrN7M94WrDQs5wZUf57GSvCXgQw==",
+  "dgSpecHash": "l+Xxd1+AEepfCqtvhgUcnFkkTWQwJ4A6tpOrrPDn69J4240VexPRfyMjyS1IS7QzWvXDO22qVlMHRZw7/xo7vg==",
   "success": true,
   "projectFilePath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rayan\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\rayan\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\rayan\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.2\\microsoft.aspnetcore.authentication.jwtbearer.8.0.2.nupkg.sha512",
     "C:\\Users\\rayan\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.2\\microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
     "C:\\Users\\rayan\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.2\\microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",
