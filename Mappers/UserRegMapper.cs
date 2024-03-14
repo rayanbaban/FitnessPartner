@@ -14,6 +14,7 @@ namespace FitnessPartner.Mappers
 		public User MapToModel(UserRegDTO dto)
 		{
 			var dtNow = DateTime.Now;
+			var dateOfBirth = dtNow.AddYears(-dto.Age);
 			return new User()
 			{
 				Email = dto.Email,
@@ -21,7 +22,7 @@ namespace FitnessPartner.Mappers
 				LastName = dto.LastName,
 				Weight = dto.Weight,
 				Height = dto.Height,
-				IsAdminUser = true,
+				IsAdminUser = false,
 				Created = dtNow,
 				Updated = dtNow,
 				Age = dto.Age

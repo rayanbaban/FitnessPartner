@@ -38,6 +38,6 @@ namespace FitnessPartner.Models.Entities
         public DateTime Updated { get; set; }
 
         [Required]
-        public bool IsAdminUser { get; set; }
+        public bool IsAdminUser { get; set; } 
     }
 }

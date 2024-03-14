@@ -1,18 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessPartner.Models.Entities
 {
 	public class ExerciseSession
 	{
 
-		[Required]
+        [ForeignKey("UserId")]
+        public int UserId { get; set; }
+        [Required]
 		public DateTime Date { get; set; }
 
 		[Required]
-		public string ExerciseType { get; set; } = string.Empty;
+		public string MusclesTrained { get; set; } = string.Empty;
 
 		[Required]
 		public int DurationMinutes { get; set; }
 
-	}
+		[Required]
+		public string Result { get; set; } = string.Empty;
+		[Required]
+		public string Intensity { get; set; } = string.Empty;
+
+
+    }
 }

@@ -12,21 +12,17 @@ namespace FitnessPartner.Models.DTOs
         public string UserName { get; set; } = string.Empty;
 
         [Required]
+		public string Password { get; set; } = string.Empty;
+        [Required]
         public string FirstName { get; set; } = string.Empty;
-        [Required]
-        public string Weight { get; set; } = string.Empty;
-        public string Height { get; set; } = string.Empty;
-
-        [Required]
         public string LastName { get; set; } = string.Empty;
+        [Required]
+        public decimal Weight { get; set; } 
+        [Required]
+        public decimal Height { get; set; } 
+
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
-
-        [Required]
-		public DateTime DateOfBirth { get; set; }
-
-		public string Password { get; set; } = string.Empty;
-        public string Salt { get; set; } = string.Empty;
 
         [Required]
         public DateTime Created { get; set; }
@@ -34,8 +30,6 @@ namespace FitnessPartner.Models.DTOs
         [Required]
         public DateTime Updated { get; set; }
 
-        [Required]
-        public bool IsAdminUser { get; set; }
 
     }
 }
