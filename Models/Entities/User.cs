@@ -3,29 +3,33 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessPartner.Models.Entities
 {
-    [Table("Users")]
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        [MinLength(3), MaxLength(30)]
         public string UserName { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(50)] // Kan justere maksimal lengde basert på våre krav.
         public string FirstName { get; set; } = string.Empty;
-
         [Required]
-        [MaxLength(50)] // Kan justere maksimal lengde basert på våre krav.
         public string LastName { get; set; } = string.Empty;
 
-        [EmailAddress]
-        public string Email { get; set; } = string.Empty;
+		[EmailAddress]
+		public string Email { get; set; } = string.Empty;
+
+		[Required]
+        public decimal Weight { get; set; } 
+        [Required]
+        public decimal Height { get; set; } 
+        [Required]
+        public int Age { get; set; }
 
         [Required]
-        public string PasswordHash { get; set; } = string.Empty;
+		public string PasswordHash { get; set; } = string.Empty;
+        [Required]
+        public string Salt { get; set; } = string.Empty;
 
         [Required]
         public DateTime Created { get; set; }
@@ -34,6 +38,6 @@ namespace FitnessPartner.Models.Entities
         public DateTime Updated { get; set; }
 
         [Required]
-        public bool IsAdminUser { get; set; }
+        public bool IsAdminUser { get; set; } 
     }
 }

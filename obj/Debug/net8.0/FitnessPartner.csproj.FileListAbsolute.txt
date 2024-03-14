@@ -41,6 +41,7 @@ C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityMod
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+<<<<<<< HEAD
 C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\appsettings.json
 C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\FitnessPartner.exe
@@ -89,3 +90,7 @@ C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrame
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\MySqlConnector.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
+=======
+C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\FluentValidation.dll
+>>>>>>> BranchV2

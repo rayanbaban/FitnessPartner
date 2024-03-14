@@ -9,10 +9,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+<<<<<<< HEAD
 // Add database context configuration
 builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
     new MySqlServerVersion(new Version(8, 0))));
+=======
+
+builder.AddJwtAuthentication();
+
+>>>>>>> BranchV2
 
 var app = builder.Build();
 
@@ -23,6 +29,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> BranchV2
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

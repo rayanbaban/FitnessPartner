@@ -34,7 +34,7 @@ namespace FitnessPartner.Controllers
 
 		[HttpPost("login")]
 		public ActionResult<User> Login(UserDTO request)
-		{
+		{                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 			if(user.UserName != request.UserName)
 			{
 				return BadRequest("User not found");

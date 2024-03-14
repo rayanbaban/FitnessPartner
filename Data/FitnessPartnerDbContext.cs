@@ -5,11 +5,17 @@ namespace FitnessPartner.Data
 {
     public class FitnessPartnerDbContext : DbContext
     {
+<<<<<<< HEAD
         public FitnessPartnerDbContext(DbContextOptions<FitnessPartnerDbContext> options) : base(options)
+=======
+        public FitnessPartnerDbContext(DbContextOptions<FitnessPartnerDbContext> options)
+        : base(options)
+>>>>>>> BranchV2
         {
         }
 
         public DbSet<User> Users { get; set; }
+<<<<<<< HEAD
         public DbSet<ExerciseSession> ExerciseSessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,3 +25,7 @@ namespace FitnessPartner.Data
     }
 }
 
+=======
+    }
+}
+>>>>>>> BranchV2
