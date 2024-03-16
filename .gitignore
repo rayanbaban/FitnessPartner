@@ -4,6 +4,16 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+# Legg til dine egne gitignore-regler under eksisterende regler
+
+# Filene du ønsker å ignorere
+.vs/FitnessPartner/DesignTimeBuild/.dtbcache.v2
+obj/Debug/net8.0/FitnessPartner.AssemblyInfo.cs
+obj/Debug/net8.0/FitnessPartner.AssemblyInfoInputs.cache
+
+# Andre ignorerte filer
+*.cache
+
 *.rsuser
 *.suo
 *.user

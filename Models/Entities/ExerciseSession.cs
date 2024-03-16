@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessPartner.Models.Entities
 {
-	public class ExerciseSession
+public class ExerciseSession
 	{
 
         [ForeignKey("UserId")]
@@ -22,6 +22,6 @@ namespace FitnessPartner.Models.Entities
 		[Required]
 		public string Intensity { get; set; } = string.Empty;
 
-
     }
 }
+

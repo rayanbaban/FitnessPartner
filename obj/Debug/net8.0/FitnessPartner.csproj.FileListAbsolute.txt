@@ -41,5 +41,56 @@ C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityMod
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+<<<<<<< HEAD
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\appsettings.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\FitnessPartner.exe
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\FitnessPartner.deps.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\FitnessPartner.runtimeconfig.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\FitnessPartner.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\FitnessPartner.pdb
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.AssemblyReference.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.AssemblyInfoInputs.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.AssemblyInfo.cs
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.CoreCompileInputs.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.FitnessPartner.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.build.FitnessPartner.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.FitnessPartner.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.FitnessPartner.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\scopedcss\bundle\FitnessPartner.styles.css
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.CopyComplete
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\refint\FitnessPartner.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.pdb
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\FitnessPartner.genruntimeconfig.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\FitnessPartner\obj\Debug\net8.0\ref\FitnessPartner.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\MySqlConnector.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
+=======
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\FluentValidation.dll
+>>>>>>> BranchV2
