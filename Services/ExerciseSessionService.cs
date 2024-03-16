@@ -1,6 +1,6 @@
 ﻿namespace FitnessPartner.Services
 {
-	public interface ExerciseSessionService
+	public class ExerciseSessionService
 	{
 	}
 }

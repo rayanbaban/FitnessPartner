@@ -27,15 +27,14 @@ namespace FitnessPartner.Models.Entities
         public int Age { get; set; }
 
         [Required]
+
 		public string PasswordHash { get; set; } = string.Empty;
+
         [Required]
         public string Salt { get; set; } = string.Empty;
 
         [Required]
         public DateTime Created { get; set; }
-
-        [Required]
-        public DateTime Updated { get; set; }
 
         [Required]
         public bool IsAdminUser { get; set; } 

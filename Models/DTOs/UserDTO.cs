@@ -4,17 +4,28 @@ namespace FitnessPartner.Models.DTOs
 {
 	public class UserDTO
 	{
-		 [Key]
-        public int UserId { get; set; }
+		public UserDTO(int userId,
+			string userName, 
+			string firstName, string lastName, decimal weight, decimal height, string email, DateTime created)
+		{
+			UserId = userId;
+			UserName = userName;
+			FirstName = firstName;
+			LastName = lastName;
+			Weight = weight;
+			Height = height;
+			Email = email;
+			Created = created;
+		}
 
         [Required]
+		public int UserId { get; set; }
         public string UserName { get; set; } = string.Empty;
 
-        [Required]
-		public string Password { get; set; } = string.Empty;
-        [Required]
         public string FirstName { get; set; } = string.Empty;
+
         public string LastName { get; set; } = string.Empty;
+
 
 		[EmailAddress]
 		public string Email { get; set; } = string.Empty;
@@ -27,8 +38,6 @@ namespace FitnessPartner.Models.DTOs
         [Required]
         public DateTime Created { get; set; }
 
-        [Required]
-        public DateTime Updated { get; set; }
 
     }
 }

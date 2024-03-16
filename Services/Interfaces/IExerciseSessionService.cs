@@ -1,6 +1,6 @@
 ﻿namespace FitnessPartner.Services.Interfaces
 {
-	public interface IExerciseService
+	public interface IExerciseSessionService
 	{
 	}
 }
