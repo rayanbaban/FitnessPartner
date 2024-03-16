@@ -25,17 +25,11 @@ namespace FitnessPartner.Models.Entities
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
-		public DateTime DateOfBirth { get; set; }
-
 		public string PasswordHash { get; set; } = string.Empty;
         public string Salt { get; set; } = string.Empty;
 
         [Required]
         public DateTime Created { get; set; }
-
-        [Required]
-        public DateTime Updated { get; set; }
 
         [Required]
         public bool IsAdminUser { get; set; } 

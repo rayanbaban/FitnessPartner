@@ -24,7 +24,6 @@ namespace FitnessPartner.Mappers
 				Height = dto.Height,
 				IsAdminUser = false,
 				Created = dtNow,
-				Updated = dtNow,
 				Age = dto.Age
 			};
 		}
