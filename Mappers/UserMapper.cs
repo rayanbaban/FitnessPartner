@@ -23,7 +23,7 @@ namespace FitnessPartner.Mappers
 				LastName = dto.LastName,
 				Weight = dto.Weight,
 				Height = dto.Height,
-				Created = dto.Created,
+				Created = now,
 				Age = dto.Age,
 			};
 		}
