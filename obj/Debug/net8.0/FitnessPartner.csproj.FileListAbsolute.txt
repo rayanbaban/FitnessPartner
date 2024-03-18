@@ -91,6 +91,5 @@ C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\MySqlConnector.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
 =======
-C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
 C:\4.Termin\FitnessPartner\FitnessPartner\bin\Debug\net8.0\FluentValidation.dll
 >>>>>>> BranchV2

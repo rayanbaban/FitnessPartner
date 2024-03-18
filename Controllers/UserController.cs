@@ -10,14 +10,14 @@ namespace FitnessPartner.Controllers
         // Dette er bare en dummy-brukerliste for demonstrasjonsformål.
         private static List<User> users = new List<User>
         {
-            new User { Id = 1, UserName = "user1", PasswordHash = "hashedPassword1" },
-            new User { Id = 2, UserName = "user2", PasswordHash = "hashedPassword2" }
+            new User { UserId = 1, UserName = "user1", PasswordHash = "hashedPassword1" },
+            new User { UserId = 2, UserName = "user2", PasswordHash = "hashedPassword2" }
         };
 
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
-            var user = users.Find(u => u.Id == id);
+            var user = users.Find(u => u.UserId == id);
             if (user == null)
             {
                 return NotFound();
@@ -28,7 +28,7 @@ namespace FitnessPartner.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, [FromBody] User updatedUser)
         {
-            var index = users.FindIndex(u => u.Id == id);
+            var index = users.FindIndex(u => u.UserId == id);
             if (index == -1)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace FitnessPartner.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            var user = users.Find(u => u.Id == id);
+            var user = users.Find(u => u.UserId == id);
             if (user == null)
             {
                 return NotFound();

@@ -3,119 +3,51 @@
   "WorkspaceRootPath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\mappers\\interfaces\\imapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\interfaces\\imapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\mappers\\exercisesessionmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\exercisesessionmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\models\\dtos\\exercisesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\exercisesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> BranchV2
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\mappers\\userregmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\userregmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\mappers\\interfaces\\imapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\interfaces\\imapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> BranchV2
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\models\\dtos\\userregdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\userregdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> BranchV2
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\entities\\exercisesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\data\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:data\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> BranchV2
     },
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\models\\dtos\\fitnessgoalsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\fitnessgoalsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\models\\dtos\\exercisesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:models\\dtos\\exercisesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\mappers\\nutritionlogmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:mappers\\nutritionlogmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\controllers\\exercisesessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\exercisesessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\extensions\\authenticationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:extensions\\authenticationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\repositories\\iexerciserepository\\iexersicereposiitory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:repositories\\iexerciserepository\\iexersicereposiitory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\repositories\\exercisesessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:repositories\\exercisesessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\services\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-=======
->>>>>>> BranchV2
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\4.Termin\\FitnessPartner\\FitnessPartner\\data\\migrations\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data\\migrations\\fitnesspartnerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\4.termin\\fitnesspartner\\fitnesspartner\\obj\\debug\\net8.0\\fitnesspartner.assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:obj\\debug\\net8.0\\fitnesspartner.assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -124,269 +56,68 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 868,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FitnessGoalsDTO.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\FitnessGoalsDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\FitnessGoalsDTO.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\FitnessGoalsDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\FitnessGoalsDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:28:31.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExerciseSessionDTO.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\ExerciseSessionDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\ExerciseSessionDTO.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\ExerciseSessionDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\ExerciseSessionDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:28:30.991Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 1,
-=======
-              "DocumentIndex": 2,
-              "Title": "ExerciseSessionDTO.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\ExerciseSessionDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\ExerciseSessionDTO.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\ExerciseSessionDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\ExerciseSessionDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T14:50:52.9Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ExerciseSessionMapper.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\ExerciseSessionMapper.cs",
-              "RelativeDocumentMoniker": "Mappers\\ExerciseSessionMapper.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\ExerciseSessionMapper.cs",
-              "RelativeToolTip": "Mappers\\ExerciseSessionMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T14:49:54.368Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
->>>>>>> BranchV2
-              "Title": "UserRegMapper.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserRegMapper.cs",
-              "RelativeDocumentMoniker": "Mappers\\UserRegMapper.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserRegMapper.cs",
-              "RelativeToolTip": "Mappers\\UserRegMapper.cs",
-<<<<<<< HEAD
-              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAQAAAAAAAAA",
-=======
-              "ViewState": "AQIAAAUAAAAAAAAAAAAowBMAAAAWAAAA",
->>>>>>> BranchV2
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:41:39.973Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 5,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:22:47.422Z",
-=======
-              "DocumentIndex": 1,
-              "Title": "ExerciseSession.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\ExerciseSession.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
-              "RelativeToolTip": "Models\\Entities\\ExerciseSession.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:56:49.467Z",
->>>>>>> BranchV2
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 8,
-              "Title": "FitnessPartner.csproj",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeDocumentMoniker": "FitnessPartner.csproj",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeToolTip": "FitnessPartner.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-11T09:06:17.799Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:09:42.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-=======
-              "DocumentIndex": 6,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\UserDTO.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\UserDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T08:40:44.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
->>>>>>> BranchV2
-              "Title": "UserMapper.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
-              "RelativeDocumentMoniker": "Mappers\\UserMapper.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
-              "RelativeToolTip": "Mappers\\UserMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:41:51.936Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 0,
-=======
-              "DocumentIndex": 4,
->>>>>>> BranchV2
-              "Title": "IMapper.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\Interfaces\\IMapper.cs",
-              "RelativeDocumentMoniker": "Mappers\\Interfaces\\IMapper.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\Interfaces\\IMapper.cs",
-              "RelativeToolTip": "Mappers\\Interfaces\\IMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:40:27.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 2,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\UserDTO.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs*",
-              "RelativeToolTip": "Models\\DTOs\\UserDTO.cs*",
-              "ViewState": "AQIAABIAAAAAAAAAAAAgwCEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T08:40:44.146Z",
-=======
-              "DocumentIndex": 7,
-              "Title": "UserRegDTO.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserRegDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\UserRegDTO.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserRegDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\UserRegDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T13:37:21.178Z",
->>>>>>> BranchV2
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
               "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAiwCMAAAApAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAWwDIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T08:52:06.772Z",
-=======
-              "DocumentIndex": 10,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:24:08.428Z",
->>>>>>> BranchV2
+              "WhenOpened": "2024-03-18T09:23:34.213Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 6,
-=======
-              "DocumentIndex": 9,
->>>>>>> BranchV2
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\User.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\User.cs",
-              "RelativeToolTip": "Models\\Entities\\User.cs",
-<<<<<<< HEAD
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA8AAAA",
-=======
-              "ViewState": "AQIAABcAAAAAAAAAAAA9wCMAAAAAAAAA",
->>>>>>> BranchV2
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:45:46.474Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 7,
-              "Title": "ExerciseSession.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\ExerciseSession.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\Entities\\ExerciseSession.cs",
-              "RelativeToolTip": "Models\\Entities\\ExerciseSession.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:56:49.467Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-=======
-              "DocumentIndex": 14,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:09:42.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 4,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAmwC8AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:22:47.422Z",
+              "WhenOpened": "2024-03-18T09:23:27.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "FitnessPartnerDbContext.cs",
               "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Data\\FitnessPartnerDbContext.cs",
               "RelativeDocumentMoniker": "Data\\FitnessPartnerDbContext.cs",
@@ -394,141 +125,99 @@
               "RelativeToolTip": "Data\\FitnessPartnerDbContext.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T13:37:07.524Z",
+              "WhenOpened": "2024-03-18T09:10:37.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\UserDTO.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Models\\DTOs\\UserDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\UserDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAYAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:01:12.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserMapper.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
+              "RelativeDocumentMoniker": "Mappers\\UserMapper.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\UserMapper.cs",
+              "RelativeToolTip": "Mappers\\UserMapper.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAiwAoAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:01:06.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NutritionLogMapper.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\NutritionLogMapper.cs",
+              "RelativeDocumentMoniker": "Mappers\\NutritionLogMapper.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Mappers\\NutritionLogMapper.cs",
+              "RelativeToolTip": "Mappers\\NutritionLogMapper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:28:26.811Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAUwBgAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T08:52:06.772Z",
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AQIAAGcWAAAAAAAAAAAUwHEWAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2024-03-18T09:08:57.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "FitnessPartner.csproj",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeDocumentMoniker": "FitnessPartner.csproj",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeToolTip": "FitnessPartner.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-11T09:06:17.799Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
->>>>>>> BranchV2
-              "Title": "AuthenticationExtension.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Extensions\\AuthenticationExtension.cs",
-              "RelativeDocumentMoniker": "Extensions\\AuthenticationExtension.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Extensions\\AuthenticationExtension.cs",
-              "RelativeToolTip": "Extensions\\AuthenticationExtension.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAUAAAA",
+              "DocumentIndex": 9,
+              "Title": "ExerciseSessionController.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\ExerciseSessionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExerciseSessionController.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Controllers\\ExerciseSessionController.cs",
+              "RelativeToolTip": "Controllers\\ExerciseSessionController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:40:47.98Z"
+              "WhenOpened": "2024-03-18T08:49:44.354Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:11:21.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 11,
-=======
-              "DocumentIndex": 16,
->>>>>>> BranchV2
-              "Title": "IExersiceReposiitory.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "RelativeDocumentMoniker": "Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "RelativeToolTip": "Repositories\\IExerciseRepository\\IExersiceReposiitory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T11:28:55.593Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 16,
-=======
-              "DocumentIndex": 20,
->>>>>>> BranchV2
-              "Title": "FitnessPartnerDbContext.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Data\\Migrations\\FitnessPartnerDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\Migrations\\FitnessPartnerDbContext.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Data\\Migrations\\FitnessPartnerDbContext.cs",
-              "RelativeToolTip": "Data\\Migrations\\FitnessPartnerDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T11:03:38.479Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 12,
-=======
-              "DocumentIndex": 17,
->>>>>>> BranchV2
-              "Title": "ExerciseSessionRepository.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\ExerciseSessionRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\ExerciseSessionRepository.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Repositories\\ExerciseSessionRepository.cs",
-              "RelativeToolTip": "Repositories\\ExerciseSessionRepository.cs",
+              "Title": "FitnessPartner.AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\obj\\Debug\\net8.0\\FitnessPartner.AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "obj\\Debug\\net8.0\\FitnessPartner.AssemblyInfo.cs",
+              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\obj\\Debug\\net8.0\\FitnessPartner.AssemblyInfo.cs",
+              "RelativeToolTip": "obj\\Debug\\net8.0\\FitnessPartner.AssemblyInfo.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T11:28:29.176Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 13,
-=======
-              "DocumentIndex": 18,
->>>>>>> BranchV2
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-03-11T09:27:36.278Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 14,
-=======
-              "DocumentIndex": 19,
->>>>>>> BranchV2
-              "Title": "IUserService.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Services\\Interfaces\\IUserService.cs",
-              "RelativeDocumentMoniker": "Services\\Interfaces\\IUserService.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Services\\Interfaces\\IUserService.cs",
-              "RelativeToolTip": "Services\\Interfaces\\IUserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:24:18.453Z"
-<<<<<<< HEAD
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:24:08.428Z"
-=======
->>>>>>> BranchV2
+              "WhenOpened": "2024-03-18T09:10:07.852Z",
+              "EditorCaption": ""
             }
           ]
         }

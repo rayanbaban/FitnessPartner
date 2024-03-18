@@ -22,7 +22,7 @@ namespace FitnessPartner.Controllers
 		}
 
 		[HttpPost("register")]
-		public ActionResult<User> Register(UserDTO request)
+		public ActionResult<User> Register(UserRegDTO request)
 		{
 			string passwordHash
 				= BCrypt.Net.BCrypt.HashPassword(request.Password);
