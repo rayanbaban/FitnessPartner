@@ -29,6 +29,9 @@ namespace FitnessPartner.Controllers
 			user.UserName = request.UserName;
 			user.PasswordHash = passwordHash;
 
+
+
+
 			return Ok(user);
 		}
 
