@@ -1,6 +1,6 @@
 ﻿namespace FitnessPartner.Repositories
 {
-	public class NutritionRepository
+	public class NutrtionPlanRepository
 	{
 	}
 }

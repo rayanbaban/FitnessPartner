@@ -13,7 +13,6 @@
         }
 
         public int LogId { get; set; }
-
         public int UserId { get; set; }
         public DateTime Date { get; set; }
         public string FoodIntake { get; set; } = string.Empty;
