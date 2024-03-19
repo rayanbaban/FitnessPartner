@@ -1,10 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
-using System.ComponentModel.DataAnnotations.Schema;
-
 using System.ComponentModel.DataAnnotations.Schema;
 
 
