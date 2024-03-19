@@ -5,6 +5,30 @@ C:\bin\Debug\net8.0\FitnessPartner.deps.json
 C:\bin\Debug\net8.0\FitnessPartner.runtimeconfig.json
 C:\bin\Debug\net8.0\FitnessPartner.dll
 C:\bin\Debug\net8.0\FitnessPartner.pdb
+<<<<<<< HEAD
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.AssemblyReference.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.AssemblyInfoInputs.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.AssemblyInfo.cs
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.CoreCompileInputs.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.sourcelink.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.FitnessPartner.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.build.FitnessPartner.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.FitnessPartner.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.FitnessPartner.props
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\scopedcss\bundle\FitnessPartner.styles.css
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.CopyComplete
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\refint\FitnessPartner.dll
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.pdb
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\FitnessPartner.genruntimeconfig.cache
+C:\Users\Idris\OneDrive\Gokstad Akademiet\Fjerde semester\ProsjektArbeid\FitnessPartner\obj\Debug\net8.0\ref\FitnessPartner.dll
+=======
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.csproj.AssemblyReference.cache
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.GeneratedMSBuildEditorConfig.editorconfig
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.AssemblyInfoInputs.cache
@@ -27,3 +51,4 @@ C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\refint\FitnessPartner
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.pdb
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\FitnessPartner.genruntimeconfig.cache
 C:\4.Termin\FitnessPartner\FitnessPartner\obj\Debug\net8.0\ref\FitnessPartner.dll
+>>>>>>> 55c9c0e1477aa35f17748aec687e9dd873e00a69
