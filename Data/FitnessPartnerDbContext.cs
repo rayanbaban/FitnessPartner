@@ -10,9 +10,14 @@ namespace FitnessPartner.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<ExerciseSession> ExerciseSessions { get; set; }
+        public DbSet<ExerciseLibrary> ExerciseLibrary { get; set; }
+        public DbSet<ExerciseSession> ExerciseSession { get; set; }
+        public DbSet<FitnessGoals> FitnessGoals { get; set; }
+        public DbSet<NutritionLog> NutritionLog { get; set; }
+        public DbSet<NutritionPlans> NutritionPlans { get; set; }
+        public DbSet<NutritionResources> NutritionResources { get; set; }
 
-     
+
+
     }
 }

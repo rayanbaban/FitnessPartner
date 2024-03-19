@@ -23,14 +23,3 @@ namespace FitnessPartner.Mappers
         }
     }
 }
-
-/*[I går 15:32] Rayan Baban
-NutritionResourcesTable:
-Lagrer artikler og guider om ernæring og kosthold tilpasset ulike treningsmål.
-ResourceId (Primærnøkkel)
-ResourceTitle
-ResourceType (f.eks., artikkel, guide)
-Content 
-
-[I går 15:32] Rayan Baban
-lage DTO, entity og mapper av dennne. (se hvordan de andre har blitt gjort og herm)*/
