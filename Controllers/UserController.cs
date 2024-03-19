@@ -7,6 +7,9 @@ namespace FitnessPartner.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize]
+
+
+    // Implementere delete, update
     public class UserController : ControllerBase
     {
         // Dette er bare en dummy-brukerliste for demonstrasjonsformål.

@@ -1524,19 +1524,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rayan\\.nuget\\packages\\": {}
+    "C:\\Users\\Idris\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
+      "projectUniqueName": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\FitnessPartner.csproj",
       "projectName": "FitnessPartner",
-      "projectPath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\FitnessPartner.csproj",
-      "packagesPath": "C:\\Users\\rayan\\.nuget\\packages\\",
-      "outputPath": "C:\\4.Termin\\FitnessPartner\\FitnessPartner\\obj\\",
+      "projectPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\FitnessPartner.csproj",
+      "packagesPath": "C:\\Users\\Idris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Idris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1556,11 +1556,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1619,7 +1614,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
