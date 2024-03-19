@@ -1,4 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessPartner.Models.Entities
@@ -15,4 +19,15 @@ namespace FitnessPartner.Models.Entities
         public string FoodIntake { get; set; } = string.Empty;
 
     }
+<<<<<<< HEAD
+=======
+=======
+
+namespace FitnessPartner.Models.Entities
+{
+	public class NutritionLog
+	{
+	}
+>>>>>>> 55c9c0e1477aa35f17748aec687e9dd873e00a69
+>>>>>>> main
 }
