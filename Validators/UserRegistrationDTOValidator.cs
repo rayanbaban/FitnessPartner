@@ -1,6 +1,5 @@
 ﻿using FitnessPartner.Models.DTOs;
 using FluentValidation;
-using FitnessPartner.Models.DTOs;
 
 
 namespace FitnessPartner.Validators

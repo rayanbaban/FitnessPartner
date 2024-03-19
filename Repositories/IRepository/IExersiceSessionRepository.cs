@@ -1,6 +1,6 @@
 ﻿namespace FitnessPartner.Repositories.IUserRepository
 {
-	public interface IExersiceReposiitory
+	public interface IExersiceSessionRepository
 	{
 
 	}
