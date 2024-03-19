@@ -2,8 +2,11 @@
 {
 	public class ExerciseSessionDTO
 	{
-		public ExerciseSessionDTO(int userId, DateTime date, string musclesTrained, int durationMinutes, string result, string intensity)
+		public ExerciseSessionDTO(int sessionId, 
+			int userId, DateTime date, 
+			string musclesTrained, int durationMinutes, string result, string intensity)
 		{
+			SessionId = sessionId;
 			UserId = userId;
 			Date = date;
 			MusclesTrained = musclesTrained;
@@ -12,7 +15,8 @@
 			Intensity = intensity;
 		}
 
-		public int UserId { get; set; }
+		public int SessionId { get; set; }
+        public int UserId { get; set; }
 		
 		public DateTime Date { get; set; }
 

@@ -5,6 +5,8 @@ namespace FitnessPartner.Models.Entities
 {
 public class ExerciseSession
 	{
+        [Key]
+        public int SessionId { get; set; }
 
         [ForeignKey("UserId")]
         public int UserId { get; set; }
