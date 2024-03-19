@@ -1,6 +1,8 @@
 ﻿namespace FitnessPartner.Models.DTOs
 {
-    public class NutritionResourcesTable
+    public class NutritionResourcesDTO
     {
+        public NutritionResourcesDTO() { }
+
     }
 }
