@@ -1,9 +1,6 @@
-﻿
-using FitnessPartner.Repositories.IRepository;
-
-namespace FitnessPartner.Interfaces
+﻿namespace FitnessPartner.Repositories
 {
-	public class UserRepository : IUserRepository
+	public class UserRepository
 	{
 	}
 }

@@ -1,10 +1,11 @@
 ﻿using FitnessPartner.Data;
 using FitnessPartner.Models.Entities;
-using FitnessPartner.Repositories.IUserRepository;
+using FitnessPartner.Repositories.Interfaces;
+using FitnessPartner.Repositories.Interfaces.IUserRepository;
 
 namespace FitnessPartner.Repositories
 {
-	public class ExerciseSessionRepository : IExersiceSessionRepository
+    public class ExerciseSessionRepository : IExersiceSessionRepository
 	{
 
 		private readonly FitnessPartnerDbContext _dbContext;
