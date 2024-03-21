@@ -1,6 +1,5 @@
 ﻿namespace FitnessPartner.Repositories.Interfaces;
+
+public interface INutritionPlanrepository
 {
-	public interface INutritionPlanrepository
-	{
-	}
 }

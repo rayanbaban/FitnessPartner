@@ -15,7 +15,8 @@ namespace FitnessPartner.Data
         public DbSet<FitnessGoals> FitnessGoals { get; set; }
         public DbSet<NutritionLog> NutritionLog { get; set; }
         public DbSet<NutritionPlans> NutritionPlans { get; set; }
-        public DbSet<NutritionResources> NutritionResources { get; set; }
+        public DbSet<NutritionResources> NutritionResources { get; set; }   
+        public DbSet<User> Users { get; set; }
 
 
 

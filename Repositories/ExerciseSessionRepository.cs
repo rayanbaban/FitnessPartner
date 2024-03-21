@@ -67,14 +67,46 @@ namespace FitnessPartner.Repositories
 			}
 		}
 
-		public Task<ExerciseSession?> GetSessionsAsync(int id)
+		public async Task<ExerciseSession?> GetSessionsByIdAsync(int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var sessionId = await _dbContext.ExerciseSession.FindAsync(id);
+				return sessionId;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Feil ved henting av session med ID {sessionId}: {ErrorMessage}", id, ex.Message);
+				return null;
+			}
 		}
 
-		public Task<ExerciseSession?> UpdateSessionsAsync(ExerciseSession session, int id)
+		public async Task<ExerciseSession?> UpdateSessionsAsync(ExerciseSession session, int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var existingSession = await _dbContext.ExerciseSession.FindAsync(id);
+
+				if (existingSession == null)
+				{
+					_logger.LogWarning("Kunne ikke finne session med ID {sessionId}", id);
+					return null;
+				}
+				existingSession.DurationMinutes = session.DurationMinutes;
+				existingSession.Result = session.Result;
+				existingSession.MusclesTrained = session.MusclesTrained;
+				existingSession.Intensity = session.Intensity;
+
+				await _dbContext.SaveChangesAsync();
+
+				return existingSession;
+
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Kunne ikke oppdatere session med session ID: {existingses}: {ErrorMessage}: ", id, ex.Message);
+				return null;
+			}
 		}
 	}
 }
