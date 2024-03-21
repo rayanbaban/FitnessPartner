@@ -1,6 +1,6 @@
 ﻿namespace FitnessPartner.Services.Interfaces
 {
-	public interface INutrtionLogService
-	{
-	}
+    public interface INutrtionLogService
+    {
+    }
 }

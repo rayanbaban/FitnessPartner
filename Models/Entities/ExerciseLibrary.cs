@@ -12,5 +12,7 @@ namespace FitnessPartner.Models.Entities
 		public string Description { get; set; } = string.Empty;
 		[Required]
 		public string Technique { get; set; } = string.Empty;
+		[Required]
+		public string MusclesTrained { get; set; } = string.Empty;
     }
 }
