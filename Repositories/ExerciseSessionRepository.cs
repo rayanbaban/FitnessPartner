@@ -1,7 +1,7 @@
 ﻿using FitnessPartner.Data;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
-using FitnessPartner.Repositories.Interfaces.IUserRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitnessPartner.Repositories
 {
@@ -10,12 +10,64 @@ namespace FitnessPartner.Repositories
 
 		private readonly FitnessPartnerDbContext _dbContext;
 		private readonly ILogger<ExerciseSessionRepository> _logger;
-		public Task<ExerciseSession?> CreateSessionAsync(ExerciseSession session, int id)
+
+		public ExerciseSessionRepository(FitnessPartnerDbContext dbContext, ILogger<ExerciseSessionRepository> logger)
 		{
-			throw new NotImplementedException();
+			_dbContext = dbContext;
+			_logger = logger;
 		}
 
-		public Task<ExerciseSession?> DeleteSessionsAsync(int id)
+		public async Task<ExerciseSession?> AddSessionAsync(ExerciseSession session, int id)
+		{
+			try
+			{
+				var newSession = await _dbContext.AddAsync(session);
+				_logger.LogDebug("Legger til en ny session {@nysession}", newSession.Entity);
+
+				await _dbContext.SaveChangesAsync();
+				return newSession.Entity;
+			}
+			catch (DbUpdateException ex)
+			{
+
+				_logger.LogError("Feil ved database oppdatering {message}", ex.Message);
+				return null;
+			}
+			catch(Exception ex )
+			{
+				_logger.LogError("Feilet ved opprettelse av ny session {message}", ex.Message);
+				return null;
+			}
+		}
+
+
+		public async Task<ExerciseSession?> DeleteSessionsAsync(int id)
+		{
+			try
+			{
+				var sessionsToDelete = await _dbContext.ExerciseSession.FindAsync(id);
+
+				if (sessionsToDelete == null)
+				{
+					_logger.LogWarning("Kunne ikke finne session {sessionId}", id);
+					return null;
+				}
+
+				_dbContext.ExerciseSession.Remove(sessionsToDelete);
+				await _dbContext.SaveChangesAsync();
+
+				_logger.LogInformation("Session med Id {sessionID} ble slettet", id);
+				return sessionsToDelete;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Feil ved sletting av session. Det ble kastet en unntak: {ExceptionMessage}", ex.Message);
+				return null;
+
+			}
+		}
+
+		public Task<ExerciseSession?> GetSessionsAsync(int id)
 		{
 			throw new NotImplementedException();
 		}

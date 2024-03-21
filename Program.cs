@@ -1,5 +1,6 @@
 using FitnessPartner.Data;
 using FitnessPartner.Extensions;
+using FitnessPartner.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware <JwtMiddleware>();
 
 app.UseHttpsRedirection();
 
