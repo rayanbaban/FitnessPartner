@@ -7,9 +7,9 @@
 # Legg til dine egne gitignore-regler under eksisterende regler
 
 # Filene du ønsker å ignorere
-.vs/**
-obj/Debug/net8.0/FitnessPartner.AssemblyInfo.cs
-obj/Debug/net8.0/FitnessPartner.AssemblyInfoInputs.cache
+.vs/** 
+obj/**
+
 
 # Andre ignorerte filer
 *.cache
