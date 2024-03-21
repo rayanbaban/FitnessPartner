@@ -1,4 +1,4 @@
-﻿namespace FitnessPartner.Repositories.IRepository
+﻿namespace FitnessPartner.Repositories.Interfaces;
 {
 	public interface INutritionLogRepository
 	{

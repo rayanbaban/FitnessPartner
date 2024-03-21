@@ -1,6 +1,12 @@
-﻿namespace FitnessPartner.Repositories
+﻿using FitnessPartner.Models.Entities;
+using FitnessPartner.Repositories.Interfaces;
+
+namespace FitnessPartner.Repositories;
+
+public class UserRepository : IUserRepository
 {
-	public class UserRepository
+	public Task<User> Create(User user)
 	{
+		throw new NotImplementedException();
 	}
 }

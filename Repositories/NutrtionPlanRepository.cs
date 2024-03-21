@@ -1,6 +1,5 @@
-﻿namespace FitnessPartner.Repositories
+﻿namespace FitnessPartner.Repositories;
+
+public class NutrtionPlanRepository
 {
-	public class NutrtionPlanRepository
-	{
-	}
 }

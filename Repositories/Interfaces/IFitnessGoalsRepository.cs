@@ -1,4 +1,4 @@
-﻿namespace FitnessPartner.Repositories.Interfaces
+﻿namespace FitnessPartner.Repositories.Interfaces;
 {
 	public interface IFitnessGoalsRepository
 	{

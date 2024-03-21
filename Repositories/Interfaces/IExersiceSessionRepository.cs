@@ -1,7 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 
-namespace FitnessPartner.Repositories.IUserRepository
+namespace FitnessPartner.Repositories.Interfaces;
 {
 	public interface IExersiceSessionRepository
 	{
