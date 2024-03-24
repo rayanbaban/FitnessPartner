@@ -18,7 +18,7 @@ public class UserRepository : IUserRepository
 
     public async Task<User> AddUserAsync(User user)
     {
-        _logger?.LogInformation($"Legger til et nytt medlem med ID{user.UserId}");
+        _logger?.LogInformation($"Legger til et nytt user med ID{user.UserId}");
         var entry = await _dbContext.Users.AddAsync(user);
         await _dbContext.SaveChangesAsync();
     }
@@ -47,7 +47,7 @@ public class UserRepository : IUserRepository
         return user is null ? null : user;
     }
 
-    public async Task<ICollection<User>> GetAllUsersAsync(User user)
+    public async Task<ICollection<User>> GetAllUsersAsync()
     {
         try
         {
@@ -58,14 +58,6 @@ public class UserRepository : IUserRepository
             _logger?.LogError(ex, "Feil ved forsøk på å hente medlemmer.");
             throw;
         }
-    }
-
-    public async Task<User?> GetUserByIdAsync(int id)
-    {
-        var user = await _dbContext.Users
-            .FirstOrDefaultAsync(x => x.UserId == id);
-
-        return user is null ? null : user;
     }
 
     public async Task<User> UpdateUserAsync(int id, User user)
