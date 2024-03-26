@@ -14,8 +14,22 @@ namespace FitnessPartner.Services
         private readonly ILogger<UserRepository> _logger;
         private readonly IMapper<User, UserDTO> _userMapper;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper<User, UserRegDTO> _userRegMapper;
 
-        public async Task<UserDTO?> DeleteUserAsync(int deleteUserId, int inloggedUser)
+		public UserService(FitnessPartnerDbContext dbContext, 
+            ILogger<UserRepository> logger, 
+            IMapper<User, UserDTO> userMapper, 
+            IUserRepository userRepository, IMapper<User,
+            UserRegDTO> userRegMapper)
+		{
+			_dbContext = dbContext;
+			_logger = logger;
+			_userMapper = userMapper;
+			_userRepository = userRepository;
+			_userRegMapper = userRegMapper;
+		}
+
+		public async Task<UserDTO?> DeleteUserAsync(int deleteUserId, int inloggedUser)
         {
             try
             {
@@ -79,7 +93,23 @@ namespace FitnessPartner.Services
             return res != null ? _userMapper.MapToDto(res) : null;
         }
 
-        public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
+		public async Task<UserDTO?> RegisterUserAsync(UserRegDTO userRegDTO)
+		{
+            var user = _userRegMapper.MapToModel(userRegDTO);
+
+            var newUser = await _userRepository.AddUserAsync(user);
+
+			string passwordHash
+				= BCrypt.Net.BCrypt.HashPassword(userRegDTO.Password);
+			user.UserName = userRegDTO.UserName;
+			user.PasswordHash = passwordHash;
+
+			_logger.LogInformation("Ny bruker register {@User}", user);
+
+            return _userMapper.MapToDto(newUser);
+		}
+
+		public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
         {
             try
             {
@@ -114,7 +144,7 @@ namespace FitnessPartner.Services
 
 
                 // Oppdater brukeren i databasen
-                await _userRepository.UpdateUserAsync(userToUpdate);
+                await _userRepository.UpdateUserAsync(id, userToUpdate);
 
 
                 // Hent den oppdaterte brukeren fra databasen

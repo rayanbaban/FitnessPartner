@@ -4,6 +4,8 @@ using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace FitnessPartner.Services
@@ -14,7 +16,18 @@ namespace FitnessPartner.Services
 		private readonly IMapper<ExerciseLibrary, ExerciseLibraryDTO> _exerciseLibraryMapper;
 		private readonly ILogger<ExerciseLibraryService> _logger;
 		private readonly IUserRepository _userRepository;
-		
+
+		public ExerciseLibraryService(IExerciseLibraryRepository exerciseLibraryRepo, 
+			IMapper<ExerciseLibrary,
+			ExerciseLibraryDTO> exerciseLibraryMapper, 
+			ILogger<ExerciseLibraryService> logger, IUserRepository userRepository)
+		{
+			_exerciseLibraryRepo = exerciseLibraryRepo;
+			_exerciseLibraryMapper = exerciseLibraryMapper;
+			_logger = logger;
+			_userRepository = userRepository;
+		}
+
 		public async Task<ExerciseLibraryDTO?> AddExerciseLibraryAsync(int inloggedUser, ExerciseLibraryDTO exerciseDTO)
 		{
 			var loggedInMember = await _userRepository.GetUserByIdAsync(inloggedUser);
@@ -28,38 +41,69 @@ namespace FitnessPartner.Services
 
 		public async Task<ExerciseLibraryDTO?> DeleteExerciseAsync(int exerciseId, int userId)
 		{
-			var eventToDelete = await _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
+			var exerciseToDelete = await _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
 
-			if (eventToDelete == null)
+			if (exerciseToDelete == null)
 			{
 				_logger?.LogError("Exercise med ID {ExerciseId} ble ikke funnet for sletting", exerciseId);
 				return null;
 			}
 
-			if (!(userId == eventToDelete.id || (eventToDelete.Member != null && eventToDelete.Member.IsAdminMember)))
+
+			var deletedExercise = await _exerciseLibraryRepo.DeleteExerciseAsync(exerciseId);
+
+			return deletedExercise != null ? _exerciseLibraryMapper.MapToDto(deletedExercise) : null;
+		}
+
+		public async Task<ICollection<ExerciseLibraryDTO>> GetAllExerciesAsync(int pageNr, int pageSize)
+		{
+			var exercises = await _exerciseLibraryRepo.GetAllExercisesAsync(pageNr, pageSize);
+
+			return exercises.Select(exercises => _exerciseLibraryMapper.MapToDto(exercises)).ToList();
+		}
+
+		public async Task<ExerciseLibraryDTO?> GetExerciseByIdAsync(int id)
+		{
+			var ExerciseToGet = await _exerciseLibraryRepo.GetExerciseByIdAsync(id);
+			return ExerciseToGet != null ? _exerciseLibraryMapper.MapToDto(ExerciseToGet) : null;
+		}
+
+		public async Task<ExerciseLibraryDTO?> GetExerciseByNameAsync(string name)
+		{
+			var exerciseToGet = await _exerciseLibraryRepo.GetExerciseByMuscleNameAsync(name);
+
+			return exerciseToGet != null ? _exerciseLibraryMapper.MapToDto(exerciseToGet) : null;
+		}
+
+		public async Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, int memberId, ExerciseLibraryDTO exerciseDTO)
+		{
+			var exerciseToUpd = _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
+			
+			if (exerciseToUpd == null)
 			{
-				_logger?.LogError("Medlem {MemberId} har ikke tilgang til å slette dette arrangementet", memberId);
-				throw new UnauthorizedAccessException($"Medlem {memberId} har ikke tilgang til å slette arrangementet");
+				_logger?.LogError("Exercise med ID {ExerciseId} ble ikke funnet for oppdatering", exerciseId);
+				return null;
 			}
 
-			var deletedEvent = await _eventRepository.DeleteEventByIdAsync(eventId);
+			//if (memberId != exerciseToUpd.MemberID && !eventToUpdate.Member.IsAdminMember)
+			//{
+			//	_logger?.LogError("Medlem {LoggedInUserId} har ikke tilgang til å oppdatere dette arrangementet", loggedInMember);
+			//	_logger?.LogError($"Detaljer: LoggedInMemberId: {loggedInMember}, EventMemberId: {eventToUpdate.MemberID}, IsAdminMember: {eventToUpdate.Member.IsAdminMember}");
 
-			return deletedEvent != null ? _eventMapper.MapToDTO(deletedEvent) : null;
-		}
+			//	throw new UnauthorizedAccessException($"Medlem {loggedInMember} har ikke tilgang til å oppdatere arrangementet");
+			//}
 
-		public Task<ICollection<ExerciseLibraryDTO?>> GetAllExerciesAsync(int pageNr, int pageSize)
-		{
-			throw new NotImplementedException();
-		}
+			var updatedExercise = await _exerciseLibraryRepo.UpdateExerciseAsync(_exerciseLibraryMapper.MapToModel(exerciseDTO), exerciseId);
 
-		public Task<ExerciseLibraryDTO?> GetExerciseByNameAsync(string name)
-		{
-			throw new NotImplementedException();
-		}
+			if (updatedExercise != null)
+			{
+				_logger?.LogInformation("Exercise med ID {exerciseId} ble oppdatert vellykket", exerciseId);
+				return _exerciseLibraryMapper.MapToDto(updatedExercise);
+			}
 
-		public Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, int memberId, ExerciseLibraryDTO exerciseDTO)
-		{
-			throw new NotImplementedException();
+			return null;
+
+
 		}
 	}
 }

@@ -12,7 +12,8 @@ namespace FitnessPartner.Mappers
 				model.ExerciseId,
 				model.ExerciseName,
 				model.Description,
-				model.Technique);
+				model.Technique,
+				model.MusclesTrained);
 		}
 
 		public ExerciseLibrary MapToModel(ExerciseLibraryDTO dto)

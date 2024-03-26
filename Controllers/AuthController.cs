@@ -1,5 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
+using FitnessPartner.Repositories.Interfaces;
+using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -13,26 +15,32 @@ namespace FitnessPartner.Controllers
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
+
+		private readonly IUserService _userService;
 		public static User user = new User();
 		private readonly IConfiguration _configuration;
+		private readonly ILogger<AuthController> _logger;
 
-		public AuthController(IConfiguration configuration)
+		public AuthController(IUserService userService, IConfiguration configuration, ILogger<AuthController> logger)
 		{
+			_userService = userService;
 			_configuration = configuration;
+			_logger = logger;
 		}
 
 		[HttpPost("register")]
-		public ActionResult<User> Register(UserRegDTO request)
+		public async Task<ActionResult<UserDTO>> Register(UserRegDTO userRegDTO)
 		{
-			string passwordHash
-				= BCrypt.Net.BCrypt.HashPassword(request.Password);
-			user.UserName = request.UserName;
-			user.PasswordHash = passwordHash;
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+			var userDTO = await _userService.RegisterUserAsync(userRegDTO);
+
+			return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere en ny bruker");
 
 
-
-
-			return Ok(user);
 		}
 
 		[HttpPost("login")]
