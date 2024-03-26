@@ -11,7 +11,13 @@ namespace FitnessPartner.Repositories
 		private readonly FitnessPartnerDbContext _dbContext;
 		private readonly ILogger<ExerciseLibraryRepository?> _logger;
 
-		public async Task<ExerciseLibrary> CreateExerciseAsync( ExerciseLibrary exersiceLib)
+		public ExerciseLibraryRepository(FitnessPartnerDbContext dbContext, ILogger<ExerciseLibraryRepository?> logger)
+		{
+			_dbContext = dbContext;
+			_logger = logger;
+		}
+
+		public async Task<ExerciseLibrary?> CreateExerciseAsync( ExerciseLibrary exersiceLib)
 		{
 
 			try
@@ -61,7 +67,23 @@ namespace FitnessPartner.Repositories
 			}
 		}
 
-		public async Task<ExerciseLibrary> GetExerciseByIdAsync(int id)
+		public async Task<ICollection<ExerciseLibrary>> GetAllExercisesAsync(int pageNr, int pageSize)
+		{
+			try
+			{
+				var allExercises = await _dbContext.ExerciseLibrary.ToListAsync();
+				return allExercises;
+			}
+			catch (Exception ex)
+			{
+
+				_logger.LogError("Feil ved henting av alle exercises: {ErrorMessage}", ex.Message);
+				return null;
+			}
+			
+		}
+
+		public async Task<ExerciseLibrary?> GetExerciseByIdAsync(int id)
 		{
 			try
 			{
@@ -76,14 +98,14 @@ namespace FitnessPartner.Repositories
 			}
 		}
 
-		public async Task<ExerciseLibrary> GetExerciseByMuscleNameAsync(string muscleName)
+		public async Task<ExerciseLibrary?> GetExerciseByMuscleNameAsync(string muscleName)
 		{
 			var muscle = await _dbContext.ExerciseLibrary
 				.FirstOrDefaultAsync(x => x.MusclesTrained!.Equals(muscleName));
 			return muscle is null ? null : muscle;
 		}
 
-		public async Task<ExerciseLibrary> UpdateExerciseAsync(int id, ExerciseLibrary updatedExercise)
+		public async Task<ExerciseLibrary?> UpdateExerciseAsync(ExerciseLibrary updatedExercise, int id)
 		{
 			try
 			{

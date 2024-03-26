@@ -16,7 +16,7 @@ public class UserRepository : IUserRepository
         _logger = logger;
     }
 
-    public async Task<User> AddUserAsync(User user)
+    public async Task<User?> AddUserAsync(User user)
     {
         _logger?.LogInformation($"Legger til et nytt user med ID{user.UserId}");
         var entry = await _dbContext.Users.AddAsync(user);

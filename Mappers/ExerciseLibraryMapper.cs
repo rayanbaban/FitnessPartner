@@ -4,17 +4,17 @@ using FitnessPartner.Models.Entities;
 
 namespace FitnessPartner.Mappers
 {
-    public class ExerciseLibraryMapper : IMapper<ExerciseLibrary, ExerciseLibraryDTO>
-    {
-        public ExerciseLibraryDTO MapToDto(ExerciseLibrary model)
-        {
-            return new ExerciseLibraryDTO(
-                model.ExerciseId,
-                model.ExerciseName,
-                model.Description,
-                model.Technique,
-                model.MusclesTrained);
-        }
+	public class ExerciseLibraryMapper : IMapper<ExerciseLibrary, ExerciseLibraryDTO>
+	{
+		public ExerciseLibraryDTO MapToDto(ExerciseLibrary model)
+		{
+			return new ExerciseLibraryDTO(
+				model.ExerciseId,
+				model.ExerciseName,
+				model.Description,
+				model.Technique,
+				model.MusclesTrained);
+		}
 
         public ExerciseLibrary MapToModel(ExerciseLibraryDTO dto)
         {
