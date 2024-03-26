@@ -18,12 +18,13 @@ namespace FitnessPartner.Mappers
 
         public ExerciseLibrary MapToModel(ExerciseLibraryDTO dto)
         {
-            return new ExerciseLibrary()
-            {
-                ExerciseId = dto.ExerciseId,
-                ExerciseName = dto.ExerciseName,
-                Description = dto.Description,
-                Technique = dto.Technique,
+			return new ExerciseLibrary()
+			{
+				ExerciseId = dto.ExerciseId,
+				ExerciseName = dto.ExerciseName,
+				Description = dto.Description,
+				Technique = dto.Technique,
+				MusclesTrained = dto.MusclesTrained
             };
         }
     }
