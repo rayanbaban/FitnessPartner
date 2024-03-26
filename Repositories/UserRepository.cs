@@ -21,6 +21,13 @@ public class UserRepository : IUserRepository
         _logger?.LogInformation($"Legger til et nytt user med ID{user.UserId}");
         var entry = await _dbContext.Users.AddAsync(user);
         await _dbContext.SaveChangesAsync();
+
+        if (entry != null)
+        {
+            return entry.Entity;
+        }
+
+        return null;
     }
 
     public async Task<User?> DeleteUserByIdAsync(int id)
@@ -62,10 +69,10 @@ public class UserRepository : IUserRepository
 
     public async Task<User> UpdateUserAsync(int id, User user)
     {
-        _logger?.LogDebug("Sletter medlem med id: {@id}", id);
-        var member = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+        _logger?.LogDebug("Sletter bruker med id: {@id}", id);
+        var bruker = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
 
-        if (member == null)
+        if (user == null)
             return null;
 
         await _dbContext.Users.Where(x => x.UserId == id)
@@ -73,6 +80,18 @@ public class UserRepository : IUserRepository
 
         _dbContext.SaveChanges();
 
-        return member;
+        return user;
+    }
+
+    public async Task<ICollection<User>> GetPageAsync(int pageNr, int pageSize)
+    {
+        var totCount = _dbContext.Users.Count();
+        var totPages = (int)Math.Ceiling((double)totCount / pageSize);
+
+        return await _dbContext.Users
+             .OrderBy(x => x.UserId)
+             .Skip((pageNr - 1) * pageSize)
+             .Take(pageSize)
+             .ToListAsync();
     }
 }

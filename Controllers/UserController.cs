@@ -1,4 +1,5 @@
-﻿using FitnessPartner.Models.Entities;
+﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,48 +13,86 @@ namespace FitnessPartner.Controllers
     // Implementere delete, update
     public class UserController : ControllerBase
     {
-        // Dette er bare en dummy-brukerliste for demonstrasjonsformål.
-        private static List<User> users = new List<User>
-        {
-            new User { UserId = 1, UserName = "user1", PasswordHash = "hashedPassword1" },
-            new User { UserId = 2, UserName = "user2", PasswordHash = "hashedPassword2" }
-        };
+        private readonly IUserService _usersService;
+        private readonly ILogger<UserController> _logger;
 
-        [HttpGet("{id}")]
-        public ActionResult<User> GetUserById(int id)
+        public UserController(IUserService usersservice, ILogger<UserController> logger)
         {
-            var user = users.Find(u => u.UserId == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
+            _usersService = usersservice;
+            _logger = logger;
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] User updatedUser)
+        [HttpGet(Name = "GetAllUsers")]
+        public async Task<ActionResult<ICollection<UserDTO>>> GetAllUsersAsync(int pageNr = 1, int pageSize = 10)
         {
-            var index = users.FindIndex(u => u.UserId == id);
-            if (index == -1)
-            {
-                return NotFound();
-            }
-
-            users[index] = updatedUser;
-            return NoContent();
+            return Ok(await _usersService.GetPageAsync(pageNr, pageSize));
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        [HttpGet("{id}", Name = "GetUserById")]
+        public async Task<ActionResult<UserDTO>> GetUserByIdAsync(int id)
         {
-            var user = users.Find(u => u.UserId == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            users.Remove(user);
-            return NoContent();
+            var res = await _usersService.GetUserByIdAsync(id);
+            return res != null ? Ok(res) : NotFound("Fant Ikke Bruker");
         }
+
+        [HttpPost("register", Name = "AddUser")]
+        public async Task<ActionResult<UserDTO>> AddUserAsync(UserDTO userDTO)
+        {
+            throw new NotImplementedException();
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            //var userDTO = await _usersService.RegisterUserAsync(RegDTO);
+
+            //return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere et nytt bruker");
+        }
+
+        [HttpPut("{id}", Name = "UpdateUser")]
+        public async Task<ActionResult<UserDTO>> UpdateUserAsync(int id, UserDTO userDTO)
+        {
+            int loginUserId = (int)HttpContext.Items["UserId"]!;
+
+            var updatedUser = await _usersService.UpdateUserAsync(id, userDTO, loginUserId);
+
+            return updatedUser != null ?
+                       Ok(updatedUser) :
+                       NotFound($"Klarte ikke å oppdatere bruker med ID: {id}");
+        }
+
+        [HttpDelete("{id}", Name = "DeleteUser")]
+        public async Task<ActionResult<UserDTO>> DeleteUserAsync(int id)
+        {
+            try
+            {
+                if (!HttpContext.Items.ContainsKey("UserId"))
+                {
+                    _logger?.LogWarning("UserId er ikke satt i HttpContext.Items");
+                    return Unauthorized("Ikke autentisert");
+                }
+
+                int? loginUserId = (int?)HttpContext.Items["UserId"];
+
+                if (!loginUserId.HasValue || loginUserId == 0)
+                {
+                    _logger?.LogWarning("UserId er ugyldig: {UserId}", loginUserId);
+                    return Unauthorized("Ikke autentisert");
+                }
+
+                var deletedUser = await _usersService.DeleteUserAsync(id, loginUserId.Value);
+                _logger?.LogInformation("Deleted user: {@DeletedUser}", deletedUser);
+
+                return deletedUser != null ?
+                           Ok(deletedUser) :
+                           NotFound($"Klarte ikke å slette bruker med ID: {id}");
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogError(ex, "Feil ved sletting av bruker");
+                return BadRequest($"Feil ved sletting av bruker: {ex.Message}");
+            }
+        }
+
     }
+
 }

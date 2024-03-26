@@ -70,6 +70,15 @@ namespace FitnessPartner.Services
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<UserDTO>> GetPageAsync(int pageNr, int pageSize)
+        {
+            var res = await _userRepository.GetPageAsync(pageNr, pageSize);
+
+            _logger?.LogInformation("Forsøker å hente side {PageNr} med størrelse {PageSize} av brukere", pageNr, pageSize);
+
+            return res.Select(pages => _userMapper.MapToDto(pages)).ToList();
+        }
+
         public async Task<UserDTO?> GetUserByIdAsync(int userId)
         {
             var res = await _userRepository.GetUserByIdAsync(userId);
@@ -81,54 +90,56 @@ namespace FitnessPartner.Services
 
         public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
         {
-            try
-            {
-                _logger?.LogInformation("Forsøker å oppdatere bruker med ID {BrukerId} av Bruker med ID {LoginUserId}", id, inloggedUser);
 
-                // Sjekk om brukeren som prøver å oppdatere er admin eller eier av kontoen som skal oppdateres
-                var loginUser = await _userRepository.GetUserByIdAsync(inloggedUser);
-                var userToUpdate = await _userRepository.GetUserByIdAsync(id);
+            throw new NotImplementedException();
+            //try
+            //{
+            //    _logger?.LogInformation("Forsøker å oppdatere bruker med ID {BrukerId} av Bruker med ID {LoginUserId}", id, inloggedUser);
 
-                _logger?.LogInformation("Inlogget Bruker: {@LoginUser}", loginUser);
-                _logger?.LogInformation("Bruker som skal oppdateres: {@UserToUpdate}", userToUpdate);
+            //    // Sjekk om brukeren som prøver å oppdatere er admin eller eier av kontoen som skal oppdateres
+            //    var loginUser = await _userRepository.GetUserByIdAsync(inloggedUser);
+            //    var userToUpdate = await _userRepository.GetUserByIdAsync(id);
 
-
-                if (loginUser == null || userToUpdate == null)
-                {
-                    // Hvis enten inlogget bruker eller bruker som skal oppdateres ikke er funnet, meld en feil
-                    _logger?.LogError("Inlogget Bruker som skal oppdateres ble ikke funnet. Inlogget Bruker: {@LoginUser}, " +
-                        "Bruker som skal oppdateres: {@BrukerToUpdate}", loginUser, userToUpdate);
-                    throw new InvalidOperationException("Inlogget Bruker som skal oppdateres ble ikke funnet.");
-                }
-
-                if (id != inloggedUser && !loginUser.IsAdminUser)
-                {
-                    // Hvis inlogget bruker ikke er admin og prøver å oppdatere en annen bruker, meld en feil
-                    _logger?.LogError("Ikke autorisert: Bruker {LoginUserId} har ikke tilgang til å oppdatere Bruker {BrukerId}", inloggedUser, id);
-                    throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å oppdatere Bruker {id}");
-                }
-
-                // Oppdater brukeren med de nye verdiene
-                var updatedUser = _userMapper.MapToModel(userDTO);
-                updatedUser.UserId = id;
+            //    _logger?.LogInformation("Inlogget Bruker: {@LoginUser}", loginUser);
+            //    _logger?.LogInformation("Bruker som skal oppdateres: {@UserToUpdate}", userToUpdate);
 
 
-                // Oppdater brukeren i databasen
-                await _userRepository.UpdateUserAsync(userToUpdate);
+            //    if (loginUser == null || userToUpdate == null)
+            //    {
+            //        // Hvis enten inlogget bruker eller bruker som skal oppdateres ikke er funnet, meld en feil
+            //        _logger?.LogError("Inlogget Bruker som skal oppdateres ble ikke funnet. Inlogget Bruker: {@LoginUser}, " +
+            //            "Bruker som skal oppdateres: {@BrukerToUpdate}", loginUser, userToUpdate);
+            //        throw new InvalidOperationException("Inlogget Bruker som skal oppdateres ble ikke funnet.");
+            //    }
+
+            //    if (id != inloggedUser && !loginUser.IsAdminUser)
+            //    {
+            //        // Hvis inlogget bruker ikke er admin og prøver å oppdatere en annen bruker, meld en feil
+            //        _logger?.LogError("Ikke autorisert: Bruker {LoginUserId} har ikke tilgang til å oppdatere Bruker {BrukerId}", inloggedUser, id);
+            //        throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å oppdatere Bruker {id}");
+            //    }
+
+            //    // Oppdater brukeren med de nye verdiene
+            //    var updatedUser = _userMapper.MapToModel(userDTO);
+            //    updatedUser.UserId = id;
 
 
-                // Hent den oppdaterte brukeren fra databasen
-                var result = await _userRepository.GetUserByIdAsync(id);
+            //    // Oppdater brukeren i databasen
+            //    await _userRepository.UpdateUserAsync(userToUpdate);
 
-                _logger?.LogInformation("Bruker med ID {BrukerId} ble oppdatert av Bruker med ID {LoginUserId}", id, inloggedUser);
 
-                return result != null ? _userMapper.MapToDto(result) : null;
-            }
-            catch (Exception ex)
-            {
-                _logger?.LogError(ex, "Feil ved oppdatering av bruker med ID {MemberId}", id);
-                throw;
-            }
+            //    // Hent den oppdaterte brukeren fra databasen
+            //    var result = await _userRepository.GetUserByIdAsync(id);
+
+            //    _logger?.LogInformation("Bruker med ID {BrukerId} ble oppdatert av Bruker med ID {LoginUserId}", id, inloggedUser);
+
+            //    return result != null ? _userMapper.MapToDto(result) : null;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger?.LogError(ex, "Feil ved oppdatering av bruker med ID {MemberId}", id);
+            //    throw;
+            //}
         }
     }
 }
