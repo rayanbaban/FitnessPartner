@@ -1,65 +1,64 @@
 ﻿using FitnessPartner.Mappers.Interfaces;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
-using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
-using Microsoft.Extensions.Logging;
 
 namespace FitnessPartner.Services
 {
-	public class ExerciseLibraryService : IExerciseLibraryService
-	{
-		private readonly IExerciseLibraryRepository _exerciseLibraryRepo;
-		private readonly IMapper<ExerciseLibrary, ExerciseLibraryDTO> _exerciseLibraryMapper;
-		private readonly ILogger<ExerciseLibraryService> _logger;
-		private readonly IUserRepository _userRepository;
-		
-		public async Task<ExerciseLibraryDTO?> AddExerciseLibraryAsync(int inloggedUser, ExerciseLibraryDTO exerciseDTO)
-		{
-			var loggedInMember = await _userRepository.GetUserByIdAsync(inloggedUser);
+    public class ExerciseLibraryService : IExerciseLibraryService
+    {
+        private readonly IExerciseLibraryRepository _exerciseLibraryRepo;
+        private readonly IMapper<ExerciseLibrary, ExerciseLibraryDTO> _exerciseLibraryMapper;
+        private readonly ILogger<ExerciseLibraryService> _logger;
+        private readonly IUserRepository _userRepository;
 
-			var exerciseToAdd = _exerciseLibraryMapper.MapToModel(exerciseDTO);
+        public async Task<ExerciseLibraryDTO?> AddExerciseLibraryAsync(int inloggedUser, ExerciseLibraryDTO exerciseDTO)
+        {
+            var loggedInMember = await _userRepository.GetUserByIdAsync(inloggedUser);
 
-			var addedExercise = await _exerciseLibraryRepo.CreateExerciseAsync(exerciseToAdd);
+            var exerciseToAdd = _exerciseLibraryMapper.MapToModel(exerciseDTO);
 
-			return addedExercise != null ? _exerciseLibraryMapper.MapToDto(addedExercise) : null;
-		}
+            var addedExercise = await _exerciseLibraryRepo.CreateExerciseAsync(exerciseToAdd);
 
-		public async Task<ExerciseLibraryDTO?> DeleteExerciseAsync(int exerciseId, int userId)
-		{
-			var eventToDelete = await _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
+            return addedExercise != null ? _exerciseLibraryMapper.MapToDto(addedExercise) : null;
+        }
 
-			if (eventToDelete == null)
-			{
-				_logger?.LogError("Exercise med ID {ExerciseId} ble ikke funnet for sletting", exerciseId);
-				return null;
-			}
+        public async Task<ExerciseLibraryDTO?> DeleteExerciseAsync(int exerciseId, int userId)
+        {
+            throw new NotImplementedException();
+            //var eventToDelete = await _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
 
-			if (!(userId == eventToDelete.id || (eventToDelete.Member != null && eventToDelete.Member.IsAdminMember)))
-			{
-				_logger?.LogError("Medlem {MemberId} har ikke tilgang til å slette dette arrangementet", memberId);
-				throw new UnauthorizedAccessException($"Medlem {memberId} har ikke tilgang til å slette arrangementet");
-			}
+            //if (eventToDelete == null)
+            //{
+            //	_logger?.LogError("Exercise med ID {ExerciseId} ble ikke funnet for sletting", exerciseId);
+            //	return null;
+            //}
 
-			var deletedEvent = await _eventRepository.DeleteEventByIdAsync(eventId);
+            //if (!(userId == eventToDelete.id || (eventToDelete.Member != null && eventToDelete.Member.IsAdminMember)))
+            //{
+            //	_logger?.LogError("Medlem {MemberId} har ikke tilgang til å slette dette arrangementet", memberId);
+            //	throw new UnauthorizedAccessException($"Medlem {memberId} har ikke tilgang til å slette arrangementet");
+            //}
 
-			return deletedEvent != null ? _eventMapper.MapToDTO(deletedEvent) : null;
-		}
+            //var deletedEvent = await _eventRepository.DeleteEventByIdAsync(eventId);
 
-		public Task<ICollection<ExerciseLibraryDTO?>> GetAllExerciesAsync(int pageNr, int pageSize)
-		{
-			throw new NotImplementedException();
-		}
+            //return deletedEvent != null ? _eventMapper.MapToDTO(deletedEvent) : null;
+        }
 
-		public Task<ExerciseLibraryDTO?> GetExerciseByNameAsync(string name)
-		{
-			throw new NotImplementedException();
-		}
+        public Task<ICollection<ExerciseLibraryDTO?>> GetAllExerciesAsync(int pageNr, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
 
-		public Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, int memberId, ExerciseLibraryDTO exerciseDTO)
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public Task<ExerciseLibraryDTO?> GetExerciseByNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, int memberId, ExerciseLibraryDTO exerciseDTO)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
