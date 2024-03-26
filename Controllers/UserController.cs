@@ -35,18 +35,6 @@ namespace FitnessPartner.Controllers
             return res != null ? Ok(res) : NotFound("Fant Ikke Bruker");
         }
 
-        [HttpPost("register", Name = "AddUser")]
-        public async Task<ActionResult<UserDTO>> AddUserAsync(UserDTO userDTO)
-        {
-            throw new NotImplementedException();
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-            //var userDTO = await _usersService.RegisterUserAsync(RegDTO);
-
-            //return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere et nytt bruker");
-        }
 
         [HttpPut("{id}", Name = "UpdateUser")]
         public async Task<ActionResult<UserDTO>> UpdateUserAsync(int id, UserDTO userDTO)
