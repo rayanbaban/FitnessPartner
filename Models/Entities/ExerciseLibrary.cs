@@ -14,5 +14,8 @@ namespace FitnessPartner.Models.Entities
 		public string Technique { get; set; } = string.Empty;
 		[Required]
 		public string MusclesTrained { get; set; } = string.Empty;
-    }
+
+		public virtual User? User { get; set; }
+
+	}
 }

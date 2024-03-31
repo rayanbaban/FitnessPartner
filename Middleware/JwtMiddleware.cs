@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FitnessPartner.Middleware
 {
-	public class JwtMiddleware 
+	public class JwtMiddleware
 	{
 
 		private readonly RequestDelegate _next;

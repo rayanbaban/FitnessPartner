@@ -20,11 +20,12 @@ namespace FitnessPartner.Mappers
 				Email = dto.Email,
 				FirstName = dto.FirstName,
 				LastName = dto.LastName,
+				UserName = dto.UserName,
 				Weight = dto.Weight,
 				Height = dto.Height,
-				IsAdminUser = false,
 				Created = dtNow,
-				Age = dto.Age
+				Age = dto.Age,
+				IsAdminUser = false
 			};
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using FitnessPartner.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessPartner.Data
@@ -19,6 +20,5 @@ namespace FitnessPartner.Data
         public DbSet<User> Users { get; set; }
 
 
-
-    }
+	}
 }

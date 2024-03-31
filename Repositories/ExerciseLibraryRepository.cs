@@ -67,7 +67,7 @@ namespace FitnessPartner.Repositories
 			}
 		}
 
-		public async Task<ICollection<ExerciseLibrary>> GetAllExercisesAsync(int pageNr, int pageSize)
+		public async Task<ICollection<ExerciseLibrary?>> GetAllExercisesAsync(int pageNr, int pageSize)
 		{
 			try
 			{
@@ -112,16 +112,15 @@ namespace FitnessPartner.Repositories
 				var existingExercise = await _dbContext.ExerciseLibrary.FindAsync(id);
 
 				if (existingExercise == null)
-					if (existingExercise == null)
-					{
-						_logger.LogWarning("Kunne ikke finne exercise med ID {exerciseId} for oppdatering", id);
-						return null;
-					}
+				{
+					_logger.LogWarning("Kunne ikke finne exercise med ID {exerciseId} for oppdatering", id);
+					return null;
+				}
 
 				existingExercise.ExerciseName = updatedExercise.ExerciseName;
-				existingExercise.ExerciseId = updatedExercise.ExerciseId;
 				existingExercise.Description = updatedExercise.Description;
 				existingExercise.Technique = updatedExercise.Technique;
+				existingExercise.MusclesTrained = updatedExercise.MusclesTrained;
 
 				await _dbContext.SaveChangesAsync();
 

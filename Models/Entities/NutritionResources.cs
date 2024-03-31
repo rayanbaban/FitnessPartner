@@ -12,5 +12,8 @@ namespace FitnessPartner.Models.Entities
         public string ResourceType { get; set; } = string.Empty;
         [Required]
         public string Content { get; set; } = string.Empty;
-    }
+
+		public virtual User? User { get; set; }
+
+	}
 }

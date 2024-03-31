@@ -1,4 +1,5 @@
-﻿using FitnessPartner.Models.DTOs;
+﻿using FitnessPartner.Models;
+using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
@@ -11,15 +12,15 @@ using System.Text;
 
 namespace FitnessPartner.Controllers
 {
-	[Route("api/v1[controller]")]
-	[ApiController]
-	public class AuthController : ControllerBase
-	{
+    [Route("api/v1/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
+    {
 
-		private readonly IUserService _userService;
-		public static User user = new User();
-		private readonly IConfiguration _configuration;
-		private readonly ILogger<AuthController> _logger;
+        private readonly IUserService _userService;
+        public static UserLoginDTO user = new UserLoginDTO();
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<AuthController> _logger;
 
 		public AuthController(IUserService userService, IConfiguration configuration, ILogger<AuthController> logger)
 		{
@@ -29,24 +30,23 @@ namespace FitnessPartner.Controllers
 		}
 
 		[HttpPost("register")]
-		public async Task<ActionResult<UserDTO>> Register(UserRegDTO userRegDTO)
-		{
+        public async Task<ActionResult<UserDTO>> Register(UserRegDTO userRegDTO)
+        {
 
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-			var userDTO = await _userService.RegisterUserAsync(userRegDTO);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userDTO = await _userService.RegisterUserAsync(userRegDTO);
 
-			return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere en ny bruker");
+            return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere en ny bruker");
 
-
-		}
+        }
 
         [HttpPost("login")]
-        public ActionResult<User> Login(UserDTO request)
+        public ActionResult<UserLoginDTO> Login(LoginDTO request)
         {
-            if (user.UserName != request.UserName)
+            if (user.Username != request.UserName)
             {
                 return BadRequest("User not found");
             }
@@ -55,26 +55,26 @@ namespace FitnessPartner.Controllers
             {
                 return BadRequest("Wrong password.");
             }
-            string token = CreateToken(user);
 
+            string token = CreateToken(user);
             return Ok(token);
         }
 
-        private string CreateToken(User user)
+        private string CreateToken(UserLoginDTO user)
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName)
+                new Claim(ClaimTypes.Name, user.Username)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
                 (_configuration.GetSection("AppSettings:Token").Value!));
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds
                 );
 

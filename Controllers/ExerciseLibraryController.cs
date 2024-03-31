@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessPartner.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class ExerciseLibraryController : ControllerBase
 	{
@@ -21,21 +21,21 @@ namespace FitnessPartner.Controllers
 
 
 		// GET: api/<ExercisesLibraryController>
-		[HttpGet(Name = "GetAllExercises")]
+		[HttpGet(Name = "GetAllLibraryExercises")]
 		public async Task<ActionResult<IEnumerable<ExerciseLibraryDTO>>> GetAllExercises(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _exersiceLibraryService.GetAllExerciesAsync(pageNr, pageSize));
 		}
 
 		// GET api/<ExerciseLibraryController>/5
-		[HttpGet("{Id}", Name = "GetExerciseById")]
-		public async Task<ActionResult<ExerciseLibraryDTO>> GetExerciseById(int exerciseId)
+		[HttpGet("{Id}", Name = "GetExercisLibraryeById")]
+		public async Task<ActionResult<ExerciseLibraryDTO>> GetExerciseById(int Id)
 		{
-			var Exercise = await _exersiceLibraryService.GetExerciseByIdAsync(exerciseId);
-			return exerciseId != 0 ? Ok(Exercise) : NotFound();
+			var Exercise = await _exersiceLibraryService.GetExerciseByIdAsync(Id);
+			return Id != 0 ? Ok(Exercise) : NotFound();
 		}
 
-		// POST api/<ExerciseController>
+		// POST api/<ExerciseLibraryController>
 		[HttpPost]
 		public async Task<ActionResult<ExerciseLibraryDTO>> PostExercise([FromBody] ExerciseLibraryDTO exerciselibraryDTO)
 		{
@@ -46,8 +46,8 @@ namespace FitnessPartner.Controllers
 					return BadRequest("Ugyldige exercise data");
 				}
 
-				int loginUserId = (int)HttpContext.Items["UserId"]!;
-				var addedEvent = await _exersiceLibraryService.AddExerciseLibraryAsync(loginUserId, exerciselibraryDTO);
+				//int loginUserId = (int)HttpContext.Items["UserId"]!;
+				var addedEvent = await _exersiceLibraryService.AddExerciseLibraryAsync(/*loginUserId,*/ exerciselibraryDTO);
 
 				if (addedEvent != null)
 				{
@@ -63,23 +63,23 @@ namespace FitnessPartner.Controllers
 			}
 		}
 
-		// PUT api/<ExerciseController>/5
-		[HttpPut(Name = "UpdateExercise")]
+		// PUT api/<ExerciseLibraryController>/5
+		[HttpPut("{id}", Name = "UpdateExerciseLibrary")]
 		public async Task<ActionResult<ExerciseLibraryDTO>> UpdateExercise(int exerciseId, ExerciseLibraryDTO exerciseLibraryDTO)
 		{
-			int loginMemberId = (int)HttpContext.Items["UserId"]!;
+			//int loginMemberId = (int)HttpContext.Items["UserId"]!;
 
-			var updatedPost = await _exersiceLibraryService.UpdateExerciseAsync(exerciseId, loginMemberId, exerciseLibraryDTO);
+			var updatedPost = await _exersiceLibraryService.UpdateExerciseAsync(exerciseId, /*loginMemberId,*/ exerciseLibraryDTO);
 
 			if (updatedPost != null)
 			{
-				return Ok(updatedPost);
+				return  Ok(updatedPost);
 			}
 			return NotFound($"Exercise med ID {exerciseId} ble ikke funnet");
 		}
 
-		// DELETE api/<EventsController>/5
-		[HttpDelete("{id}", Name = "DeleteExersice")]
+		// DELETE api/<ExerciseLibraryController>/5
+		[HttpDelete("{id}", Name = "DeleteExersiceLibrary")]
 		public async Task<ActionResult<ExerciseLibraryDTO>> DeleteExercise(int exerciseID)
 		{
 			int loginMemberId = (HttpContext.Items["UserId"] as int?) ?? 0;

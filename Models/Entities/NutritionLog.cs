@@ -15,5 +15,7 @@ namespace FitnessPartner.Models.Entities
         [Required]
         public string FoodIntake { get; set; } = string.Empty;
 
-    }
+		public virtual User? User { get; set; }
+
+	}
 }

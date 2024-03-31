@@ -12,7 +12,7 @@ namespace FitnessPartner.Models.Entities
         public string PlanType { get; set; } = string.Empty;
         public string PlanDetails{ get; set; } = string.Empty;
 
-        
+		public virtual User? User { get; set; }
 
-    }
+	}
 }

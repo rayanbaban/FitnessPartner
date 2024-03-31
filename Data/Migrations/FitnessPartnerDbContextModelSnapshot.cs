@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FitnessPartner.Data.Migrations
+namespace FitnessPartner.Data.migrations
 {
     [DbContext(typeof(FitnessPartnerDbContext))]
     partial class FitnessPartnerDbContextModelSnapshot : ModelSnapshot
@@ -46,7 +46,12 @@ namespace FitnessPartner.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ExerciseId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ExerciseLibrary");
                 });
@@ -82,6 +87,8 @@ namespace FitnessPartner.Data.Migrations
 
                     b.HasKey("SessionId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("ExerciseSession");
                 });
 
@@ -105,6 +112,8 @@ namespace FitnessPartner.Data.Migrations
 
                     b.HasKey("GoalId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("FitnessGoals");
                 });
 
@@ -127,6 +136,8 @@ namespace FitnessPartner.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("LogId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("NutritionLog");
                 });
@@ -152,6 +163,8 @@ namespace FitnessPartner.Data.Migrations
 
                     b.HasKey("PlanId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("NutritionPlans");
                 });
 
@@ -175,7 +188,12 @@ namespace FitnessPartner.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ResourceId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("NutritionResources");
                 });
@@ -230,6 +248,68 @@ namespace FitnessPartner.Data.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("FitnessPartner.Models.Entities.ExerciseLibrary", b =>
+                {
+                    b.HasOne("FitnessPartner.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitnessPartner.Models.Entities.ExerciseSession", b =>
+                {
+                    b.HasOne("FitnessPartner.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitnessPartner.Models.Entities.FitnessGoals", b =>
+                {
+                    b.HasOne("FitnessPartner.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitnessPartner.Models.Entities.NutritionLog", b =>
+                {
+                    b.HasOne("FitnessPartner.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitnessPartner.Models.Entities.NutritionPlans", b =>
+                {
+                    b.HasOne("FitnessPartner.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FitnessPartner.Models.Entities.NutritionResources", b =>
+                {
+                    b.HasOne("FitnessPartner.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

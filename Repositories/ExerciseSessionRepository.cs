@@ -1,6 +1,7 @@
 ﻿using FitnessPartner.Data;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessPartner.Repositories
@@ -17,7 +18,7 @@ namespace FitnessPartner.Repositories
 			_logger = logger;
 		}
 
-		public async Task<ExerciseSession?> AddSessionAsync(ExerciseSession session, int id)
+		public async Task<ExerciseSession?> AddSessionAsync(ExerciseSession session)
 		{
 			try
 			{
@@ -65,6 +66,32 @@ namespace FitnessPartner.Repositories
 				return null;
 
 			}
+		}
+
+		public async Task<ICollection<ExerciseSession?>> GetAllSessionsAsync(int pageNr, int pageSize)
+		{
+			try
+			{
+				var ExerciseSessions = await _dbContext.ExerciseSession.ToListAsync();
+				return ExerciseSessions;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Feil ved henting av alle ExerciseSessions: {ErrorMessage}", ex.Message);
+				return null;
+			}
+		}
+
+		public async Task<IEnumerable<ExerciseSession?>> GetPageAsync(int pageNr, int pageSize)
+		{
+			var totCount = _dbContext.ExerciseSession.Count();
+			var totPages = (int)Math.Ceiling((double)totCount / pageSize);
+
+			return await _dbContext.ExerciseSession
+				.OrderBy(x => x.SessionId)
+				.Skip((pageNr - 1) * pageSize)
+				.Take(pageSize)
+				.ToListAsync();
 		}
 
 		public async Task<ExerciseSession?> GetSessionsByIdAsync(int id)

@@ -24,6 +24,8 @@ public class ExerciseSession
 		[Required]
 		public string Intensity { get; set; } = string.Empty;
 
-    }
+		public virtual User? User { get; set; }
+
+	}
 }
 

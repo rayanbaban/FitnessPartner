@@ -106,21 +106,22 @@ namespace FitnessPartner.Services
         {
             var user = _userRegMapper.MapToModel(userRegDTO);
 
+            //Lage salt og hashverdier
+            user.Salt = BCrypt.Net.BCrypt.GenerateSalt();
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userRegDTO.Password, user.Salt);
+
+            // legge til ny bruker
             var newUser = await _userRepository.AddUserAsync(user);
 
-            string passwordHash
-                = BCrypt.Net.BCrypt.HashPassword(userRegDTO.Password);
-            user.UserName = userRegDTO.UserName;
-            user.PasswordHash = passwordHash;
+            // logge registreringen av den nye brukeren
 
-            _logger.LogInformation("Ny bruker register {@User}", user);
+            _logger.LogInformation($"Et nytt medlem har registrert seg: {user}");
 
             return _userMapper.MapToDto(newUser);
         }
 
         public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
         {
-
             try
             {
                 _logger?.LogInformation("Forsøker å oppdatere bruker med ID {BrukerId} av Bruker med ID {LoginUserId}", id, inloggedUser);

@@ -4,15 +4,45 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FitnessPartner.Data.Migrations
+namespace FitnessPartner.Data.migrations
 {
     /// <inheritdoc />
-    public partial class initialbuild : Migration
+    public partial class migrering3003 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    FirstName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Weight = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Height = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    PasswordHash = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Salt = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsAdminUser = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -26,11 +56,19 @@ namespace FitnessPartner.Data.Migrations
                     Description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Technique = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    MusclesTrained = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExerciseLibrary", x => x.ExerciseId);
+                    table.ForeignKey(
+                        name: "FK_ExerciseLibrary_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -53,6 +91,12 @@ namespace FitnessPartner.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExerciseSession", x => x.SessionId);
+                    table.ForeignKey(
+                        name: "FK_ExerciseSession_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -70,6 +114,12 @@ namespace FitnessPartner.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FitnessGoals", x => x.GoalId);
+                    table.ForeignKey(
+                        name: "FK_FitnessGoals_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -87,6 +137,12 @@ namespace FitnessPartner.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NutritionLog", x => x.LogId);
+                    table.ForeignKey(
+                        name: "FK_NutritionLog_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -105,6 +161,12 @@ namespace FitnessPartner.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NutritionPlans", x => x.PlanId);
+                    table.ForeignKey(
+                        name: "FK_NutritionPlans_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -119,13 +181,49 @@ namespace FitnessPartner.Data.Migrations
                     ResourceType = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Content = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NutritionResources", x => x.ResourceId);
+                    table.ForeignKey(
+                        name: "FK_NutritionResources_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExerciseLibrary_UserId",
+                table: "ExerciseLibrary",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExerciseSession_UserId",
+                table: "ExerciseSession",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FitnessGoals_UserId",
+                table: "FitnessGoals",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NutritionLog_UserId",
+                table: "NutritionLog",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NutritionPlans_UserId",
+                table: "NutritionPlans",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NutritionResources_UserId",
+                table: "NutritionResources",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -148,6 +246,9 @@ namespace FitnessPartner.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "NutritionResources");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

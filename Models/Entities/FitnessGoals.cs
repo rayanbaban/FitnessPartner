@@ -15,5 +15,7 @@ namespace FitnessPartner.Models.Entities
 
         public int PrValue { get; set; }
 
-    }
+		public virtual User? User { get; set; }
+
+	}
 }

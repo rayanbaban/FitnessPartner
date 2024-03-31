@@ -27,9 +27,9 @@ namespace FitnessPartner.Services
 			_userRepository = userRepository;
 		}
 
-		public async Task<ExerciseLibraryDTO?> AddExerciseLibraryAsync(int inloggedUser, ExerciseLibraryDTO exerciseDTO)
+		public async Task<ExerciseLibraryDTO?> AddExerciseLibraryAsync(/*int inloggedUser,*/ ExerciseLibraryDTO exerciseDTO)
 		{
-			var loggedInMember = await _userRepository.GetUserByIdAsync(inloggedUser);
+			//var loggedInMember = await _userRepository.GetUserByIdAsync(inloggedUser);
 
             var exerciseToAdd = _exerciseLibraryMapper.MapToModel(exerciseDTO);
 
@@ -74,7 +74,7 @@ namespace FitnessPartner.Services
 			return exerciseToGet != null ? _exerciseLibraryMapper.MapToDto(exerciseToGet) : null;
 		}
 
-		public async Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, int memberId, ExerciseLibraryDTO exerciseDTO)
+		public async Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, /*int userId,*/ ExerciseLibraryDTO exerciseDTO)
 		{
 			var exerciseToUpd = _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
 			

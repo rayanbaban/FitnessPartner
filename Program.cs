@@ -11,6 +11,12 @@ using FitnessPartner.Mappers.Interfaces;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Mappers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Identity;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,17 +30,22 @@ builder.Services.AddSwaggerGen();
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IExerciseLibraryService, ExerciseLibraryService>();
+builder.Services.AddScoped<IExerciseSessionService, ExerciseSessionService>();
+
 
 
 
 // Mappers
 builder.Services.AddScoped<IMapper<User, UserDTO>, UserMapper>();
 builder.Services.AddScoped<IMapper<User, UserRegDTO>, UserRegMapper>();
+builder.Services.AddScoped<IMapper<ExerciseLibrary, ExerciseLibraryDTO>, ExerciseLibraryMapper>();
+builder.Services.AddScoped<IMapper<ExerciseSession, ExerciseSessionDTO>, ExerciseSessionMapper>();
 
 
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IExerciseLibraryRepository, ExerciseLibraryRepository>();
+builder.Services.AddScoped<IExersiceSessionRepository, ExerciseSessionRepository >();
 
 
 
@@ -53,6 +64,22 @@ builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
 		new MySqlServerVersion(new Version(8, 0)));
 
 	options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+});
+
+
+//registreringen av sriloggen som ble skrevet inn i config filen skjer her 
+builder.Host.UseSerilog((context, configuration) =>
+{
+	//her sier vi at vi vil bruke serilog og hente konfigurasjonen fra config filen
+	//husk også	legge det til i DI som ligger i personDBHandler
+	//da er vi i mål
+	configuration.ReadFrom.Configuration(context.Configuration);
+});
+
+
+builder.Host.UseSerilog((context, configuration) =>
+{
+	configuration.ReadFrom.Configuration(context.Configuration);
 });
 
 
