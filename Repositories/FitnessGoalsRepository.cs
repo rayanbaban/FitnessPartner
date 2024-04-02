@@ -8,10 +8,10 @@ namespace FitnessPartner.Repositories
 {
 	public class FitnessGoalsRepository : IFitnessGoalsRepository
 	{
-		private readonly ILogger _logger;
+		private readonly ILogger<FitnessGoalsRepository> _logger;
 		private readonly FitnessPartnerDbContext _dbContext;
 
-		public FitnessGoalsRepository(ILogger logger, FitnessPartnerDbContext dbContext)
+		public FitnessGoalsRepository(ILogger<FitnessGoalsRepository> logger, FitnessPartnerDbContext dbContext)
 		{
 			_logger = logger;
 			_dbContext = dbContext;

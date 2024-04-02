@@ -15,7 +15,7 @@ namespace FitnessPartner.Services.Interfaces
 
         Task<UserDTO> RegisterUserAsync(UserRegDTO userRegDTO);
 
-
         Task<IEnumerable<UserDTO>> GetPageAsync(int pageNr, int pageSize);
-    }
+
+	}
 }

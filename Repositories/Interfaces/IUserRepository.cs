@@ -10,5 +10,7 @@ public interface IUserRepository
     Task<ICollection<User>> GetAllUsersAsync();
     Task<User> GetUserByIdAsync(int id);
     Task<ICollection<User>> GetPageAsync(int pageNr, int pageSize);
+    Task<User?> GetUserByNameAsync(string name);
+
 
 }

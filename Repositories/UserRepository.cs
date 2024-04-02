@@ -94,4 +94,10 @@ public class UserRepository : IUserRepository
              .Take(pageSize)
              .ToListAsync();
     }
+	public async Task<User?> GetUserByNameAsync(string name)
+	{
+		var user = await _dbContext.Users
+			.FirstOrDefaultAsync(x => x.UserName!.Equals(name));
+		return user is null ? null : user;
+	}
 }
