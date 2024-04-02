@@ -79,10 +79,18 @@ namespace FitnessPartner.Services
             return dtos;
         }
 
-        public Task<int> GetAuthenticatedIdAsync(string userName, string password)
+        public async Task<int> GetAuthenticatedIdAsync(string userName, string password)
         {
-            throw new NotImplementedException();
-        }
+			var user = await _userRepository.GetUserByNameAsync(userName);
+			if (user == null) return 0;
+
+			// prøver å verifisere passordet mot lagret hash-verdi
+			if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+			{
+				return user.UserId;
+			}
+			return 0;
+		}
 
         public async Task<IEnumerable<UserDTO>> GetPageAsync(int pageNr, int pageSize)
         {

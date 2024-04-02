@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.AspNetCore.Identity;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +30,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IExerciseLibraryService, ExerciseLibraryService>();
 builder.Services.AddScoped<IExerciseSessionService, ExerciseSessionService>();
+builder.Services.AddScoped<IFitnessGoalsService, FitnessGoalsService>();
 
 
 
@@ -40,12 +40,14 @@ builder.Services.AddScoped<IMapper<User, UserDTO>, UserMapper>();
 builder.Services.AddScoped<IMapper<User, UserRegDTO>, UserRegMapper>();
 builder.Services.AddScoped<IMapper<ExerciseLibrary, ExerciseLibraryDTO>, ExerciseLibraryMapper>();
 builder.Services.AddScoped<IMapper<ExerciseSession, ExerciseSessionDTO>, ExerciseSessionMapper>();
+builder.Services.AddScoped<IMapper<FitnessGoals, FitnessGoalsDTO>, FitnessGoalsMapper>();
 
 
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IExerciseLibraryRepository, ExerciseLibraryRepository>();
 builder.Services.AddScoped<IExersiceSessionRepository, ExerciseSessionRepository >();
+builder.Services.AddScoped<IFitnessGoalsRepository, FitnessGoalsRepository >();
 
 
 
