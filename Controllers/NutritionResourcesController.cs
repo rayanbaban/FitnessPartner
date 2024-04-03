@@ -7,5 +7,6 @@ namespace FitnessPartner.Controllers
 	[ApiController]
 	public class NutritionResourcesController : ControllerBase
 	{
+
 	}
 }

@@ -76,7 +76,7 @@ namespace FitnessPartner.Services
 
 		public async Task<ExerciseLibraryDTO?> UpdateExerciseAsync(int exerciseId, /*int userId,*/ ExerciseLibraryDTO exerciseDTO)
 		{
-			var exerciseToUpd = _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
+			var exerciseToUpd = await _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
 			
 			if (exerciseToUpd == null)
 			{

@@ -46,7 +46,7 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public async Task<User> GetUserByIdAsync(int id)
+    public async Task<User?> GetUserByIdAsync(int id)
     {
         var user = await _dbContext.Users
             .FirstOrDefaultAsync(x => x.UserId == id);
@@ -54,7 +54,7 @@ public class UserRepository : IUserRepository
         return user is null ? null : user;
     }
 
-    public async Task<ICollection<User>> GetAllUsersAsync()
+    public async Task<ICollection<User?>> GetAllUsersAsync()
     {
         try
         {
@@ -67,7 +67,7 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<User> UpdateUserAsync(int id, User user)
+    public async Task<User?> UpdateUserAsync(int id, User user)
     {
         _logger?.LogDebug("Sletter bruker med id: {@id}", id);
         var bruker = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
@@ -83,7 +83,7 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public async Task<ICollection<User>> GetPageAsync(int pageNr, int pageSize)
+    public async Task<ICollection<User?>> GetPageAsync(int pageNr, int pageSize)
     {
         var totCount = _dbContext.Users.Count();
         var totPages = (int)Math.Ceiling((double)totCount / pageSize);
