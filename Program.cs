@@ -34,15 +34,6 @@ builder.Services.AddScoped<IFitnessGoalsService, FitnessGoalsService>();
 
 
 
-
-// Mappers
-builder.Services.AddScoped<IMapper<User, UserDTO>, UserMapper>();
-builder.Services.AddScoped<IMapper<User, UserRegDTO>, UserRegMapper>();
-builder.Services.AddScoped<IMapper<ExerciseLibrary, ExerciseLibraryDTO>, ExerciseLibraryMapper>();
-builder.Services.AddScoped<IMapper<ExerciseSession, ExerciseSessionDTO>, ExerciseSessionMapper>();
-builder.Services.AddScoped<IMapper<FitnessGoals, FitnessGoalsDTO>, FitnessGoalsMapper>();
-
-
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IExerciseLibraryRepository, ExerciseLibraryRepository>();

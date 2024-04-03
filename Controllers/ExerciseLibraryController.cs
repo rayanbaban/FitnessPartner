@@ -65,17 +65,17 @@ namespace FitnessPartner.Controllers
 
 		// PUT api/<ExerciseLibraryController>/5
 		[HttpPut("{id}", Name = "UpdateExerciseLibrary")]
-		public async Task<ActionResult<ExerciseLibraryDTO>> UpdateExercise(int exerciseId, ExerciseLibraryDTO exerciseLibraryDTO)
+		public async Task<ActionResult<ExerciseLibraryDTO>> UpdateExercise(int id, ExerciseLibraryDTO exerciseLibraryDTO)
 		{
 			//int loginMemberId = (int)HttpContext.Items["UserId"]!;
 
-			var updatedPost = await _exersiceLibraryService.UpdateExerciseAsync(exerciseId, /*loginMemberId,*/ exerciseLibraryDTO);
+			var updatedPost = await _exersiceLibraryService.UpdateExerciseAsync(id, /*loginMemberId,*/ exerciseLibraryDTO);
 
 			if (updatedPost != null)
 			{
 				return  Ok(updatedPost);
 			}
-			return NotFound($"Exercise med ID {exerciseId} ble ikke funnet");
+			return NotFound($"Exercise med ID {id} ble ikke funnet");
 		}
 
 		// DELETE api/<ExerciseLibraryController>/5
