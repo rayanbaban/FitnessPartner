@@ -26,7 +26,7 @@ namespace FitnessPartner.Middleware
 		public async Task Invoke(HttpContext context)
 		{
 			//Reading the AuthHeader which is signed with JWT
-			string authHeader = context.Request.Headers["Authorization"];
+			string? authHeader = context.Request.Headers["Authorization"];
 
 			if (authHeader != null)
 			{

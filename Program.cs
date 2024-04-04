@@ -24,7 +24,8 @@ builder.Services.AddControllers();
 builder.RegisterMappers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
+builder.AddSwaggerWithJWTBearerAuthentication();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();

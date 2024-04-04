@@ -99,7 +99,6 @@ namespace FitnessPartner.Services
 				_logger?.LogInformation("Exercise med ID {exerciseId} ble oppdatert vellykket", exerciseId);
 				return _exerciseLibraryMapper.MapToDto(updatedExercise);
 			}
-
 			return null;
 
 

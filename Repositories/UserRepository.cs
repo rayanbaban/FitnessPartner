@@ -2,6 +2,7 @@
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace FitnessPartner.Repositories;
 
@@ -83,7 +84,7 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public async Task<ICollection<User?>> GetPageAsync(int pageNr, int pageSize)
+    public async Task<ICollection<User>> GetPageAsync(int pageNr, int pageSize)
     {
         var totCount = _dbContext.Users.Count();
         var totPages = (int)Math.Ceiling((double)totCount / pageSize);
@@ -97,7 +98,7 @@ public class UserRepository : IUserRepository
 	public async Task<User?> GetUserByNameAsync(string name)
 	{
 		var user = await _dbContext.Users
-			.FirstOrDefaultAsync(x => x.UserName!.Equals(name));
+				.FirstOrDefaultAsync(x => x.UserName!.Equals(name));
 		return user is null ? null : user;
 	}
 }

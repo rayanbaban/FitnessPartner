@@ -44,28 +44,29 @@ namespace FitnessPartner.Controllers
         }
 
         [HttpPost("login")]
-        public ActionResult<UserLoginDTO> Login(LoginDTO request)
+        public async Task<ActionResult<string>> Login(LoginDTO request)
         {
-            if (user.Username != request.UserName)
-            {
-                return BadRequest("User not found");
-            }
+			var user = await _userService.GetAuthenticatedIdAsync(request.UserName, request.Password);
 
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-            {
-                return BadRequest("Wrong password.");
-            }
+			if (user == null)
+			{
+				return BadRequest("User not found or incorrect password");
+			}
 
-            string token = CreateToken(user);
-            return Ok(token);
-        }
+			string token = CreateToken(user);
+			return Ok(token);
 
-        private string CreateToken(UserLoginDTO user)
+		}   
+
+		private string CreateToken(UserLoginDTO user)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username)
             };
+
+            //if (user.IsAdmin)
+            //    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
                 (_configuration.GetSection("AppSettings:Token").Value!));
