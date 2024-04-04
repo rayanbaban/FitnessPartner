@@ -6,15 +6,6 @@ using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using FluentValidation;
-using FitnessPartner.Mappers.Interfaces;
-using FitnessPartner.Models.Entities;
-using FitnessPartner.Models.DTOs;
-using FitnessPartner.Mappers;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,14 +23,16 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IExerciseLibraryService, ExerciseLibraryService>();
 builder.Services.AddScoped<IExerciseSessionService, ExerciseSessionService>();
 builder.Services.AddScoped<IFitnessGoalsService, FitnessGoalsService>();
+builder.Services.AddScoped<INutritionLogService, NutritionLogService>();
 
 
 
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IExerciseLibraryRepository, ExerciseLibraryRepository>();
-builder.Services.AddScoped<IExersiceSessionRepository, ExerciseSessionRepository >();
-builder.Services.AddScoped<IFitnessGoalsRepository, FitnessGoalsRepository >();
+builder.Services.AddScoped<IExersiceSessionRepository, ExerciseSessionRepository>();
+builder.Services.AddScoped<IFitnessGoalsRepository, FitnessGoalsRepository>();
+builder.Services.AddScoped<INutritionLogRepository, NutritionLogRepository>();
 
 
 
@@ -53,27 +46,27 @@ builder.Services.AddTransient<GlobalExcpetionMiddleware>();
 
 builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
 {
-	options.UseMySql(
-		builder.Configuration.GetConnectionString("DefaultConnection"),
-		new MySqlServerVersion(new Version(8, 0)));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0)));
 
-	options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+    options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
 });
 
 
 //registreringen av sriloggen som ble skrevet inn i config filen skjer her 
 builder.Host.UseSerilog((context, configuration) =>
 {
-	//her sier vi at vi vil bruke serilog og hente konfigurasjonen fra config filen
-	//husk også	legge det til i DI som ligger i personDBHandler
-	//da er vi i mål
-	configuration.ReadFrom.Configuration(context.Configuration);
+    //her sier vi at vi vil bruke serilog og hente konfigurasjonen fra config filen
+    //husk også	legge det til i DI som ligger i personDBHandler
+    //da er vi i mål
+    configuration.ReadFrom.Configuration(context.Configuration);
 });
 
 
 builder.Host.UseSerilog((context, configuration) =>
 {
-	configuration.ReadFrom.Configuration(context.Configuration);
+    configuration.ReadFrom.Configuration(context.Configuration);
 });
 
 
@@ -88,7 +81,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseMiddleware <JwtMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
 
 app.UseHttpsRedirection();
 
