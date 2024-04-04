@@ -30,12 +30,12 @@ namespace FitnessPartner.Services
 			_logger = logger;
 		}
 
-		public async Task<ExerciseSessionDTO?> AddSessionAsync(ExerciseSessionDTO exerciseSessionDTO, int inloggedUser)
+		public async Task<ExerciseSessionDTO?> AddSessionAsync(ExerciseSessionDTO exerciseSessionDTO/*, int inloggedUser*/)
 		{
-			var loggedInUser = await _userRepository.GetUserByIdAsync(inloggedUser);
+			//var loggedInUser = await _userRepository.GetUserByIdAsync(inloggedUser);
 
 			var exerciseToAdd = _exerciseSessionMapper.MapToModel(exerciseSessionDTO);
-			exerciseSessionDTO.UserId = inloggedUser;
+			//exerciseSessionDTO.UserId = inloggedUser;
 
 			var addedExercise = await _exerciseSessionRepository.AddSessionAsync(exerciseToAdd);
 

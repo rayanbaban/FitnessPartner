@@ -1,10 +1,13 @@
 ﻿using FitnessPartner.Data;
 using FitnessPartner.Mappers.Interfaces;
+using FitnessPartner.Models;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Serilog;
 
 namespace FitnessPartner.Services
 {
@@ -78,21 +81,41 @@ namespace FitnessPartner.Services
             var dtos = users.Select(user => _userMapper.MapToDto(user)).ToList();
             return dtos;
         }
-
-        public async Task<int> GetAuthenticatedIdAsync(string userName, string password)
+		
+        
+        public async Task<UserLoginDTO?> GetAuthenticatedIdAsync(string userName, string password)
         {
 			var user = await _userRepository.GetUserByNameAsync(userName);
-			if (user == null) return 0;
+			if (user == null) return null;
 
 			// prøver å verifisere passordet mot lagret hash-verdi
 			if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
 			{
-				return user.UserId;
+				return new UserLoginDTO
+				{
+					 PasswordHash = user.PasswordHash,
+					Username = user.UserName,
+				};
 			}
-			return 0;
+			return null;
 		}
 
-        public async Task<IEnumerable<UserDTO>> GetPageAsync(int pageNr, int pageSize)
+
+  //      public async Task<int> GetAuthenticatedIdAsync(string userName, string password)
+  //      {
+
+		//	var user = await _userRepository.GetUserByNameAsync(userName);
+		//	if (user == null) return 0;
+
+		//	// prøver å verifisere passordet mot lagret hash-verdi
+		//	if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+		//	{
+		//		return user.UserId;
+		//	}
+		//          return 0;
+		//}
+
+		public async Task<IEnumerable<UserDTO>> GetPageAsync(int pageNr, int pageSize)
         {
             var res = await _userRepository.GetPageAsync(pageNr, pageSize);
 
@@ -110,7 +133,8 @@ namespace FitnessPartner.Services
             return res != null ? _userMapper.MapToDto(res) : null;
         }
 
-        public async Task<UserDTO?> RegisterUserAsync(UserRegDTO userRegDTO)
+
+		public async Task<UserDTO?> RegisterUserAsync(UserRegDTO userRegDTO)
         {
             var user = _userRegMapper.MapToModel(userRegDTO);
 
