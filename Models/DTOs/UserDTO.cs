@@ -18,6 +18,7 @@ namespace FitnessPartner.Models.DTOs
 			Weight = weight;
 			Height = height;
 			Created = created;
+
 		}
 
 		[Required]
@@ -43,6 +44,8 @@ namespace FitnessPartner.Models.DTOs
 
         [Required]
         public DateTime Created { get; set; }
+
+        public bool IsUserAdmin { get; set; }
 
 
     }

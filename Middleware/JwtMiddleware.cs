@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FitnessPartner.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -8,58 +9,56 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
 namespace FitnessPartner.Middleware
 {
 	public class JwtMiddleware
 	{
-
 		private readonly RequestDelegate _next;
+		private readonly JwtSettings _jwtSettings;
 
-		// Dependency Injection
-		public JwtMiddleware(RequestDelegate next)
+		public JwtMiddleware(RequestDelegate next, IOptions<JwtSettings> jwtSettings)
 		{
 			_next = next;
+			_jwtSettings = jwtSettings.Value;
 		}
 
 		public async Task Invoke(HttpContext context)
 		{
-			//Reading the AuthHeader which is signed with JWT
-			string? authHeader = context.Request.Headers["Authorization"];
+			string authHeader = context.Request.Headers["Authorization"];
 
-			if (authHeader != null)
+			if (authHeader != null && authHeader.StartsWith("Bearer "))
 			{
-				//Reading the JWT middle part           
-				int startPoint = authHeader.IndexOf(".") + 1;
-				int endPoint = authHeader.LastIndexOf(".");
+				string token = authHeader.Substring("Bearer ".Length).Trim();
 
-				var tokenString = authHeader
-					.Substring(startPoint, endPoint - startPoint).Split(".");
-				var token = tokenString[0].ToString() + "==";
 
-				var credentialString = Encoding.UTF8
-					.GetString(Convert.FromBase64String(token));
+				var tokenHandler = new JwtSecurityTokenHandler();
+				var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
+				tokenHandler.ValidateToken(token, new TokenValidationParameters
+				{
+					ValidateIssuer = true,
+					ValidateAudience = true,
+					ValidateLifetime = true,
+					ValidIssuer = _jwtSettings.Issuer,
+					ValidAudience = _jwtSettings.Audience,
+					IssuerSigningKey = new SymmetricSecurityKey(key)
+				}, out SecurityToken validatedToken);
 
-				// Splitting the data from Jwt
-				var credentials = credentialString.Split(new char[] { ':', ',' });
+				var jwtToken = (JwtSecurityToken)validatedToken;
+				var userName = jwtToken.Claims.First(x => x.Type == ClaimTypes.Name).Value;
+				var userRole = jwtToken.Claims.First(x => x.Type == ClaimTypes.Role).Value;
 
-				// Trim this Username and UserRole.
-				var userRule = credentials[5].Replace("\"", "");
-				var userName = credentials[3].Replace("\"", "");
-
-				// Identity Principal
 				var claims = new[]
 				{
-			   new Claim("name", userName),
-			   new Claim(ClaimTypes.Role, userRule),
-		   };
-				var identity = new ClaimsIdentity(claims, "basic");
+				new Claim(ClaimTypes.Name, userName),
+				new Claim(ClaimTypes.Role, userRole)
+			};
+
+				var identity = new ClaimsIdentity(claims, "jwt");
 				context.User = new ClaimsPrincipal(identity);
 			}
-			//Pass to the next middleware
-			await _next(context);
-		}
 
+			await _next(context);
+
+		}
 	}
 }

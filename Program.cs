@@ -7,6 +7,8 @@ using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using FitnessPartner.Models;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +54,9 @@ builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
 
     options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
 });
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
 
 
 //registreringen av sriloggen som ble skrevet inn i config filen skjer her 
