@@ -1,4 +1,5 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -51,36 +52,74 @@ namespace FitnessPartner.Controllers
         [HttpDelete("{id}", Name = "DeleteUser")]
         public async Task<ActionResult<UserDTO>> DeleteUserAsync(int id)
         {
-            try
-            {
-                if (!HttpContext.Items.ContainsKey("UserId"))
-                {
-                    _logger?.LogWarning("UserId er ikke satt i HttpContext.Items");
-                    return Unauthorized("Ikke autentisert");
-                }
+			try
+			{
+				// Sjekk om brukeren er autentisert
+				if (!HttpContext.Items.ContainsKey("UserId"))
+				{
+					_logger?.LogWarning("UserId er ikke satt i HttpContext.Items");
+					throw new UnauthorizedAccessException();
+				}
 
-                int? loginUserId = (int?)HttpContext.Items["UserId"];
+				// Hent ID-en til den påloggede brukeren fra JWT-tokenet
+				int? loginUserId = (int?)HttpContext.Items["UserId"];
 
-                if (!loginUserId.HasValue || loginUserId == 0)
-                {
-                    _logger?.LogWarning("UserId er ugyldig: {UserId}", loginUserId);
-                    return Unauthorized("Ikke autentisert");
-                }
+				// Hent informasjon om brukeren som skal slettes
+				var userToDelete = await _usersService.GetUserByIdAsync(id);
 
-                var deletedUser = await _usersService.DeleteUserAsync(id, loginUserId.Value);
-                _logger?.LogInformation("Deleted user: {@DeletedUser}", deletedUser);
+				// Sjekk om den påloggede brukeren har tilgang til å slette den angitte brukeren
+				if (!IsAuthorized(loginUserId.Value, userToDelete))
+				{
+					_logger?.LogWarning("Bruker {UserId} har ikke tilgang til å slette bruker med ID: {DeleteUserId}", loginUserId, id);
+					throw new UnauthorizedAccessException("Ikke autorisert");
+				}
 
-                return deletedUser != null ?
-                           Ok(deletedUser) :
-                           NotFound($"Klarte ikke å slette bruker med ID: {id}");
-            }
-            catch (Exception ex)
-            {
-                _logger?.LogError(ex, "Feil ved sletting av bruker");
-                return BadRequest($"Feil ved sletting av bruker: {ex.Message}");
-            }
-        }
+				// Fortsett med sletting av brukeren
+				var deletedUser = await _usersService.DeleteUserAsync(id, loginUserId.Value);
+				_logger?.LogInformation("Deleted user: {@DeletedUser}", deletedUser);
 
-    }
+				return deletedUser != null ?
+						   deletedUser :
+						   throw new Exception($"Klarte ikke å slette bruker med ID: {id}");
+			}
+			catch (Exception ex)
+			{
+				_logger?.LogError(ex, "Feil ved sletting av bruker");
+				throw new Exception($"Feil ved sletting av bruker: {ex.Message}");
+			}
+			//try
+			//{
+			//    if (!HttpContext.Items.ContainsKey("UserId"))
+			//    {
+			//        _logger?.LogWarning("UserId er ikke satt i HttpContext.Items");
+			//        return Unauthorized("Ikke autentisert");
+			//    }
 
+			//    int? loginUserId = (int?)HttpContext.Items["UserId"];
+
+			//    if (!loginUserId.HasValue || loginUserId == 0)
+			//    {
+			//        _logger?.LogWarning("UserId er ugyldig: {UserId}", loginUserId);
+			//        return Unauthorized("Ikke autentisert");
+			//    }
+
+			//    var deletedUser = await _usersService.DeleteUserAsync(id, loginUserId.Value);
+			//    _logger?.LogInformation("Deleted user: {@DeletedUser}", deletedUser);
+
+			//    return deletedUser != null ?
+			//               Ok(deletedUser) :
+			//               NotFound($"Klarte ikke å slette bruker med ID: {id}");
+			//}
+			//catch (Exception ex)
+			//{
+			//    _logger?.LogError(ex, "Feil ved sletting av bruker");
+			//    return BadRequest($"Feil ved sletting av bruker: {ex.Message}");
+			//}
+		}
+		private bool IsAuthorized(int loginUserId, UserDTO user)
+		{
+			// Sjekk om brukeren har tilgang til å slette den angitte brukeren
+			return loginUserId == user.UserId || user.IsUserAdmin;
+		}
+	}
 }
