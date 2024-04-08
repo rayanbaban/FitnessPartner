@@ -12,15 +12,16 @@ using System.Text;
 
 namespace FitnessPartner.Controllers
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
-    {
 
-        private readonly IUserService _userService;
-        public static UserLoginDTO user = new UserLoginDTO();
-        private readonly IConfiguration _configuration;
-        private readonly ILogger<AuthController> _logger;
+	[Route("api/v1/[controller]")]
+	[ApiController]
+	public class AuthController : ControllerBase
+	{
+
+		private readonly IUserService _userService;
+		public static UserLoginDTO user = new UserLoginDTO();
+		private readonly IConfiguration _configuration;
+		private readonly ILogger<AuthController> _logger;
 
 		public AuthController(IUserService userService, IConfiguration configuration, ILogger<AuthController> logger)
 		{
@@ -30,22 +31,22 @@ namespace FitnessPartner.Controllers
 		}
 
 		[HttpPost("register")]
-        public async Task<ActionResult<UserDTO>> Register(UserRegDTO userRegDTO)
-        {
+		public async Task<ActionResult<UserDTO>> Register(UserRegDTO userRegDTO)
+		{
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var userDTO = await _userService.RegisterUserAsync(userRegDTO);
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+			var userDTO = await _userService.RegisterUserAsync(userRegDTO);
 
-            return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere en ny bruker");
+			return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere en ny bruker");
 
-        }
+		}
 
-        [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(LoginDTO request)
-        {
+		[HttpPost("login")]
+		public async Task<ActionResult<string>> Login(LoginDTO request)
+		{
 			var user = await _userService.GetAuthenticatedIdAsync(request.UserName, request.Password);
 
 			if (user == null)
@@ -56,32 +57,34 @@ namespace FitnessPartner.Controllers
 			string token = CreateToken(user);
 			return Ok(token);
 
-		}   
+		}
 
 		private string CreateToken(UserLoginDTO user)
-        {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username)
-            };
+		{
+			List<Claim> claims = new List<Claim>
+			  {
+				  new Claim(ClaimTypes.Name, user.Username)
+			  };
 
-            //if (user.IsAdmin)
-            //    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+			//if (user.IsAdmin)
+			//    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
-                (_configuration.GetSection("AppSettings:Token").Value!));
+			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
+				(_configuration.GetSection("AppSettings:Token").Value!)) ;
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds
-                );
+			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+			var token = new JwtSecurityToken(
+				claims: claims,
+				expires: DateTime.Now.AddHours(1),
+				signingCredentials: creds
+				);
 
-            return jwt;
-        }
-    }
+			var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+				
+			return jwt;
+		}
+	}
 }
+

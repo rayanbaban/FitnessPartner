@@ -9,7 +9,8 @@
 			_logger = logger;
 		}
 
-		public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+		public async Task InvokeAsync(
+			HttpContext context, RequestDelegate next)
 		{
 			try
 			{

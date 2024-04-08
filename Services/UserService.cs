@@ -16,96 +16,61 @@ namespace FitnessPartner.Services
         private readonly IMapper<User, UserDTO> _userMapper;
         private readonly IUserRepository _userRepository;
         private readonly IMapper<User, UserRegDTO> _userRegMapper;
-        private readonly HttpContext httpContext;
+        private readonly IHttpContextAccessor httpContext;
 
         public UserService(FitnessPartnerDbContext dbContext,
-            ILogger<UserRepository> logger,
-            IMapper<User, UserDTO> userMapper,
-            IUserRepository userRepository, IMapper<User,
-            UserRegDTO> userRegMapper, HttpContext httpContext)
-        {
-            _dbContext = dbContext;
-            _logger = logger;
-            _userMapper = userMapper;
-            _userRepository = userRepository;
-            _userRegMapper = userRegMapper;
-            this.httpContext = httpContext;
-        }
+			ILogger<UserRepository> logger,
+			IMapper<User, UserDTO> userMapper,
+			IUserRepository userRepository, IMapper<User,
+			UserRegDTO> userRegMapper, IHttpContextAccessor httpContext)
+		{
+			_dbContext = dbContext;
+			_logger = logger;
+			_userMapper = userMapper;
+			_userRepository = userRepository;
+			_userRegMapper = userRegMapper;
+			this.httpContext = httpContext;
+		}
 
         public async Task<UserDTO?> DeleteUserAsync(int deleteUserId, int inloggedUser)
         {
+
             try
             {
-                var loggedInUserId = GetLoggedInUserIdFromToken(); // Få brukerens ID fra JWT-tokenet
+                _logger?.LogInformation("Forsøker å slette bruker med ID {DeleteUserId} av Bruker med ID {InloggedUser}", DeleteUserAsync, inloggedUser);
 
-                if (loggedInUserId == null)
+                // Sjekk om brukeren som prøver å slette er admin eller eier av kontoen som skal slettes
+                var loginUser = await _userRepository.GetUserByIdAsync(inloggedUser);
+                var userToDelete = await _userRepository.GetUserByIdAsync(deleteUserId);
+
+                if (loginUser == null || userToDelete == null)
                 {
-                    _logger?.LogWarning("UserId er ikke satt i HttpContext.Items");
-                    return Unauthorized("Ikke autentisert");
+                    // Hvis inlogget bruker som skal slettes ikke er funnet, kast en feil
+                    _logger?.LogError("Inlogget Bruker som skal slettes ble ikke funnet. Inlogget bruker:" +
+                        " {@LoginUser}, Bruker som skal slettes: {@UserToDelete}", loginUser, userToDelete);
+                    throw new InvalidOperationException("Inlogget bruker som skal slettes ble ikke funnet.");
                 }
 
-                var userToDelete = await _userRepository.GetUserByIdAsync(id);
-
-                if (userToDelete == null)
+                if (inloggedUser != deleteUserId && !loginUser.IsAdminUser)
                 {
-                    return NotFound($"Fant ikke bruker med ID: {id}");
+                    // Hvis inlogget bruker ikke er admin og prøver å slette en annen bruker, meld en feil
+                    _logger?.LogError("Ikke autorisert: Bruker {InloggedBruker} har ikke tilgang til å slette bruker" +
+                        " {DeleteUserId}", inloggedUser, deleteUserId);
+                    throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å slette Bruker {deleteUserId}");
                 }
 
-                // Sjekk om den autentiserte brukeren er admin eller eieren av kontoen som skal slettes
-                if (IsAuthorized(loggedInUserId.Value, userToDelete))
-                {
-                    var deletedUser = await _userService.DeleteUserAsync(id, loggedInUserId.Value);
-                    _logger?.LogInformation("Deleted user: {@DeletedUser}", deletedUser);
-                    return deletedUser != null ? Ok(deletedUser) : NotFound($"Klarte ikke å slette bruker med ID: {id}");
-                }
-                else
-                {
-                    _logger?.LogWarning("Bruker {UserId} har ikke tilgang til å slette bruker med ID: {DeleteUserId}", loggedInUserId, id);
-                    return Forbid(); // Returner 403 Forbidden hvis brukeren ikke har tilgang
-                }
+                // Slett bruker fra databasen
+                var deletedUser = await _userRepository.DeleteUserByIdAsync(deleteUserId);
+
+                _logger?.LogInformation("Bruker med ID {DeleteUserId} ble slettet av Bruker med ID {InloggedUser}", deleteUserId, inloggedUser);
+
+                return deletedUser != null ? _userMapper.MapToDto(deletedUser) : null;
             }
             catch (Exception ex)
             {
-                _logger?.LogError(ex, "Feil ved sletting av bruker");
-                return BadRequest($"Feil ved sletting av bruker: {ex.Message}");
+                _logger?.LogError(ex, "Feil ved sletting av medlem med ID {DeleteMemberId}", deleteUserId);
+                throw;
             }
-
-            //try
-            //{
-            //    _logger?.LogInformation("Forsøker å slette bruker med ID {DeleteUserId} av Bruker med ID {InloggedUser}", DeleteUserAsync, inloggedUser);
-
-            //    // Sjekk om brukeren som prøver å slette er admin eller eier av kontoen som skal slettes
-            //    var loginUser = await _userRepository.GetUserByIdAsync(inloggedUser);
-            //    var userToDelete = await _userRepository.GetUserByIdAsync(deleteUserId);
-
-            //    if (loginUser == null || userToDelete == null)
-            //    {
-            //        // Hvis inlogget bruker som skal slettes ikke er funnet, kast en feil
-            //        _logger?.LogError("Inlogget Bruker som skal slettes ble ikke funnet. Inlogget bruker:" +
-            //            " {@LoginUser}, Bruker som skal slettes: {@UserToDelete}", loginUser, userToDelete);
-            //        throw new InvalidOperationException("Inlogget bruker som skal slettes ble ikke funnet.");
-            //    }
-
-            //    if (inloggedUser != deleteUserId && !loginUser.IsAdminUser)
-            //    {
-            //        // Hvis inlogget bruker ikke er admin og prøver å slette en annen bruker, meld en feil
-            //        _logger?.LogError("Ikke autorisert: Bruker {InloggedBruker} har ikke tilgang til å slette bruker" +
-            //            " {DeleteUserId}", inloggedUser, deleteUserId);
-            //        throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å slette Bruker {deleteUserId}");
-            //    }
-
-            //    // Slett bruker fra databasen
-            //    var deletedUser = await _userRepository.DeleteUserByIdAsync(deleteUserId);
-
-            //    _logger?.LogInformation("Bruker med ID {DeleteUserId} ble slettet av Bruker med ID {InloggedUser}", deleteUserId, inloggedUser);
-
-            //    return deletedUser != null ? _userMapper.MapToDto(deletedUser) : null;
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger?.LogError(ex, "Feil ved sletting av medlem med ID {DeleteMemberId}", deleteUserId);
-            //    throw;
-            //}
         }
 
         public async Task<ICollection<UserDTO>> GetAllUsersAsync()
@@ -136,20 +101,6 @@ namespace FitnessPartner.Services
             return null;
         }
 
-
-        //      public async Task<int> GetAuthenticatedIdAsync(string userName, string password)
-        //      {
-
-        //	var user = await _userRepository.GetUserByNameAsync(userName);
-        //	if (user == null) return 0;
-
-        //	// prøver å verifisere passordet mot lagret hash-verdi
-        //	if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
-        //	{
-        //		return user.UserId;
-        //	}
-        //          return 0;
-        //}
 
         public async Task<IEnumerable<UserDTO>> GetPageAsync(int pageNr, int pageSize)
         {
