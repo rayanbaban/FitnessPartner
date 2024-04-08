@@ -6,6 +6,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,9 +31,9 @@ namespace FitnessPartner.Middleware
 			{
 				string token = authHeader.Substring("Bearer ".Length).Trim();
 
-
 				var tokenHandler = new JwtSecurityTokenHandler();
-				var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
+				var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
+
 				tokenHandler.ValidateToken(token, new TokenValidationParameters
 				{
 					ValidateIssuer = true,
@@ -42,6 +43,8 @@ namespace FitnessPartner.Middleware
 					ValidAudience = _jwtSettings.Audience,
 					IssuerSigningKey = new SymmetricSecurityKey(key)
 				}, out SecurityToken validatedToken);
+
+
 
 				var jwtToken = (JwtSecurityToken)validatedToken;
 				var userName = jwtToken.Claims.First(x => x.Type == ClaimTypes.Name).Value;

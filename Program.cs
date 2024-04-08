@@ -57,6 +57,8 @@ builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
+builder.Services.AddHttpContextAccessor();
+
 
 
 //registreringen av sriloggen som ble skrevet inn i config filen skjer her 
@@ -67,6 +69,7 @@ builder.Host.UseSerilog((context, configuration) =>
     //da er vi i mål
     configuration.ReadFrom.Configuration(context.Configuration);
 });
+
 
 
 builder.Host.UseSerilog((context, configuration) =>
