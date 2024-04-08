@@ -1,5 +1,5 @@
 ﻿using FitnessPartner.Models.DTOs;
-using FitnessPartner.Services;
+using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessPartner.Controllers
@@ -8,15 +8,19 @@ namespace FitnessPartner.Controllers
     [ApiController]
     public class NutritionLogController : ControllerBase
     {
-        private readonly NutritionLogService _nutritionLogService;
-        private readonly ILogger<NutritionResourcesController> _logger;
+        //private readonly NutritionLogService _nutritionLogService;
+        //private readonly ILogger<NutritionResourcesController> _logger;
+        private readonly INutritionLogService _nutritionLogService;
+        private readonly ILogger<NutritionLogController> _logger;
 
-        public NutritionLogController(NutritionLogService nutritionLogService, ILogger<NutritionResourcesController> logger)
+
+
+        public NutritionLogController(INutritionLogService nutritionLogService, ILogger<NutritionLogController> logger)
         {
             _nutritionLogService = nutritionLogService;
-
             _logger = logger;
         }
+
 
         [HttpGet(Name = "GetAllNutritionLogs")]
         public async Task<ActionResult<ICollection<NutritionLogDTO>>> GetAllNutritionLogsAsync(int pageNr = 1, int pageSize = 10)

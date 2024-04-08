@@ -1,14 +1,13 @@
 using FitnessPartner.Data;
 using FitnessPartner.Extensions;
 using FitnessPartner.Middleware;
+using FitnessPartner.Models;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using FitnessPartner.Models;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
