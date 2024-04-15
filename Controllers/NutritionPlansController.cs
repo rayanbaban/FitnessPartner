@@ -5,7 +5,7 @@ namespace FitnessPartner.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class NutrtionPlansController : ControllerBase
+	public class NutritionPlansController : ControllerBase
 	{
 	}
 }

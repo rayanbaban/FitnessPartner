@@ -19,18 +19,18 @@ namespace FitnessPartner.Services
         private readonly IHttpContextAccessor httpContext;
 
         public UserService(FitnessPartnerDbContext dbContext,
-			ILogger<UserRepository> logger,
-			IMapper<User, UserDTO> userMapper,
-			IUserRepository userRepository, IMapper<User,
-			UserRegDTO> userRegMapper, IHttpContextAccessor httpContext)
-		{
-			_dbContext = dbContext;
-			_logger = logger;
-			_userMapper = userMapper;
-			_userRepository = userRepository;
-			_userRegMapper = userRegMapper;
-			this.httpContext = httpContext;
-		}
+            ILogger<UserRepository> logger,
+            IMapper<User, UserDTO> userMapper,
+            IUserRepository userRepository, IMapper<User,
+            UserRegDTO> userRegMapper, IHttpContextAccessor httpContext)
+        {
+            _dbContext = dbContext;
+            _logger = logger;
+            _userMapper = userMapper;
+            _userRepository = userRepository;
+            _userRegMapper = userRegMapper;
+            this.httpContext = httpContext;
+        }
 
         public async Task<UserDTO?> DeleteUserAsync(int deleteUserId, int inloggedUser)
         {
