@@ -7,13 +7,27 @@ using FitnessPartner.Services.Interfaces;
 
 namespace FitnessPartner.Services
 {
-    public class NutritionResourcesService : INutritionResourcesService
+    public class NutritionResourceService : INutritionResourceService
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper<NutritionResources, NutritionResourcesDTO> _nutritionResourcesMapper;
         private readonly INutritionResourcesRepository _nutritionResourcesRepository;
         private readonly ILogger _logger;
         private readonly FitnessPartnerDbContext _dbContext;
+
+        public NutritionResourceService
+            (IUserRepository userRepository,
+            IMapper<NutritionResources, NutritionResourcesDTO> nutritionResourcesMapper,
+            INutritionResourcesRepository nutritionResourcesRepository,
+            ILogger<NutritionResourceService> logger,
+            FitnessPartnerDbContext dbContext)
+        {
+            _userRepository = userRepository;
+            _nutritionResourcesMapper = nutritionResourcesMapper;
+            _nutritionResourcesRepository = nutritionResourcesRepository;
+            _logger = logger;
+            _dbContext = dbContext;
+        }
 
         public async Task<NutritionResourcesDTO?> CreateNutritionResourceAsync(NutritionResourcesDTO nutritionResources, int loggedinUser)
         {

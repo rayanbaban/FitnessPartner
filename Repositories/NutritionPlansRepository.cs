@@ -95,6 +95,24 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
+    public async Task<ICollection<NutritionPlans>> GetPageAsync(int pageNr, int pageSize)
+    {
+        try
+        {
+            var eventsPage = await _dbContext.NutritionPlans
+                .Skip((pageNr - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return eventsPage;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Feil ved henting av nutitionLog {PageNr} med størrelse {PageSize}: {ErrorMessage}", pageNr, pageSize, ex.Message);
+            return null;
+        }
+    }
+
     public async Task<NutritionPlans?> UpdateNutritionPlanAsync(NutritionPlans nutritionPlanDTO, int planId, int loggedinUser)
     {
         try

@@ -10,6 +10,12 @@ namespace FitnessPartner.Repositories
         private readonly FitnessPartnerDbContext _dbContext;
         private readonly ILogger<NutritionResourcesRepository> _logger;
 
+        public NutritionResourcesRepository(FitnessPartnerDbContext dbContext, ILogger<NutritionResourcesRepository> logger)
+        {
+            _dbContext = dbContext;
+            _logger = logger;
+        }
+
         public async Task<NutritionResources?> CreateNutritionResourceAsync(NutritionResources nutritionResource, int loggedinUser)
         {
             try

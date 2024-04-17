@@ -10,6 +10,11 @@ namespace FitnessPartner.Controllers
     {
         private readonly INutritionPlanService _nutritionPlanService;
 
+        public NutritionPlansController(INutritionPlanService nutritionPlanService)
+        {
+            _nutritionPlanService = nutritionPlanService;
+        }
+
         [HttpGet(Name = "GetAllNutritionPlans")]
         public async Task<ActionResult<ICollection<NutritionPlansDTO>>> GetAllNutritionPlansAsync(int pageNr = 1, int pageSize = 10)
         {

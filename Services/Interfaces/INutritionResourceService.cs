@@ -2,7 +2,7 @@
 
 namespace FitnessPartner.Services.Interfaces
 {
-    public interface INutritionResourcesService
+    public interface INutritionResourceService
     {
         Task<ICollection<NutritionResourcesDTO>> GetMyNutritionResourceAsync(int pageNr, int pageSize);
         Task<NutritionResourcesDTO?> UpdateNutritionResourceAsync(NutritionResourcesDTO nutritionResourcesDTO, int resourceId, int loggedinUser);

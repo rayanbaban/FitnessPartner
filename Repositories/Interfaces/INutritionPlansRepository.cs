@@ -9,4 +9,5 @@ public interface INutritionPlansRepository
     Task<NutritionPlans?> DeleteNutritionPlanAsync(int userId, int planId);
     Task<NutritionPlans?> CreateNutritionPlanAsync(NutritionPlans nutritionPlan, int loggedinUser);
     Task<NutritionPlans?> GetNutritionPlanByIdAsync(int planId);
+    Task<ICollection<NutritionPlans>> GetPageAsync(int pageNr, int pageSize);
 }

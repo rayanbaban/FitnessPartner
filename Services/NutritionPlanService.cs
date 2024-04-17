@@ -100,5 +100,14 @@ namespace FitnessPartner.Services
 
             return null;
         }
+
+        public async Task<ICollection<NutritionPlansDTO>> GetPageAsync(int pageNr, int pageSize)
+        {
+            var res = await _nutritionPlanRepository.GetPageAsync(pageNr, pageSize);
+
+            _logger?.LogInformation("Forsøker å hente side {PageNr} med størrelse {PageSize} av brukere", pageNr, pageSize);
+
+            return res.Select(pages => _nutritionPlanMapper.MapToDto(pages)).ToList();
+        }
     }
 }

@@ -13,14 +13,11 @@ namespace FitnessPartner.Controllers
         private readonly INutritionLogService _nutritionLogService;
         private readonly ILogger<NutritionLogController> _logger;
 
-
-
         public NutritionLogController(INutritionLogService nutritionLogService, ILogger<NutritionLogController> logger)
         {
             _nutritionLogService = nutritionLogService;
             _logger = logger;
         }
-
 
         [HttpGet(Name = "GetAllNutritionLogs")]
         public async Task<ActionResult<ICollection<NutritionLogDTO>>> GetAllNutritionLogsAsync(int pageNr = 1, int pageSize = 10)

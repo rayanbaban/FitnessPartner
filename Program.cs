@@ -25,6 +25,8 @@ builder.Services.AddScoped<IExerciseLibraryService, ExerciseLibraryService>();
 builder.Services.AddScoped<IExerciseSessionService, ExerciseSessionService>();
 builder.Services.AddScoped<IFitnessGoalsService, FitnessGoalsService>();
 builder.Services.AddScoped<INutritionLogService, NutritionLogService>();
+builder.Services.AddScoped<INutritionPlanService, NutritionPlanService>();
+builder.Services.AddScoped<INutritionResourceService, NutritionResourceService>();
 
 
 
@@ -34,6 +36,8 @@ builder.Services.AddScoped<IExerciseLibraryRepository, ExerciseLibraryRepository
 builder.Services.AddScoped<IExersiceSessionRepository, ExerciseSessionRepository>();
 builder.Services.AddScoped<IFitnessGoalsRepository, FitnessGoalsRepository>();
 builder.Services.AddScoped<INutritionLogRepository, NutritionLogRepository>();
+builder.Services.AddScoped<INutritionPlansRepository, NutritionPlansRepository>();
+builder.Services.AddScoped<INutritionResourcesRepository, NutritionResourcesRepository>();
 
 
 
