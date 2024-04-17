@@ -10,6 +10,12 @@ public class NutritionPlansRepository : INutritionPlansRepository
     private readonly FitnessPartnerDbContext _dbContext;
     private readonly ILogger<NutritionPlansRepository> _logger;
 
+    public NutritionPlansRepository(FitnessPartnerDbContext dbContext, ILogger<NutritionPlansRepository> logger)
+    {
+        _dbContext = dbContext;
+        _logger = logger;
+    }
+
     public async Task<NutritionPlans?> CreateNutritionPlanAsync(NutritionPlans nutritionPlan, int loggedinUser)
     {
         try

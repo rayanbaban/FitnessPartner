@@ -57,19 +57,48 @@ namespace FitnessPartner.Services
             return nutritionPlanToDelete != null ? _nutritionPlanMapper.MapToDto(nutritionPlanToDelete) : null;
         }
 
-        public Task<ICollection<NutritionPlansDTO>> GetMyNutritionPlansAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionPlansDTO>> GetMyNutritionPlanAsync(int pageNr, int pageSize)
         {
-            throw new NotImplementedException();
+            var nutritionPlans = await _nutritionPlanRepository.GetMyNutritionPlanAsync(pageNr, pageSize);
+
+            return nutritionPlans.Select(nutritionPlans => _nutritionPlanMapper.MapToDto(nutritionPlans)).ToList();
         }
 
-        public Task<NutritionPlansDTO?> GetNutritionPlanByIdAsync(int planId)
+        public async Task<NutritionPlansDTO?> GetNutritionPlanByIdAsync(int planId)
         {
-            throw new NotImplementedException();
+            var nutritionPlanToGet = await _nutritionPlanRepository.GetNutritionPlanByIdAsync(planId);
+
+            return nutritionPlanToGet != null ? _nutritionPlanMapper.MapToDto(nutritionPlanToGet) : null;
         }
 
-        public Task<NutritionPlansDTO?> UpdateNutritionPlanAsync(NutritionPlansDTO nutritionPlansDTO, int planId, int loggedinUser)
+        public async Task<NutritionPlansDTO?> UpdateNutritionPlanAsync(NutritionPlansDTO nutritionPlansDTO, int planId, int loggedinUser)
         {
-            throw new NotImplementedException();
+            var nutritionPlanToUpd = await _nutritionPlanRepository.GetNutritionPlanByIdAsync(planId);
+
+            if (nutritionPlanToUpd == null)
+            {
+                _logger?.LogError("NutritionPlan med ID {NutritionPlanId} ble ikke funnet for oppdatering", planId);
+                return null;
+            }
+
+
+            //if (memberId != exerciseToUpd.MemberID && !eventToUpdate.Member.IsAdminMember)
+            //{
+            //	_logger?.LogError("Medlem {LoggedInUserId} har ikke tilgang til å oppdatere dette arrangementet", loggedInMember);
+            //	_logger?.LogError($"Detaljer: LoggedInMemberId: {loggedInMember}, EventMemberId: {eventToUpdate.MemberID}, IsAdminMember: {eventToUpdate.Member.IsAdminMember}");
+
+            //	throw new UnauthorizedAccessException($"Medlem {loggedInMember} har ikke tilgang til å oppdatere arrangementet");
+            //}
+
+            var updatedNutritionPlan = await _nutritionPlanRepository.UpdateNutritionPlanAsync(_nutritionPlanMapper.MapToModel(nutritionPlansDTO), loggedinUser, planId);
+
+            if (updatedNutritionPlan != null)
+            {
+                _logger?.LogInformation("NutritionPlan med ID {NutritionPlanId} ble oppdatert.", planId);
+                return _nutritionPlanMapper.MapToDto(updatedNutritionPlan);
+            }
+
+            return null;
         }
     }
 }

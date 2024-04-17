@@ -3,12 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\nutritionplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\nutritionplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\interfaces\\inutritionplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\interfaces\\inutritionplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\services\\nutritionlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\interfaces\\inutritionlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\interfaces\\inutritionlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\controllers\\nutritionlogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\nutritionlogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\controllers\\nutritionplanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\nutritionplanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\nutritionresourcesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\nutritionresourcesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\nutritionlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\nutritionlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\fitnessgoalsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\fitnessgoalsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\exercisesessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\exercisesessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\exerciselibraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\exerciselibraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +46,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "INutritionLogService.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\Interfaces\\INutritionLogService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\INutritionLogService.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\Interfaces\\INutritionLogService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\INutritionLogService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T10:15:39.78Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -27,27 +68,106 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NutritionPlanService.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\NutritionPlanService.cs",
-              "RelativeDocumentMoniker": "Services\\NutritionPlanService.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\NutritionPlanService.cs*",
-              "RelativeToolTip": "Services\\NutritionPlanService.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAjwBIAAAAMAAAA",
+              "Title": "INutritionPlanService.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\Interfaces\\INutritionPlanService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\INutritionPlanService.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\Interfaces\\INutritionPlanService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\INutritionPlanService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-11T20:53:34.927Z",
+              "WhenOpened": "2024-04-17T10:16:13.427Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "NutritionLogController.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Controllers\\NutritionLogController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NutritionLogController.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Controllers\\NutritionLogController.cs",
+              "RelativeToolTip": "Controllers\\NutritionLogController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBsAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T10:15:32.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NutritionPlansController.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Controllers\\NutritionPlansController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NutritionPlansController.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Controllers\\NutritionPlansController.cs",
+              "RelativeToolTip": "Controllers\\NutritionPlansController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T10:14:31.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "NutritionLogService.cs",
               "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\NutritionLogService.cs",
               "RelativeDocumentMoniker": "Services\\NutritionLogService.cs",
               "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\NutritionLogService.cs",
               "RelativeToolTip": "Services\\NutritionLogService.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAcwCUAAAAkAAAA",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAkwEkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-11T20:49:55.826Z"
+              "WhenOpened": "2024-04-17T10:05:46.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FitnessGoalsService.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\FitnessGoalsService.cs",
+              "RelativeDocumentMoniker": "Services\\FitnessGoalsService.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\FitnessGoalsService.cs",
+              "RelativeToolTip": "Services\\FitnessGoalsService.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAA5wAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T10:05:33.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ExerciseSessionService.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\ExerciseSessionService.cs",
+              "RelativeDocumentMoniker": "Services\\ExerciseSessionService.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\ExerciseSessionService.cs",
+              "RelativeToolTip": "Services\\ExerciseSessionService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T10:05:19.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ExerciseLibraryService.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\ExerciseLibraryService.cs",
+              "RelativeDocumentMoniker": "Services\\ExerciseLibraryService.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\ExerciseLibraryService.cs",
+              "RelativeToolTip": "Services\\ExerciseLibraryService.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T10:05:04.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NutritionResourcesService.cs",
+              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\NutritionResourcesService.cs",
+              "RelativeDocumentMoniker": "Services\\NutritionResourcesService.cs",
+              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\NutritionResourcesService.cs",
+              "RelativeToolTip": "Services\\NutritionResourcesService.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAvwF8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T09:19:39.598Z",
+              "EditorCaption": ""
             }
           ]
         }

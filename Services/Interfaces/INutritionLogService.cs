@@ -10,6 +10,5 @@ namespace FitnessPartner.Services.Interfaces
         Task<NutritionLogDTO?> CreateNutritionLogAsync(NutritionLogDTO nutritionLog, int loggedinUser);
         Task<NutritionLogDTO?> GetNutritionLogByIdAsync(int logId);
         Task<ICollection<NutritionLogDTO>> GetPageAsync(int pageNr, int pageSize);
-
     }
 }
