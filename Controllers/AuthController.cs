@@ -1,9 +1,11 @@
 ﻿using FitnessPartner.Models;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,74 +19,122 @@ namespace FitnessPartner.Controllers
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
-
-		private readonly IUserService _userService;
-		public static UserLoginDTO user = new UserLoginDTO();
+		private readonly UserManager<IdentityUser> _userManager;
+		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IConfiguration _configuration;
-		private readonly ILogger<AuthController> _logger;
 
-		public AuthController(IUserService userService, IConfiguration configuration, ILogger<AuthController> logger)
+		public AuthController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
 		{
-			_userService = userService;
+			_userManager = userManager;
+			_roleManager = roleManager;
 			_configuration = configuration;
-			_logger = logger;
 		}
 
-		[HttpPost("register")]
-		public async Task<ActionResult<UserDTO>> Register(UserRegDTO userRegDTO)
+
+		// route for seeding roles to database
+
+		[HttpPost]
+		[Route("seed-roles")]
+		public async Task<ActionResult> SeedRoles()
 		{
 
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-			var userDTO = await _userService.RegisterUserAsync(userRegDTO);
+			bool isAdminRoleExists = await _roleManager.RoleExistsAsync(StaticUserRoles.ADMIN);
+			bool isUserRoleExists = await _roleManager.RoleExistsAsync(StaticUserRoles.USER);
 
-			return userDTO != null ? Ok(userDTO) : BadRequest("Klarte ikke registrere en ny bruker");
+			if (isAdminRoleExists && isUserRoleExists)
+				return Ok("Roles Seeding Is Already Done");
 
+			await _roleManager.CreateAsync(new IdentityRole(StaticUserRoles.USER));
+			await _roleManager.CreateAsync(new IdentityRole(StaticUserRoles.ADMIN));
+
+			return Ok("Role Seeding Done Successfully");
 		}
 
-		[HttpPost("login")]
-		public async Task<ActionResult<string>> Login(LoginDTO request)
+		[HttpPost]
+		[Route("register")]
+		public async Task<ActionResult> Register([FromBody] UserRegDTO registerDTO)
 		{
-			var user = await _userService.GetAuthenticatedIdAsync(request.UserName, request.Password);
+			var isExistsUser = await _userManager.FindByNameAsync(registerDTO.UserName);
 
-			if (user == null)
+			if (isExistsUser != null )
+				return BadRequest("Username already exists. try another one");
+
+			IdentityUser newUser = new IdentityUser()
 			{
-				return BadRequest("User not found or incorrect password");
+				Email = registerDTO.Email,
+				UserName = registerDTO.UserName,
+				SecurityStamp = Guid.NewGuid().ToString(),
+			};
+
+			var createdUserResult = await _userManager.CreateAsync(newUser, registerDTO.Password);
+
+			if (!createdUserResult.Succeeded)
+			{
+				var errorString = "User creation failed because of: ";
+				foreach(var error in createdUserResult.Errors)
+				{
+					errorString += " # " + error.Description;
+				}
+				return BadRequest(errorString);
+			}
+			await _userManager.AddToRoleAsync(newUser, StaticUserRoles.USER);
+
+			return Ok("User Created Succesfully");
+		}
+
+		[HttpPost]
+		[Route("login")]
+		public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
+		{
+			var user = await _userManager.FindByNameAsync(loginDTO.UserName);
+
+			if (user is null)
+				return Unauthorized("Could not find User");
+
+			var isPasswordCorrect = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
+			 if(!isPasswordCorrect)
+				return Unauthorized("Wrong password or username");
+
+			var userRoles = await _userManager.GetRolesAsync(user);
+
+			var authClaims = new List<Claim>
+			{
+				new Claim(ClaimTypes.Name, user.UserName),
+				new Claim(ClaimTypes.NameIdentifier, user.Id),
+				new Claim("JWTID", Guid.NewGuid().ToString()),
+			};
+
+
+			foreach(var userRole in userRoles)
+			{
+				authClaims.Add(new Claim(ClaimTypes.Role, userRole));
 			}
 
-			string token = CreateToken(user);
+			var token = GenerateNewJsonWebToken(authClaims);
+
 			return Ok(token);
-
 		}
 
-		private string CreateToken(UserLoginDTO user)
+		private string GenerateNewJsonWebToken(List<Claim> claims)
 		{
-			List<Claim> claims = new List<Claim>
-			  {
-				  new Claim(ClaimTypes.Name, user.Username)
-			  };
+			var authSecret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
-			//if (user.IsAdmin)
-			//    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-
-			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
-				(_configuration.GetSection("AppSettings:Token").Value!)) ;
-
-
-			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-			var token = new JwtSecurityToken(
-				claims: claims,
+			var tokenObject = new JwtSecurityToken(
+				issuer: _configuration["JWT:ValidIssuer"],
+				audience: _configuration["JWT:ValidAudience"],
 				expires: DateTime.Now.AddHours(1),
-				signingCredentials: creds
-				);
+				claims: claims,
+				signingCredentials: new SigningCredentials(authSecret, SecurityAlgorithms.HmacSha256));
 
-			var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-				
-			return jwt;
+			string token = new JwtSecurityTokenHandler().WriteToken(tokenObject);
+
+			return token;
 		}
 	}
 }
 
+//ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+//        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))

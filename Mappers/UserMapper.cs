@@ -8,7 +8,7 @@ namespace FitnessPartner.Mappers
 	{
 		public UserDTO MapToDto(User model)
 		{
-			return new UserDTO(model.UserId, model.Age, model.UserName, model.PasswordHash, model.FirstName,
+			return new UserDTO(/*model.UserId, */ model.Age, model.UserName, model.PasswordHash, model.FirstName,
 				model.LastName, model.Email, model.Weight, model.Height, model.Created);
 		}
 
@@ -17,7 +17,7 @@ namespace FitnessPartner.Mappers
 			var now = DateTime.Now;
 			return new User()
 			{
-				UserId = dto.UserId,
+//				UserId = dto.UserId,
 				UserName = dto.UserName,
 				FirstName = dto.FirstName,
 				LastName = dto.LastName,

@@ -170,7 +170,7 @@ namespace FitnessPartner.Services
 
                 // Oppdater brukeren med de nye verdiene
                 var updatedUser = _userMapper.MapToModel(userDTO);
-                updatedUser.UserId = id;
+                //updatedUser.UserId = id;
 
 
                 // Oppdater brukeren i databasen

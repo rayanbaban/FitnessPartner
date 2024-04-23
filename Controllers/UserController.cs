@@ -7,7 +7,6 @@ namespace FitnessPartner.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
 
 
     // Implementere delete, update
@@ -15,14 +14,16 @@ namespace FitnessPartner.Controllers
     {
         private readonly IUserService _usersService;
         private readonly ILogger<UserController> _logger;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public UserController(IUserService usersservice, ILogger<UserController> logger)
-        {
-            _usersService = usersservice;
-            _logger = logger;
-        }
+		public UserController(IUserService usersService, ILogger<UserController> logger, IHttpContextAccessor httpContextAccessor)
+		{
+			_usersService = usersService;
+			_logger = logger;
+			this.httpContextAccessor = httpContextAccessor;
+		}
 
-        [HttpGet(Name = "GetAllUsers")]
+		[HttpGet(Name = "GetAllUsers")]
         public async Task<ActionResult<ICollection<UserDTO>>> GetAllUsersAsync(int pageNr = 1, int pageSize = 10)
         {
             return Ok(await _usersService.GetPageAsync(pageNr, pageSize));
