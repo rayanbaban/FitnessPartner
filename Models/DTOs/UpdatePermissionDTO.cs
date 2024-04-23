@@ -2,7 +2,7 @@
 
 namespace FitnessPartner.Models.DTOs
 {
-	public class UpadtePermissionDTO
+	public class UpdatePermissionDTO
 	{
 
 		[Required(ErrorMessage = "Username is required")]

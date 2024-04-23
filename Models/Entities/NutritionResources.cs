@@ -13,7 +13,7 @@ namespace FitnessPartner.Models.Entities
         [Required]
         public string Content { get; set; } = string.Empty;
 
-		public virtual User? User { get; set; }
+		public virtual AppUser? User { get; set; }
 
 	}
 }

@@ -11,7 +11,7 @@ namespace FitnessPartner.Services
         private readonly IFitnessGoalsRepository _fitnessGoalsRepository;
         private readonly IUserRepository _userRepository;
         private readonly IMapper<FitnessGoals, FitnessGoalsDTO> _fitnessGoalsMapper;
-        private readonly IMapper<User, UserDTO> _UserMapper;
+        private readonly IMapper<AppUser, UserDTO> _UserMapper;
         private readonly ILogger<FitnessGoalsService> _logger;
 
 
@@ -19,7 +19,7 @@ namespace FitnessPartner.Services
             IFitnessGoalsRepository fitnessGoalsRepository,
             IUserRepository userRepository,
             IMapper<FitnessGoals, FitnessGoalsDTO> fitnessGoalsMapper,
-            IMapper<User, UserDTO> userMapper,
+            IMapper<AppUser, UserDTO> userMapper,
             ILogger<FitnessGoalsService> logger)
         {
             _fitnessGoalsRepository = fitnessGoalsRepository;
@@ -34,7 +34,7 @@ namespace FitnessPartner.Services
             var loggedInUser = await _userRepository.GetUserByIdAsync(loggedinUser);
 
             var goalToAdd = _fitnessGoalsMapper.MapToModel(fitnessGoals);
-            goalToAdd.UserId = loggedinUser;
+            goalToAdd.AppUserId = loggedinUser;
 
             var addedGoal = await _fitnessGoalsRepository.CreateFitnessGoalAsync(goalToAdd);
 
@@ -51,7 +51,7 @@ namespace FitnessPartner.Services
                 return null;
             }
 
-            if (!(userId == goalToDelete.UserId || (goalToDelete.User != null && goalToDelete.User.IsAdminUser)))
+            if (!(userId == goalToDelete.AppUserId || (goalToDelete.User != null && goalToDelete.User.IsAdminUser)))
             {
                 _logger?.LogError("User {userId} har ikke tilgang til å slette dette fitness goalet", userId);
                 throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette fitness goalet");
@@ -94,10 +94,10 @@ namespace FitnessPartner.Services
                 return null;
             }
 
-            if (loggedinUser != goalToUpdate.UserId && !goalToUpdate.User.IsAdminUser)
+            if (loggedinUser != goalToUpdate.AppUserId && !goalToUpdate.User.IsAdminUser)
             {
                 _logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere goal", loggedinUser);
-                _logger?.LogError($"Detaljer: LoggedInUserId: {loggedinUser}, fitnessgoalId: {goalToUpdate.UserId}, IsAdminMember: {goalToUpdate.User.IsAdminUser}");
+                _logger?.LogError($"Detaljer: LoggedInUserId: {loggedinUser}, fitnessgoalId: {goalToUpdate.AppUserId}, IsAdminMember: {goalToUpdate.User.IsAdminUser}");
 
                 throw new UnauthorizedAccessException($"User {loggedinUser} har ikke tilgang til å oppdatere fitness goalet");
             }

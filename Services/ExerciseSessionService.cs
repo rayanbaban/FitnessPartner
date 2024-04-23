@@ -13,14 +13,14 @@ namespace FitnessPartner.Services
 		private readonly IExersiceSessionRepository _exerciseSessionRepository;
 		private readonly IUserRepository _userRepository;
 		private readonly IMapper<ExerciseSession, ExerciseSessionDTO> _exerciseSessionMapper;
-		private readonly IMapper<User, UserDTO> _UserMapper;
+		private readonly IMapper<AppUser, UserDTO> _UserMapper;
 		private readonly ILogger<ExerciseSessionService> _logger;
 
 		public ExerciseSessionService(
 			IExersiceSessionRepository exerciseSessionRepository,
 			IUserRepository userRepository, 
 			IMapper<ExerciseSession, ExerciseSessionDTO> exerciseSessionMapper,
-			IMapper<User, UserDTO> userMapper, 
+			IMapper<AppUser, UserDTO> userMapper, 
 			ILogger<ExerciseSessionService> logger)
 		{
 			_exerciseSessionRepository = exerciseSessionRepository;
@@ -52,7 +52,7 @@ namespace FitnessPartner.Services
 				return null;
 			}
 
-			if (!(userId == sessionToDelete.UserId || (sessionToDelete.UserId != null && sessionToDelete.User.IsAdminUser)))
+			if (!(userId == sessionToDelete.AppUserId || (sessionToDelete.AppUserId != null && sessionToDelete.User.IsAdminUser)))
 			{
 				_logger?.LogError("User {UserId} har ikke tilgang til å slette denne Exercisesession", userId);
 				throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette Exercisesession");
@@ -92,10 +92,10 @@ namespace FitnessPartner.Services
 			}
 
 
-			if (inloggedUser != sessionToUpdtate.UserId && !sessionToUpdtate.User.IsAdminUser)
+			if (inloggedUser != sessionToUpdtate.AppUserId && !sessionToUpdtate.User.IsAdminUser)
 			{
 				_logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere denne exercise sessionen", inloggedUser);
-				_logger?.LogError($"Detaljer: LoggedInUserId: {inloggedUser}, ExerciseSesUserId: {sessionToUpdtate.UserId}, IsAdminUser: {sessionToUpdtate.User.IsAdminUser}");
+				_logger?.LogError($"Detaljer: LoggedInUserId: {inloggedUser}, ExerciseSesUserId: {sessionToUpdtate.AppUserId}, IsAdminUser: {sessionToUpdtate.User.IsAdminUser}");
 
 				throw new UnauthorizedAccessException($"User {inloggedUser} har ikke tilgang til å oppdatere Exercise Session");
 			}

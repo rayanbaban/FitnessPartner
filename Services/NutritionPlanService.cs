@@ -46,7 +46,7 @@ namespace FitnessPartner.Services
                 return null;
             }
 
-            if (!(userId == nutritionPlanToDelete.UserId || (nutritionPlanToDelete.UserId != null && nutritionPlanToDelete.User.IsAdminUser)))
+            if (!(userId == nutritionPlanToDelete.AppUserId || (nutritionPlanToDelete.AppUserId != null && nutritionPlanToDelete.User.IsAdminUser)))
             {
                 _logger?.LogError("User {UserId} har ikke tilgang til å slette denne NutritionPlan", userId);
                 throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette NutritionPlan");

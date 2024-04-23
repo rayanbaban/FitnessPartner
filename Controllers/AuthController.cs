@@ -7,6 +7,7 @@ using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -19,16 +20,18 @@ namespace FitnessPartner.Controllers
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
-		private readonly UserManager<IdentityUser> _userManager;
+		private readonly UserManager<AppUser> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IConfiguration _configuration;
 
-		public AuthController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+		public AuthController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
 			_configuration = configuration;
 		}
+
+
 
 
 		// route for seeding roles to database
@@ -59,8 +62,15 @@ namespace FitnessPartner.Controllers
 			if (isExistsUser != null )
 				return BadRequest("Username already exists. try another one");
 
-			IdentityUser newUser = new IdentityUser()
+			AppUser newUser = new AppUser()
 			{
+				AppUserName = registerDTO.UserName,
+				AppUserEmail = registerDTO.Email,
+				FirstName = registerDTO.FirstName,
+				LastName = registerDTO.LastName,
+				Weight = registerDTO.Weight,
+				Height = registerDTO.Height,
+				Age = registerDTO.Age,
 				Email = registerDTO.Email,
 				UserName = registerDTO.UserName,
 				SecurityStamp = Guid.NewGuid().ToString(),
@@ -130,11 +140,22 @@ namespace FitnessPartner.Controllers
 
 			return token;
 		}
+
+
+		[HttpPost]
+		[Route ("MakeAdmin")]
+		public async Task<ActionResult> MakeAdmin([FromBody] UpdatePermissionDTO upadtePermission)
+		{
+			var user = await _userManager.FindByNameAsync(upadtePermission.UserName);
+
+			if(user is null)
+				return Unauthorized("Unautorized, not admin");
+
+			await _userManager.AddToRoleAsync(user, StaticUserRoles.ADMIN);
+
+			return Ok("User is now ADMIN.");
+		}
+
+		
 	}
 }
-
-//ValidateIssuer = true,
-//        ValidateAudience = true,
-//        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-//        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))

@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessPartner.Models.Entities
 {
-    public class User 
+    public class AppUser : IdentityUser
     {
         [Key]
         public int AppUserId { get; set; }
 
         [Required]
-        public string UserName { get; set; } = string.Empty;
+        public string AppUserName { get; set; } = string.Empty;
 
         [Required]
         public string FirstName { get; set; } = string.Empty;
@@ -18,7 +18,7 @@ namespace FitnessPartner.Models.Entities
         public string LastName { get; set; } = string.Empty;
 
 		[EmailAddress]
-		public string Email { get; set; } = string.Empty;
+		public string AppUserEmail { get; set; } = string.Empty;
 
 		[Required]
         public decimal Weight { get; set; } 
@@ -29,7 +29,7 @@ namespace FitnessPartner.Models.Entities
 
         [Required]
 
-		public string PasswordHash { get; set; } = string.Empty;
+		public string PasswordHashed { get; set; } = string.Empty;
 
         [Required]
         public string Salt { get; set; } = string.Empty;
@@ -39,6 +39,7 @@ namespace FitnessPartner.Models.Entities
 
         [Required]
         public bool IsAdminUser { get; set; }
+
 
 	}
 }

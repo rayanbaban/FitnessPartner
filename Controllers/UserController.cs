@@ -1,4 +1,5 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,8 @@ namespace FitnessPartner.Controllers
 		}
 
 		[HttpGet(Name = "GetAllUsers")]
-        public async Task<ActionResult<ICollection<UserDTO>>> GetAllUsersAsync(int pageNr = 1, int pageSize = 10)
+		[Authorize(Roles = StaticUserRoles.USER)]
+		public async Task<ActionResult<ICollection<UserDTO>>> GetAllUsersAsync(int pageNr = 1, int pageSize = 10)
         {
             return Ok(await _usersService.GetPageAsync(pageNr, pageSize));
         }

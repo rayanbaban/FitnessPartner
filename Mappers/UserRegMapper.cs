@@ -4,18 +4,18 @@ using FitnessPartner.Models.Entities;
 
 namespace FitnessPartner.Mappers
 {
-	public class UserRegMapper : IMapper<User, UserRegDTO>
+	public class UserRegMapper : IMapper<AppUser, UserRegDTO>
 	{
-		public UserRegDTO MapToDto(User model)
+		public UserRegDTO MapToDto(AppUser model)
 		{
 			throw new NotImplementedException();
 		}
 
-		public User MapToModel(UserRegDTO dto)
+		public AppUser MapToModel(UserRegDTO dto)
 		{
 			var dtNow = DateTime.Now;
 			var dateOfBirth = dtNow.AddYears(-dto.Age);
-			return new User()
+			return new AppUser()
 			{
 				Email = dto.Email,
 				FirstName = dto.FirstName,

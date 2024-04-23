@@ -13,15 +13,15 @@ namespace FitnessPartner.Services
     {
         private readonly FitnessPartnerDbContext _dbContext;
         private readonly ILogger<UserRepository> _logger;
-        private readonly IMapper<User, UserDTO> _userMapper;
+        private readonly IMapper<AppUser, UserDTO> _userMapper;
         private readonly IUserRepository _userRepository;
-        private readonly IMapper<User, UserRegDTO> _userRegMapper;
+        private readonly IMapper<AppUser, UserRegDTO> _userRegMapper;
         private readonly IHttpContextAccessor httpContext;
 
         public UserService(FitnessPartnerDbContext dbContext,
             ILogger<UserRepository> logger,
-            IMapper<User, UserDTO> userMapper,
-            IUserRepository userRepository, IMapper<User,
+            IMapper<AppUser, UserDTO> userMapper,
+            IUserRepository userRepository, IMapper<AppUser,
             UserRegDTO> userRegMapper, IHttpContextAccessor httpContext)
         {
             _dbContext = dbContext;

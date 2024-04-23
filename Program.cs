@@ -59,7 +59,7 @@ builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
 
 // Add Identity
 builder.Services
-    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<FitnessPartnerDbContext>()
     .AddDefaultTokenProviders();
 

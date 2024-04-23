@@ -17,37 +17,37 @@ public class UserRepository : IUserRepository
         _logger = logger;
     }
 
-	public Task<User?> AddUserAsync(User user)
+	public Task<AppUser?> AddUserAsync(AppUser user)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<User?> DeleteUserByIdAsync(int id)
+	public Task<AppUser?> DeleteUserByIdAsync(int id)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<ICollection<User?>> GetAllUsersAsync()
+	public Task<ICollection<AppUser?>> GetAllUsersAsync()
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<ICollection<User>> GetPageAsync(int pageNr, int pageSize)
+	public Task<ICollection<AppUser>> GetPageAsync(int pageNr, int pageSize)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<User?> GetUserByIdAsync(int id)
+	public Task<AppUser?> GetUserByIdAsync(int id)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<User?> GetUserByNameAsync(string name)
+	public Task<AppUser?> GetUserByNameAsync(string name)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<User?> UpdateUserAsync(int id, User user)
+	public Task<AppUser?> UpdateUserAsync(int id, AppUser user)
 	{
 		throw new NotImplementedException();
 	}

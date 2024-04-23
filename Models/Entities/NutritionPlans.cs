@@ -7,12 +7,12 @@ namespace FitnessPartner.Models.Entities
 	{
         [Key]
         public int PlanId { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        [ForeignKey("AppUserId")]
+        public int AppUserId { get; set; }
         public string PlanType { get; set; } = string.Empty;
         public string PlanDetails{ get; set; } = string.Empty;
 
-		public virtual User? User { get; set; }
+		public virtual AppUser? User { get; set; }
 
 	}
 }

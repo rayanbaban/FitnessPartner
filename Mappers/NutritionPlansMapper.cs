@@ -10,7 +10,7 @@ namespace FitnessPartner.Mappers
 		{
 			return new NutritionPlansDTO(
 				model.PlanId,
-				model.UserId,
+				model.AppUserId,
 				model.PlanType,
 				model.PlanDetails);
 		}

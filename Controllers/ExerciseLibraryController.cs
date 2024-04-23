@@ -1,4 +1,5 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,6 @@ namespace FitnessPartner.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class ExerciseLibraryController : ControllerBase
     {
         private readonly IExerciseLibraryService _exersiceLibraryService;
@@ -21,7 +21,7 @@ namespace FitnessPartner.Controllers
 
         // GET: api/<ExercisesLibraryController>
         [HttpGet(Name = "GetAllLibraryExercises")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = StaticUserRoles.USER)]
         public async Task<ActionResult<IEnumerable<ExerciseLibraryDTO>>> GetAllExercises(int pageNr = 1, int pageSize = 10)
         {
             return Ok(await _exersiceLibraryService.GetAllExerciesAsync(pageNr, pageSize));

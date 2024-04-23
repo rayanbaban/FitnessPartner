@@ -43,7 +43,7 @@ namespace FitnessPartner.Services
                 return null;
             }
 
-            if (!(userId == nutritionLogToDelete.UserId || (nutritionLogToDelete.UserId != null && nutritionLogToDelete.User.IsAdminUser)))
+            if (!(userId == nutritionLogToDelete.AppUserId || (nutritionLogToDelete.AppUserId != null && nutritionLogToDelete.User.IsAdminUser)))
             {
                 _logger?.LogError("User {UserId} har ikke tilgang til å slette denne NutritionLog", userId);
                 throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette NutritionLog");

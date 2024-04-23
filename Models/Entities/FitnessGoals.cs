@@ -8,14 +8,14 @@ namespace FitnessPartner.Models.Entities
         [Key]
         public int GoalId { get; set; }
 
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        [ForeignKey("AppUserId")]
+        public int AppUserId { get; set; }
 
         public string GoalDescription { get; set; } = string.Empty;
 
         public int PrValue { get; set; }
 
-		public virtual User? User { get; set; }
+		public virtual AppUser? User { get; set; }
 
 	}
 }

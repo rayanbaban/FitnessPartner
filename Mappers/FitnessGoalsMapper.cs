@@ -10,7 +10,7 @@ namespace FitnessPartner.Mappers
 		{
 			return new FitnessGoalsDTO(
 				model.GoalId,
-				model.UserId,
+				model.AppUserId,
 				model.GoalDescription,
 				model.PrValue);
 		}
@@ -19,7 +19,7 @@ namespace FitnessPartner.Mappers
 		{
 			return new FitnessGoals()
 			{
-				UserId = dto.UserId,
+				AppUserId = dto.UserId,
 				GoalId = dto.GoalId,
 				GoalDescription = dto.GoalDescription,
 				PrValue = dto.PrValue

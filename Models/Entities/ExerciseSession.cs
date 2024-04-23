@@ -8,8 +8,8 @@ public class ExerciseSession
         [Key]
         public int SessionId { get; set; }
 
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        [ForeignKey("AppUserId")]
+        public int AppUserId { get; set; }
         [Required]
 		public DateTime Date { get; set; }
 
@@ -24,7 +24,7 @@ public class ExerciseSession
 		[Required]
 		public string Intensity { get; set; } = string.Empty;
 
-		public virtual User? User { get; set; }
+		public virtual AppUser? User { get; set; }
 
 	}
 }

@@ -8,7 +8,7 @@ namespace FitnessPartner.Mappers
     {
         public NutritionLogDTO MapToDto(NutritionLog model)
         {
-            return new NutritionLogDTO(model.LogId, model.UserId, model.Date, model.FoodIntake);
+            return new NutritionLogDTO(model.LogId, model.AppUserId, model.Date, model.FoodIntake);
         }
 
         public NutritionLog MapToModel(NutritionLogDTO dto)
@@ -16,7 +16,7 @@ namespace FitnessPartner.Mappers
             return new NutritionLog
             {
                 LogId = dto.LogId,
-                UserId = dto.UserId,
+				AppUserId = dto.UserId,
                 Date = dto.Date,
                 FoodIntake = dto.FoodIntake,
 
