@@ -32,6 +32,7 @@ builder.Services.AddScoped<IFitnessGoalsService, FitnessGoalsService>();
 builder.Services.AddScoped<INutritionLogService, NutritionLogService>();
 builder.Services.AddScoped<INutritionPlanService, NutritionPlanService>();
 builder.Services.AddScoped<INutritionResourceService, NutritionResourceService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 
 

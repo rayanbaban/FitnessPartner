@@ -20,16 +20,14 @@ namespace FitnessPartner.Controllers
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
-		private readonly UserManager<AppUser> _userManager;
-		private readonly RoleManager<IdentityRole> _roleManager;
-		private readonly IConfiguration _configuration;
+		private readonly IAuthService _authService;
 
-		public AuthController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+		public AuthController(IAuthService authService)
 		{
-			_userManager = userManager;
-			_roleManager = roleManager;
-			_configuration = configuration;
+			_authService = authService;
 		}
+
+
 
 
 
@@ -40,120 +38,46 @@ namespace FitnessPartner.Controllers
 		[Route("seed-roles")]
 		public async Task<ActionResult> SeedRoles()
 		{
+			var seedRoles = await _authService.SeedRolesAsync();
 
-			bool isAdminRoleExists = await _roleManager.RoleExistsAsync(StaticUserRoles.ADMIN);
-			bool isUserRoleExists = await _roleManager.RoleExistsAsync(StaticUserRoles.USER);
-
-			if (isAdminRoleExists && isUserRoleExists)
-				return Ok("Roles Seeding Is Already Done");
-
-			await _roleManager.CreateAsync(new IdentityRole(StaticUserRoles.USER));
-			await _roleManager.CreateAsync(new IdentityRole(StaticUserRoles.ADMIN));
-
-			return Ok("Role Seeding Done Successfully");
+			return Ok(seedRoles);
 		}
 
 		[HttpPost]
 		[Route("register")]
 		public async Task<ActionResult> Register([FromBody] UserRegDTO registerDTO)
 		{
-			var isExistsUser = await _userManager.FindByNameAsync(registerDTO.UserName);
+			var registerResult = await _authService.RegisterAsync(registerDTO);
 
-			if (isExistsUser != null )
-				return BadRequest("Username already exists. try another one");
-
-			AppUser newUser = new AppUser()
-			{
-				AppUserName = registerDTO.UserName,
-				AppUserEmail = registerDTO.Email,
-				FirstName = registerDTO.FirstName,
-				LastName = registerDTO.LastName,
-				Weight = registerDTO.Weight,
-				Height = registerDTO.Height,
-				Age = registerDTO.Age,
-				Email = registerDTO.Email,
-				UserName = registerDTO.UserName,
-				SecurityStamp = Guid.NewGuid().ToString(),
-			};
-
-			var createdUserResult = await _userManager.CreateAsync(newUser, registerDTO.Password);
-
-			if (!createdUserResult.Succeeded)
-			{
-				var errorString = "User creation failed because of: ";
-				foreach(var error in createdUserResult.Errors)
-				{
-					errorString += " # " + error.Description;
-				}
-				return BadRequest(errorString);
-			}
-			await _userManager.AddToRoleAsync(newUser, StaticUserRoles.USER);
-
-			return Ok("User Created Succesfully");
+			if(registerResult.IsSucceed)
+				return Ok(registerResult);
+			return BadRequest(registerResult);
+			
 		}
 
 		[HttpPost]
 		[Route("login")]
 		public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
 		{
-			var user = await _userManager.FindByNameAsync(loginDTO.UserName);
+			var loginResult = await _authService.LoginAsync(loginDTO);
 
-			if (user is null)
-				return Unauthorized("Could not find User");
+			if (loginResult.IsSucceed)
+				return Ok(loginResult);
 
-			var isPasswordCorrect = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
-			 if(!isPasswordCorrect)
-				return Unauthorized("Wrong password or username");
-
-			var userRoles = await _userManager.GetRolesAsync(user);
-
-			var authClaims = new List<Claim>
-			{
-				new Claim(ClaimTypes.Name, user.UserName),
-				new Claim(ClaimTypes.NameIdentifier, user.Id),
-				new Claim("JWTID", Guid.NewGuid().ToString()),
-			};
-
-
-			foreach(var userRole in userRoles)
-			{
-				authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-			}
-
-			var token = GenerateNewJsonWebToken(authClaims);
-
-			return Ok(token);
+			return Unauthorized(loginResult);
 		}
 
-		private string GenerateNewJsonWebToken(List<Claim> claims)
-		{
-			var authSecret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-			var tokenObject = new JwtSecurityToken(
-				issuer: _configuration["JWT:ValidIssuer"],
-				audience: _configuration["JWT:ValidAudience"],
-				expires: DateTime.Now.AddHours(1),
-				claims: claims,
-				signingCredentials: new SigningCredentials(authSecret, SecurityAlgorithms.HmacSha256));
-
-			string token = new JwtSecurityTokenHandler().WriteToken(tokenObject);
-
-			return token;
-		}
 
 
 		[HttpPost]
 		[Route ("MakeAdmin")]
 		public async Task<ActionResult> MakeAdmin([FromBody] UpdatePermissionDTO upadtePermission)
 		{
-			var user = await _userManager.FindByNameAsync(upadtePermission.UserName);
+			var operationResult = await _authService.MakeAdminAsync(upadtePermission);
 
-			if(user is null)
-				return Unauthorized("Unautorized, not admin");
-
-			await _userManager.AddToRoleAsync(user, StaticUserRoles.ADMIN);
-
-			return Ok("User is now ADMIN.");
+			if (operationResult.IsSucceed)
+				return Ok(operationResult);
+			return BadRequest(operationResult);
 		}
 
 		
