@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,7 @@ builder.RegisterMappers();
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 builder.AddSwaggerWithJWTBearerAuthentication();
+builder.Services.AddHttpContextAccessor();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -48,6 +50,8 @@ builder.Services.AddScoped<INutritionResourcesRepository, NutritionResourcesRepo
 
 
 builder.Services.AddTransient<GlobalExcpetionMiddleware>();
+builder.Services.AddScoped<JwtMiddleware>();
+
 
 //builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = false);
 
@@ -76,28 +80,25 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 
-// Add authentication and jwt bearer
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
+}).AddJwtBearer(options =>
 {
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
         ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]!)),
+        ClockSkew = TimeSpan.Zero
     };
 });
-
 
 //registreringen av sriloggen som ble skrevet inn i config filen skjer her 
 builder.Host.UseSerilog((context, configuration) =>
@@ -108,16 +109,6 @@ builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration);
 });
 
-
-
-builder.Host.UseSerilog((context, configuration) =>
-{
-    configuration.ReadFrom.Configuration(context.Configuration);
-});
-
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -127,13 +118,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<JwtMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-
 
 app.Run();

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace FitnessPartner.Models.Entities
 {
@@ -12,6 +13,7 @@ public class ExerciseSession
         public int AppUserId { get; set; }
         [Required]
 		public DateTime Date { get; set; }
+		
 
 		[Required]
 		public string MusclesTrained { get; set; } = string.Empty;

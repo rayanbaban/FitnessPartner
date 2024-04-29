@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessPartner.Data.Migrations
 {
     [DbContext(typeof(FitnessPartnerDbContext))]
-    [Migration("20240423181927_initial")]
+    [Migration("20240429081652_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -66,7 +66,7 @@ namespace FitnessPartner.Data.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<bool>("IsAdminUser")
                         .HasColumnType("tinyint(1)");
@@ -117,7 +117,7 @@ namespace FitnessPartner.Data.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 

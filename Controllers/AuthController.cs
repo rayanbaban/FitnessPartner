@@ -27,11 +27,6 @@ namespace FitnessPartner.Controllers
 			_authService = authService;
 		}
 
-
-
-
-
-
 		// route for seeding roles to database
 
 		[HttpPost]
@@ -63,8 +58,9 @@ namespace FitnessPartner.Controllers
 
 			if (loginResult.IsSucceed)
 				return Ok(loginResult);
+            await Console.Out.WriteLineAsync($"{loginResult}");
 
-			return Unauthorized(loginResult);
+            return Unauthorized(loginResult);
 		}
 
 

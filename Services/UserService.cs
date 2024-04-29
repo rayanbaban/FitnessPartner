@@ -6,6 +6,7 @@ using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FitnessPartner.Services
 {
@@ -139,14 +140,14 @@ namespace FitnessPartner.Services
             return _userMapper.MapToDto(newUser);
         }
 
-        public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
+        public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO)
         {
             try
             {
-                _logger?.LogInformation("Forsøker å oppdatere bruker med ID {BrukerId} av Bruker med ID {LoginUserId}", id, inloggedUser);
+                _logger?.LogInformation("Forsøker å oppdatere bruker med ID {BrukerId} av Bruker med ID {LoginUserId}", id);
 
                 // Sjekk om brukeren som prøver å oppdatere er admin eller eier av kontoen som skal oppdateres
-                var loginUser = await _userRepository.GetUserByIdAsync(inloggedUser);
+                var loginUser = await _userRepository.GetUserByIdAsync(id);
                 var userToUpdate = await _userRepository.GetUserByIdAsync(id);
 
                 _logger?.LogInformation("Inlogget Bruker: {@LoginUser}", loginUser);
@@ -161,12 +162,12 @@ namespace FitnessPartner.Services
                     throw new InvalidOperationException("Inlogget Bruker som skal oppdateres ble ikke funnet.");
                 }
 
-                if (id != inloggedUser && !loginUser.IsAdminUser)
-                {
-                    // Hvis inlogget bruker ikke er admin og prøver å oppdatere en annen bruker, meld en feil
-                    _logger?.LogError("Ikke autorisert: Bruker {LoginUserId} har ikke tilgang til å oppdatere Bruker {BrukerId}", inloggedUser, id);
-                    throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å oppdatere Bruker {id}");
-                }
+                //if (id != inloggedUser && !loginUser.IsAdminUser)
+                //{
+                //    // Hvis inlogget bruker ikke er admin og prøver å oppdatere en annen bruker, meld en feil
+                //    _logger?.LogError("Ikke autorisert: Bruker {LoginUserId} har ikke tilgang til å oppdatere Bruker {BrukerId}", inloggedUser, id);
+                //    throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å oppdatere Bruker {id}");
+                //}
 
                 // Oppdater brukeren med de nye verdiene
                 var updatedUser = _userMapper.MapToModel(userDTO);
@@ -180,7 +181,7 @@ namespace FitnessPartner.Services
                 // Hent den oppdaterte brukeren fra databasen
                 var result = await _userRepository.GetUserByIdAsync(id);
 
-                _logger?.LogInformation("Bruker med ID {BrukerId} ble oppdatert av Bruker med ID {LoginUserId}", id, inloggedUser);
+                _logger?.LogInformation("Bruker med ID {BrukerId} ble oppdatert av Bruker med ID {LoginUserId}", id/*, inloggedUser*/);
 
                 return result != null ? _userMapper.MapToDto(result) : null;
             }
@@ -193,7 +194,7 @@ namespace FitnessPartner.Services
         private bool IsAuthorized(int loginUserId, UserDTO user)
         {
             // Sjekk om brukeren har tilgang til å slette den angitte brukeren
-            return loginUserId == user.UserId || user.IsUserAdmin;
+            return loginUserId == user.AppUserId || user.IsUserAdmin;
         }
     }
 }

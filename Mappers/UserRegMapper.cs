@@ -15,8 +15,11 @@ namespace FitnessPartner.Mappers
 		{
 			var dtNow = DateTime.Now;
 			var dateOfBirth = dtNow.AddYears(-dto.Age);
+			int appuserId = 0;
+			appuserId++;
 			return new AppUser()
 			{
+				AppUserId = appuserId,
 				Email = dto.Email,
 				FirstName = dto.FirstName,
 				LastName = dto.LastName,

@@ -8,7 +8,7 @@ namespace FitnessPartner.Services.Interfaces
     {
         Task<ICollection<UserDTO>> GetAllUsersAsync();
 
-        Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser);
+        Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO);
 
         Task<UserDTO?> DeleteUserAsync(int id, int loginUserId);
 

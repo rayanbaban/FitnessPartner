@@ -4,11 +4,11 @@ namespace FitnessPartner.Models.DTOs
 {
 	public class UserDTO
 	{
-		public UserDTO(/*int userId, */int age, string userName, string password,
+		public UserDTO(int userId, int age, string userName, string password,
 			string firstName, string lastName, 
 			string email, decimal weight, decimal height, DateTime created)
 		{
-			//UserId = userId;
+			AppUserId = userId;
 			Age = age;
 			UserName = userName;
 			Password = password;
@@ -22,7 +22,7 @@ namespace FitnessPartner.Models.DTOs
 		}
 
 		[Required]
-		public int UserId { get; set; }
+		public int AppUserId { get; set; }
         [Required]
         public int Age { get; set; }
         [Required]

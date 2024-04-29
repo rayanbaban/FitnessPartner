@@ -4,7 +4,9 @@ using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace FitnessPartner.Services
 {
@@ -13,34 +15,56 @@ namespace FitnessPartner.Services
 		private readonly IExersiceSessionRepository _exerciseSessionRepository;
 		private readonly IUserRepository _userRepository;
 		private readonly IMapper<ExerciseSession, ExerciseSessionDTO> _exerciseSessionMapper;
-		private readonly IMapper<AppUser, UserDTO> _UserMapper;
+		private readonly IMapper<AppUser, UserDTO> _userMapper;
 		private readonly ILogger<ExerciseSessionService> _logger;
+		private readonly IHttpContextAccessor _httpContextAccessor;
+		private readonly UserManager<AppUser> _usermanager;
 
 		public ExerciseSessionService(
 			IExersiceSessionRepository exerciseSessionRepository,
-			IUserRepository userRepository, 
+			IUserRepository userRepository,
 			IMapper<ExerciseSession, ExerciseSessionDTO> exerciseSessionMapper,
-			IMapper<AppUser, UserDTO> userMapper, 
-			ILogger<ExerciseSessionService> logger)
+			IMapper<AppUser, UserDTO> userMapper,
+			ILogger<ExerciseSessionService> logger, IHttpContextAccessor httpContextAccessor,
+			UserManager<AppUser> usermanager)
 		{
 			_exerciseSessionRepository = exerciseSessionRepository;
 			_userRepository = userRepository;
 			_exerciseSessionMapper = exerciseSessionMapper;
-			_UserMapper = userMapper;
+			_userMapper = userMapper;
 			_logger = logger;
+			_httpContextAccessor = httpContextAccessor;
+			_usermanager = usermanager;
 		}
 
-		public async Task<ExerciseSessionDTO?> AddSessionAsync(ExerciseSessionDTO exerciseSessionDTO/*, int inloggedUser*/)
+		public async Task<ExerciseSessionDTO?> AddSessionAsync(ExerciseSessionDTO exerciseSessionDTO)
 		{
-			//var loggedInUser = await _userRepository.GetUserByIdAsync(inloggedUser);
 
 			var exerciseToAdd = _exerciseSessionMapper.MapToModel(exerciseSessionDTO);
-			//exerciseSessionDTO.UserId = inloggedUser;
 
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
+			if (inloggedAppUser is null)
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			exerciseToAdd.User = inloggedAppUser;
+			exerciseToAdd.AppUserId = inloggedAppUser.AppUserId;
+			
 			var addedExercise = await _exerciseSessionRepository.AddSessionAsync(exerciseToAdd);
+
 
 			return addedExercise != null ? _exerciseSessionMapper.MapToDto(addedExercise) : null;
 		}
+
+
+
 
 		public async Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id, int userId)
 		{

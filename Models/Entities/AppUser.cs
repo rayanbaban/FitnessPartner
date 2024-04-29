@@ -7,7 +7,7 @@ namespace FitnessPartner.Models.Entities
     public class AppUser : IdentityUser
     {
         [Key]
-        public int AppUserId { get; set; }
+		public int AppUserId { get; set; }
 
         [Required]
         public string AppUserName { get; set; } = string.Empty;

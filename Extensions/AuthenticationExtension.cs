@@ -7,7 +7,7 @@ namespace FitnessPartner.Extensions
 {
 	public static class AuthenticationExtension
 	{
-		
+
 
 		public static void AddSwaggerWithJWTBearerAuthentication(this WebApplicationBuilder builder)
 		{
@@ -42,5 +42,5 @@ namespace FitnessPartner.Extensions
 		}
 	}
 
-	
+
 }

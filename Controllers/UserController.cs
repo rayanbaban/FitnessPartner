@@ -1,6 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
 using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,20 +9,20 @@ namespace FitnessPartner.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
 
-    // Implementere delete, update
-    public class UserController : ControllerBase
+
+	// Implementere delete, update
+	public class UserController : ControllerBase
     {
         private readonly IUserService _usersService;
         private readonly ILogger<UserController> _logger;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-		public UserController(IUserService usersService, ILogger<UserController> logger, IHttpContextAccessor httpContextAccessor)
+		public UserController(IUserService usersService, ILogger<UserController> logger)
 		{
 			_usersService = usersService;
 			_logger = logger;
-			this.httpContextAccessor = httpContextAccessor;
 		}
 
 		[HttpGet(Name = "GetAllUsers")]
@@ -42,9 +43,8 @@ namespace FitnessPartner.Controllers
         [HttpPut("{id}", Name = "UpdateUser")]
         public async Task<ActionResult<UserDTO>> UpdateUserAsync(int id, UserDTO userDTO)
         {
-            int loginUserId = (int)HttpContext.Items["UserId"]!;
 
-            var updatedUser = await _usersService.UpdateUserAsync(id, userDTO, loginUserId);
+            var updatedUser = await _usersService.UpdateUserAsync(id, userDTO);
 
             return updatedUser != null ?
                        Ok(updatedUser) :
@@ -121,7 +121,7 @@ namespace FitnessPartner.Controllers
         private bool IsAuthorized(int loginUserId, UserDTO user)
         {
             // Sjekk om brukeren har tilgang til å slette den angitte brukeren
-            return loginUserId == user.UserId || user.IsUserAdmin;
+            return loginUserId == user.AppUserId || user.IsUserAdmin;
         }
     }
 }

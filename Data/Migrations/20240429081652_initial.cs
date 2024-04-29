@@ -49,8 +49,8 @@ namespace FitnessPartner.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AppUserEmail = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Height = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Weight = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Height = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     PasswordHashed = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),

@@ -2,6 +2,7 @@
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace FitnessPartner.Controllers
 {
     [Route("api/v1/[controller]")]
@@ -43,8 +44,9 @@ namespace FitnessPartner.Controllers
                     return BadRequest("Ugyldige exercise session data");
                 }
 
-                //int loginUserId = (int)HttpContext.Items["UserId"]!;
-                var addedExerciseSes = await _exersiceSessionService.AddSessionAsync(exerciseSesDTO/*, loginUserId*/);
+                //string id = HttpContext.Items["UserId"];
+				//int loginUserId = (int)HttpContext.Items["UserId"]!;
+				var addedExerciseSes = await _exersiceSessionService.AddSessionAsync(exerciseSesDTO/*, loginUserId*/);
 
                 if (addedExerciseSes != null)
                 {

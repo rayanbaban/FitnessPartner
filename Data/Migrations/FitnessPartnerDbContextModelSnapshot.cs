@@ -63,7 +63,7 @@ namespace FitnessPartner.Data.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<bool>("IsAdminUser")
                         .HasColumnType("tinyint(1)");
@@ -114,7 +114,7 @@ namespace FitnessPartner.Data.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 

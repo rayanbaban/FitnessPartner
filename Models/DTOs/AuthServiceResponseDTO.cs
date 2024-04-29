@@ -3,7 +3,7 @@
 	public class AuthServiceResponseDTO
 	{
 		public bool IsSucceed {  get; set; }
-		public string Mesage {  get; set; }
+		public string Message {  get; set; }
 
 	}
 }
