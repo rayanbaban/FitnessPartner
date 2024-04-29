@@ -139,7 +139,7 @@ namespace FitnessPartner.Services
             return _userMapper.MapToDto(newUser);
         }
 
-        public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
+        public async Task<UserDTO?> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
         {
             try
             {

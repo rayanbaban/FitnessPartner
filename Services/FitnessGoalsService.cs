@@ -84,7 +84,7 @@ namespace FitnessPartner.Services
             return res.Select(pages => _fitnessGoalsMapper.MapToDto(pages)).ToList();
         }
 
-        public async Task<FitnessGoalsDTO> UpdateFitnessGoalAsync(FitnessGoalsDTO fitnessGoalsDto, int goalId, int loggedinUser)
+        public async Task<FitnessGoalsDTO?> UpdateFitnessGoalAsync(FitnessGoalsDTO fitnessGoalsDto, int goalId, int loggedinUser)
         {
             var goalToUpdate = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
 

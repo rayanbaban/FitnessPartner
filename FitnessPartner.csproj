@@ -36,4 +36,8 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="FitnessPartnerAPI.UnitTests"/>
+	</ItemGroup>
+
 </Project>
