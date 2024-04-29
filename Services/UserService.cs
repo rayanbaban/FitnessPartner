@@ -6,7 +6,6 @@ using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
-using Microsoft.IdentityModel.Tokens;
 
 namespace FitnessPartner.Services
 {
@@ -140,11 +139,8 @@ namespace FitnessPartner.Services
             return _userMapper.MapToDto(newUser);
         }
 
-<<<<<<< HEAD
         public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO)
-=======
-        public async Task<UserDTO?> UpdateUserAsync(int id, UserDTO userDTO, int inloggedUser)
->>>>>>> IntegrationTest
+
         {
             try
             {
