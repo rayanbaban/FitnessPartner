@@ -1,11 +1,14 @@
-﻿using FitnessPartner.Mappers.Interfaces;
+﻿using FitnessPartner.Mappers;
+using FitnessPartner.Mappers.Interfaces;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
+using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql.Storage.Internal.Json;
 using System.Security.Claims;
 
 namespace FitnessPartner.Services
@@ -63,12 +66,39 @@ namespace FitnessPartner.Services
 			return addedExercise != null ? _exerciseSessionMapper.MapToDto(addedExercise) : null;
 		}
 
+		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int id)
+		{
+			var sessionToUpdtate = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
+
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+
+			if (sessionToUpdtate == null )
+			{
+				_logger?.LogError("ExerciseSession med Id {exerciseId} ble ikke funnet for oppdatering.", id);
+				return null;
+			}
+
+			var updatedExerciseSession = await _exerciseSessionRepository.UpdateSessionsAsync(_exerciseSessionMapper.MapToModel(exerciseSession), id);
+
+			if (updatedExerciseSession != null)
+			{
+				_logger?.LogInformation("Exercise session med ID {ExerciseSesId} ble oppdatert vellykket", id);
+				return _exerciseSessionMapper.MapToDto(updatedExerciseSession);
+			}
+
+			return null;
+		}
 
 
 
-		public async Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id, int userId)
+		public async Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id)
 		{
 			var sessionToDelete = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
+
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			var loggedInUser = await _usermanager.FindByIdAsync(userId);
+
 
 			if (sessionToDelete == null)
 			{
@@ -76,7 +106,7 @@ namespace FitnessPartner.Services
 				return null;
 			}
 
-			if (!(userId == sessionToDelete.AppUserId || (sessionToDelete.AppUserId != null && sessionToDelete.User.IsAdminUser)))
+			if (loggedInUser == null || loggedInUser.Id != sessionToDelete?.User?.Id)
 			{
 				_logger?.LogError("User {UserId} har ikke tilgang til å slette denne Exercisesession", userId);
 				throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette Exercisesession");
@@ -105,34 +135,5 @@ namespace FitnessPartner.Services
 			return sessionToGet != null ? _exerciseSessionMapper.MapToDto(sessionToGet) : null;
 		}
 
-		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int inloggedUser ,int id)
-		{
-			var sessionToUpdtate = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
-
-			if (sessionToUpdtate == null || sessionToUpdtate.User == null)
-			{
-				_logger?.LogError("ExerciseSession med Id {exerciseId} ble ikke funnet for oppdatering.", id);
-				return null;
-			}
-
-
-			if (inloggedUser != sessionToUpdtate.AppUserId && !sessionToUpdtate.User.IsAdminUser)
-			{
-				_logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere denne exercise sessionen", inloggedUser);
-				_logger?.LogError($"Detaljer: LoggedInUserId: {inloggedUser}, ExerciseSesUserId: {sessionToUpdtate.AppUserId}, IsAdminUser: {sessionToUpdtate.User.IsAdminUser}");
-
-				throw new UnauthorizedAccessException($"User {inloggedUser} har ikke tilgang til å oppdatere Exercise Session");
-			}
-
-			var updatedExerciseSession = await _exerciseSessionRepository.UpdateSessionsAsync(_exerciseSessionMapper.MapToModel(exerciseSession), id);
-
-			if (updatedExerciseSession != null)
-			{
-				_logger?.LogInformation("Exercise session med ID {ExerciseSesId} ble oppdatert vellykket", id);
-				return _exerciseSessionMapper.MapToDto(updatedExerciseSession);
-			}
-
-			return null;
-		}
 	}
 }

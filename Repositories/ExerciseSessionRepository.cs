@@ -97,8 +97,8 @@ namespace FitnessPartner.Repositories
         {
             try
             {
-                var sessionId = await _dbContext.ExerciseSession.FindAsync(id);
-                return sessionId;
+				var sessionId = await _dbContext.ExerciseSession.FindAsync(id);
+				return sessionId;
             }
             catch (Exception ex)
             {

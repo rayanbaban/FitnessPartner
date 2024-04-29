@@ -63,12 +63,11 @@ namespace FitnessPartner.Controllers
         }
 
         // PUT api/<ExerciseSessionController>/5
-        [HttpPut(Name = "UpdateExerciseSession")]
-        public async Task<ActionResult<ExerciseSessionDTO>> UpdateExerciseSession(int exercisesesId, ExerciseSessionDTO exerciseSesLibraryDTO)
+        [HttpPut("{id}", Name = "UpdateExerciseSession")]
+        public async Task<ActionResult<ExerciseSessionDTO>> UpdateExerciseSession(int exercisesesId, ExerciseSessionDTO exerciseSesDTO)
         {
-            int loginMemberId = (int)HttpContext.Items["UserId"]!;
 
-            var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesLibraryDTO, loginMemberId, exercisesesId);
+            var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesDTO, exercisesesId);
 
             if (updatedExerciseSes != null)
             {
@@ -81,9 +80,8 @@ namespace FitnessPartner.Controllers
         [HttpDelete("{id}", Name = "DeleteExersiceSession")]
         public async Task<ActionResult<ExerciseSessionDTO>> DeleteExercise(int exerciseSesID)
         {
-            int loginMemberId = (HttpContext.Items["UserId"] as int?) ?? 0;
 
-            var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID, loginMemberId);
+            var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID);
 
             if (deletedExerciseSes != null)
             {
