@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessPartner", "FitnessPartner.csproj", "{673F6967-E556-4E1E-9001-BBBFEB9523F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessPartner", "FitnessPartner.csproj", "{673F6967-E556-4E1E-9001-BBBFEB9523F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FitnessPartnerTests", "FitnessPartnerTests", "{23340EEB-E31D-4799-8A08-1707647B82EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessPartnerAPI.IntergrationTests", "..\Tests\FitnessPartnerAPI.UnitTests\FitnessPartnerAPI.IntergrationTests.csproj", "{770A1486-E173-4023-B683-4FE1A23B15B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{673F6967-E556-4E1E-9001-BBBFEB9523F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673F6967-E556-4E1E-9001-BBBFEB9523F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{673F6967-E556-4E1E-9001-BBBFEB9523F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{770A1486-E173-4023-B683-4FE1A23B15B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{770A1486-E173-4023-B683-4FE1A23B15B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{770A1486-E173-4023-B683-4FE1A23B15B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{770A1486-E173-4023-B683-4FE1A23B15B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{770A1486-E173-4023-B683-4FE1A23B15B1} = {23340EEB-E31D-4799-8A08-1707647B82EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBA53F7F-BC94-486D-AD22-FE1BDAD32C58}

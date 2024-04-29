@@ -79,7 +79,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ICollection<NutritionResources>> GetNutritionResourcesAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionResources>?> GetNutritionResourcesAsync(int pageNr, int pageSize)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ICollection<NutritionResources?>> GetPageAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionResources?>?> GetPageAsync(int pageNr, int pageSize)
         {
             try
             {

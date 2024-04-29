@@ -65,7 +65,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ICollection<NutritionLog>> GetMyNutritionLogsAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionLog>?> GetMyNutritionLogsAsync(int pageNr, int pageSize)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ICollection<NutritionLog?>> GetPageAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionLog?>?> GetPageAsync(int pageNr, int pageSize)
         {
             try
             {

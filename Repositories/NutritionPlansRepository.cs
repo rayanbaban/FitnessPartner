@@ -65,7 +65,7 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
-    public async Task<ICollection<NutritionPlans>> GetMyNutritionPlanAsync(int pageNr, int pageSize)
+    public async Task<ICollection<NutritionPlans>?> GetMyNutritionPlanAsync(int pageNr, int pageSize)
     {
         try
         {
@@ -95,7 +95,7 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
-    public async Task<ICollection<NutritionPlans>> GetPageAsync(int pageNr, int pageSize)
+    public async Task<ICollection<NutritionPlans>?> GetPageAsync(int pageNr, int pageSize)
     {
         try
         {
