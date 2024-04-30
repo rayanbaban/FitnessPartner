@@ -111,7 +111,7 @@ namespace FitnessPartner.Repositories
         {
             try
             {
-                var existingSession = await _dbContext.ExerciseSession.FindAsync(id);
+                var existingSession = await _dbContext.ExerciseSession.FirstOrDefaultAsync(x => x.SessionId == id );
 
                 if (existingSession == null)
                 {
