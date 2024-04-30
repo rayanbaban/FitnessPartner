@@ -105,9 +105,16 @@ namespace FitnessPartner.Services
 			return sessionToGet != null ? _exerciseSessionMapper.MapToDto(sessionToGet) : null;
 		}
 
-		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int inloggedUser ,int id)
+		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int id)
 		{
 			var sessionToUpdtate = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
+
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
+
 
 			if (sessionToUpdtate == null || sessionToUpdtate.User == null)
 			{
@@ -116,13 +123,14 @@ namespace FitnessPartner.Services
 			}
 
 
-			if (inloggedUser != sessionToUpdtate.AppUserId && !sessionToUpdtate.User.IsAdminUser)
+			if (userId != sessionToUpdtate.User.Id)
 			{
-				_logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere denne exercise sessionen", inloggedUser);
-				_logger?.LogError($"Detaljer: LoggedInUserId: {inloggedUser}, ExerciseSesUserId: {sessionToUpdtate.AppUserId}, IsAdminUser: {sessionToUpdtate.User.IsAdminUser}");
+				_logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere denne exercise sessionen", userId);
+				_logger?.LogError($"Detaljer: LoggedInUserId: {userId}, ExerciseSesUserId: {sessionToUpdtate.User.Id}");
 
-				throw new UnauthorizedAccessException($"User {inloggedUser} har ikke tilgang til å oppdatere Exercise Session");
+				throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å oppdatere Exercise Session");
 			}
+			userId = sessionToUpdtate.User.Id;
 
 			var updatedExerciseSession = await _exerciseSessionRepository.UpdateSessionsAsync(_exerciseSessionMapper.MapToModel(exerciseSession), id);
 

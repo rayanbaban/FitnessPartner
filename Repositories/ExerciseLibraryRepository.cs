@@ -86,7 +86,7 @@ namespace FitnessPartner.Repositories
         {
             try
             {
-                var exerciseId = await _dbContext.ExerciseLibrary.FindAsync(id);
+                var exerciseId = await _dbContext.ExerciseLibrary.FirstOrDefaultAsync(e => e.ExerciseId == id); 
                 return exerciseId;
 
             }

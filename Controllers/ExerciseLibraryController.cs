@@ -4,6 +4,7 @@ using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace FitnessPartner.Controllers
 {
@@ -22,24 +23,25 @@ namespace FitnessPartner.Controllers
 
         // GET: api/<ExercisesLibraryController>
         [HttpGet(Name = "GetAllLibraryExercises")]
-        [Authorize(Roles = StaticUserRoles.USER)]                
+        [Authorize(Roles = StaticUserRoles.USER)]
         public async Task<ActionResult<IEnumerable<ExerciseLibraryDTO>>> GetAllExercises(int pageNr = 1, int pageSize = 10)
         {
             return Ok(await _exersiceLibraryService.GetAllExerciesAsync(pageNr, pageSize));
         }
 
         // GET api/<ExerciseLibraryController>/5
-        [HttpGet("{Id}", Name = "GetExerciseLibraryeById")]
-		[Authorize(Roles = StaticUserRoles.USER)]
-		public async Task<ActionResult<ExerciseLibraryDTO>> GetExerciseById(int Id)
+        [HttpGet("{id}", Name = "GetExerciseLibraryeById")]
+        [Authorize(Roles = StaticUserRoles.USER)]
+        public async Task<ActionResult<ExerciseLibraryDTO>> GetExerciseById(int exerciseId)
         {
-            var Exercise = await _exersiceLibraryService.GetExerciseByIdAsync(Id);
-            return Id != 0 ? Ok(Exercise) : NotFound();
-        }
+            var Exercise = await _exersiceLibraryService.GetExerciseByIdAsync(exerciseId);
+            return exerciseId != 0 ? Ok(Exercise) : NotFound();
+			
+		}
 
         // POST api/<ExerciseLibraryController>
         [HttpPost]
-		[Authorize(Roles = StaticUserRoles.ADMIN)]
+		[Authorize(Roles = StaticUserRoles.USER)]
 		public async Task<ActionResult<ExerciseLibraryDTO>> PostExercise([FromBody] ExerciseLibraryDTO exerciselibraryDTO)
         {
             try
@@ -67,8 +69,8 @@ namespace FitnessPartner.Controllers
         }
 
         // PUT api/<ExerciseLibraryController>/5
-        [HttpPut("{id}", Name = "UpdateExerciseLibrary")]
-		[Authorize(Roles = StaticUserRoles.ADMIN)]
+        [HttpPut( Name = "UpdateExerciseLibrary")]
+		[Authorize(Roles = StaticUserRoles.USER)]
 		public async Task<ActionResult<ExerciseLibraryDTO>> UpdateExercise(int id, ExerciseLibraryDTO exerciseLibraryDTO)
         {
             //int loginMemberId = (int)HttpContext.Items["UserId"]!;
@@ -83,13 +85,12 @@ namespace FitnessPartner.Controllers
         }
 
         // DELETE api/<ExerciseLibraryController>/5
-        [HttpDelete("{id}", Name = "DeleteExersiceLibrary")]
-		[Authorize(Roles = StaticUserRoles.ADMIN)]
+        [HttpDelete(Name = "DeleteExersiceLibrary")]
+		[Authorize(Roles = StaticUserRoles.USER)]
 		public async Task<ActionResult<ExerciseLibraryDTO>> DeleteExercise(int exerciseID)
         {
-            int loginMemberId = (HttpContext.Items["UserId"] as int?) ?? 0;
 
-            var deletedexercise = await _exersiceLibraryService.DeleteExerciseAsync(exerciseID, loginMemberId);
+            var deletedexercise = await _exersiceLibraryService.DeleteExerciseAsync(exerciseID);
 
             if (deletedexercise != null)
             {
