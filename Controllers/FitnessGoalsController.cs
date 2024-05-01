@@ -6,17 +6,19 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace FitnessPartner.Controllers
 {
-	[Route("api/v1[controller]")]
+	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class FitnessGoalsController : ControllerBase
 	{
 		private readonly ILogger<FitnessGoalsController> _logger;
 		private readonly IFitnessGoalsService _fitnessGoalsService;
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public FitnessGoalsController(ILogger<FitnessGoalsController> logger, IFitnessGoalsService fitnessGoalsService)
+		public FitnessGoalsController(ILogger<FitnessGoalsController> logger, IFitnessGoalsService fitnessGoalsService, IHttpContextAccessor httpContextAccessor)
 		{
 			_logger = logger;
 			_fitnessGoalsService = fitnessGoalsService;
+			_httpContextAccessor = httpContextAccessor;
 		}
 
 		[HttpGet(Name = "GetFitnessGoals")]
@@ -42,8 +44,7 @@ namespace FitnessPartner.Controllers
 					return BadRequest("Ugyldige fitness goal data");
 				}
 
-				int loginUserId = (int)HttpContext.Items["UserId"]!;
-				var addedFitnessGoal = await _fitnessGoalsService.CreateFitnessGoalAsync(fitnessgoalsDTO, loginUserId);
+				var addedFitnessGoal = await _fitnessGoalsService.CreateFitnessGoalAsync(fitnessgoalsDTO);
 
 				if (addedFitnessGoal != null)
 				{
@@ -62,9 +63,8 @@ namespace FitnessPartner.Controllers
 		[HttpPut(Name = "UpdateFitnessGoal")]
 		public async Task<ActionResult<FitnessGoalsDTO>> UpdateExerciseSession(int goalId, FitnessGoalsDTO fitnessGoalsDTO)
 		{
-			int loginMemberId = (int)HttpContext.Items["UserId"]!;
 
-			var updatedFitnessGoal = await _fitnessGoalsService.UpdateFitnessGoalAsync(fitnessGoalsDTO, loginMemberId, goalId);
+			var updatedFitnessGoal = await _fitnessGoalsService.UpdateFitnessGoalAsync(fitnessGoalsDTO, goalId);
 
 			if (updatedFitnessGoal != null)
 			{

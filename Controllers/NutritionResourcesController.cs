@@ -31,21 +31,20 @@ namespace FitnessPartner.Controllers
         [HttpPut("{id}", Name = "UpdateNutritionResource")]
         public async Task<ActionResult<NutritionResourcesDTO>> UpdateNutritionResourceAsync(int id, NutritionResourcesDTO nutritionResourceDTO)
         {
-            int loginUserId = (int)HttpContext.Items["UserId"]!;
 
-            var updatedNutritionResource = await _nutritionResourcesService.UpdateNutritionResourceAsync(nutritionResourceDTO, id, loginUserId);
+            var updatedNutritionResource = await _nutritionResourcesService.UpdateNutritionResourceAsync(nutritionResourceDTO, id);
 
             return updatedNutritionResource != null ?
                        Ok(updatedNutritionResource) :
                        NotFound($"Klarte ikke å oppdatere bruker med ID: {id}");
+
         }
 
-        [HttpDelete("{id}", Name = "DeleteNutritionResource")]
-        public async Task<ActionResult<NutritionResourcesDTO>> DeleteNutritionResource(int id, int nutritionResourceId)
+        [HttpDelete(Name = "DeleteNutritionResource")]
+        public async Task<ActionResult<NutritionResourcesDTO>> DeleteNutritionResource(int nutritionResourceId)
         {
-            int loginMemberId = (HttpContext.Items["UserId"] as int?) ?? 0;
 
-            var deletedNutritionResource = await _nutritionResourcesService.DeleteNutritionResourceAsync(id, nutritionResourceId);
+            var deletedNutritionResource = await _nutritionResourcesService.DeleteNutritionResourceAsync( nutritionResourceId);
 
             if (deletedNutritionResource != null)
             {
@@ -55,7 +54,7 @@ namespace FitnessPartner.Controllers
         }
 
         [HttpPost(Name = "CreateNutritionResource")]
-        public async Task<ActionResult<NutritionResourcesDTO>> PostNutritionResource([FromBody] NutritionResourcesDTO nutritionResource, int loggedinUser)
+        public async Task<ActionResult<NutritionResourcesDTO>> PostNutritionResource([FromBody] NutritionResourcesDTO nutritionResource)
         {
             try
             {
@@ -64,8 +63,7 @@ namespace FitnessPartner.Controllers
                     return BadRequest("Ugyldige nutritionResource data");
                 }
 
-                //int loginUserId = (int)HttpContext.Items["UserId"]!;
-                var addedNutritionResource = await _nutritionResourcesService.CreateNutritionResourceAsync(/*loginUserId,*/ nutritionResource, loggedinUser);
+                var addedNutritionResource = await _nutritionResourcesService.CreateNutritionResourceAsync(nutritionResource);
 
                 if (addedNutritionResource != null)
                 {

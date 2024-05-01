@@ -3,72 +3,168 @@ using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace FitnessPartner.Services
 {
     public class FitnessGoalsService : IFitnessGoalsService
     {
         private readonly IFitnessGoalsRepository _fitnessGoalsRepository;
-        private readonly IUserRepository _userRepository;
         private readonly IMapper<FitnessGoals, FitnessGoalsDTO> _fitnessGoalsMapper;
-        private readonly IMapper<AppUser, UserDTO> _UserMapper;
         private readonly ILogger<FitnessGoalsService> _logger;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-        public FitnessGoalsService(
-            IFitnessGoalsRepository fitnessGoalsRepository,
-            IUserRepository userRepository,
-            IMapper<FitnessGoals, FitnessGoalsDTO> fitnessGoalsMapper,
-            IMapper<AppUser, UserDTO> userMapper,
-            ILogger<FitnessGoalsService> logger)
+		public FitnessGoalsService(
+			IFitnessGoalsRepository fitnessGoalsRepository,
+			IMapper<FitnessGoals, FitnessGoalsDTO> fitnessGoalsMapper,
+			ILogger<FitnessGoalsService> logger,
+			UserManager<AppUser> userManager,
+			IHttpContextAccessor httpContextAccessor)
+		{
+			_fitnessGoalsRepository = fitnessGoalsRepository;
+			_fitnessGoalsMapper = fitnessGoalsMapper;
+			_logger = logger;
+			_userManager = userManager;
+			_httpContextAccessor = httpContextAccessor;
+		}
+
+		public async Task<FitnessGoalsDTO?> CreateFitnessGoalAsync(FitnessGoalsDTO fitnessGoals)
         {
-            _fitnessGoalsRepository = fitnessGoalsRepository;
-            _userRepository = userRepository;
-            _fitnessGoalsMapper = fitnessGoalsMapper;
-            _UserMapper = userMapper;
-            _logger = logger;
-        }
-
-        public async Task<FitnessGoalsDTO?> CreateFitnessGoalAsync(FitnessGoalsDTO fitnessGoals, int loggedinUser)
-        {
-            var loggedInUser = await _userRepository.GetUserByIdAsync(loggedinUser);
-
+            
             var goalToAdd = _fitnessGoalsMapper.MapToModel(fitnessGoals);
-            goalToAdd.AppUserId = loggedinUser;
+
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			var inloggedUser = await _userManager.FindByIdAsync(userId);
+			if (inloggedUser is null)
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			goalToAdd.User = inloggedUser;
 
             var addedGoal = await _fitnessGoalsRepository.CreateFitnessGoalAsync(goalToAdd);
 
             return addedGoal != null ? _fitnessGoalsMapper.MapToDto(addedGoal) : null;
         }
 
-        public async Task<FitnessGoalsDTO?> DeleteFitnessGoalAsync(int userId, int goalId)
-        {
-            var goalToDelete = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
+		public async Task<FitnessGoalsDTO?> UpdateFitnessGoalAsync(FitnessGoalsDTO fitnessGoalsDto, int goalId)
+		{
+			var goalToUpdate = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
 
-            if (goalToDelete == null)
-            {
-                _logger?.LogError("Fitness gaol med ID {EventId} ble ikke funnet for sletting", goalId);
-                return null;
-            }
+			if (goalToUpdate == null)
+			{
+				_logger?.LogError("Fitnessmålet med ID {goalId} ble ikke funnet for oppdatering eller mangler tilknyttet bruker", goalId);
+				return null;
+			}
 
-            if (!(userId == goalToDelete.AppUserId || (goalToDelete.User != null && goalToDelete.User.IsAdminUser)))
-            {
-                _logger?.LogError("User {userId} har ikke tilgang til å slette dette fitness goalet", userId);
-                throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette fitness goalet");
-            }
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 
-            var deletedGoal = await _fitnessGoalsRepository.DeleteFitnessGoalAsync(goalId);
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException("Ugyldig bruker.");
+			}
 
-            return deletedGoal != null ? _fitnessGoalsMapper.MapToDto(deletedGoal) : null;
-        }
+			var inloggedUser = await _userManager.FindByIdAsync(userId);
 
-        public async Task<FitnessGoalsDTO?> GetFitnessGoalByIdAsync(int goalId)
-        {
-            var goalToGet = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
-            return goalToGet != null ? _fitnessGoalsMapper.MapToDto(goalToGet) : null;
-        }
+			if (inloggedUser is null)
+			{
+				throw new UnauthorizedAccessException("Innlogget bruker ble ikke funnet.");
+			}
 
-        public async Task<ICollection<FitnessGoalsDTO?>> GetMyFitnessGoalsAsync(int pageNr, int pageSize)
+			if (goalToUpdate.User != inloggedUser)
+			{
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å oppdatere dette fitnessmålet.");
+			}
+
+			goalToUpdate.User = inloggedUser;
+
+			var updatedEvent = await _fitnessGoalsRepository.UpdateFitnessGoalAsync(_fitnessGoalsMapper.MapToModel(fitnessGoalsDto), goalId);
+
+			if (updatedEvent != null)
+			{
+				_logger?.LogInformation("Fitnessmålet med ID {goalId} ble oppdatert vellykket", goalId);
+				return _fitnessGoalsMapper.MapToDto(updatedEvent);
+			}
+
+			return null;
+		}
+
+
+		public async Task<FitnessGoalsDTO?> DeleteFitnessGoalAsync(int goalId)
+		{
+			var goalToDelete = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
+
+			if (goalToDelete == null)
+			{
+				_logger?.LogError("Fitnessmålet med ID {goalId} ble ikke funnet for sletting", goalId);
+				return null;
+			}
+
+			var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException("Ugyldig bruker.");
+			}
+			var inloggedUser = await _userManager.FindByIdAsync(userId);
+
+			if (inloggedUser is null)
+			{
+				throw new UnauthorizedAccessException("Innlogget bruker ble ikke funnet.");
+			}
+
+
+			if (goalToDelete.User != inloggedUser)
+			{
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å oppdatere dette fitnessmålet.");
+			}
+
+			goalToDelete.User = inloggedUser;
+
+
+			var deletedGoal = await _fitnessGoalsRepository.DeleteFitnessGoalAsync(goalId);
+
+			return deletedGoal != null ? _fitnessGoalsMapper.MapToDto(deletedGoal) : null;
+		}
+
+
+		public async Task<FitnessGoalsDTO?> GetFitnessGoalByIdAsync(int goalId)
+		{
+			var goalToGet = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
+
+			if (goalToGet == null)
+			{
+				_logger?.LogError("Fitnessmålet med ID {goalId} ble ikke funnet.", goalId);
+				return null;
+			}
+
+			var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException("Ugyldig bruker.");
+			}
+
+			var loggedInUser = await _userManager.FindByIdAsync(userId);
+
+			if (goalToGet.User != loggedInUser)
+			{
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å vise dette fitnessmålet.");
+			}
+
+			return _fitnessGoalsMapper.MapToDto(goalToGet);
+		}
+
+
+		public async Task<ICollection<FitnessGoalsDTO?>> GetMyFitnessGoalsAsync(int pageNr, int pageSize)
         {
             var fitnessGoals = await _fitnessGoalsRepository.GetMyFitnessGoalsAsync(pageNr, pageSize);
 
@@ -84,33 +180,6 @@ namespace FitnessPartner.Services
             return res.Select(pages => _fitnessGoalsMapper.MapToDto(pages)).ToList();
         }
 
-        public async Task<FitnessGoalsDTO?> UpdateFitnessGoalAsync(FitnessGoalsDTO fitnessGoalsDto, int goalId, int loggedinUser)
-        {
-            var goalToUpdate = await _fitnessGoalsRepository.GetFitnessGoalByIdAsync(goalId);
-
-            if (goalToUpdate == null || goalToUpdate.User == null)
-            {
-                _logger?.LogError("fitness goal med ID {goalId} ble ikke funnet for oppdatering eller mangler tilknyttet user", goalId);
-                return null;
-            }
-
-            if (loggedinUser != goalToUpdate.AppUserId && !goalToUpdate.User.IsAdminUser)
-            {
-                _logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere goal", loggedinUser);
-                _logger?.LogError($"Detaljer: LoggedInUserId: {loggedinUser}, fitnessgoalId: {goalToUpdate.AppUserId}, IsAdminMember: {goalToUpdate.User.IsAdminUser}");
-
-                throw new UnauthorizedAccessException($"User {loggedinUser} har ikke tilgang til å oppdatere fitness goalet");
-            }
-
-            var updatedEvent = await _fitnessGoalsRepository.UpdateFitnessGoalAsync(_fitnessGoalsMapper.MapToModel(fitnessGoalsDto), goalId);
-
-            if (updatedEvent != null)
-            {
-                _logger?.LogInformation("fitness goal med ID {goalId} ble oppdatert vellykket", goalId);
-                return _fitnessGoalsMapper.MapToDto(updatedEvent);
-            }
-
-            return null;
-        }
+       
     }
 }

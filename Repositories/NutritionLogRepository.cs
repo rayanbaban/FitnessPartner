@@ -16,7 +16,7 @@ namespace FitnessPartner.Repositories
             _logger = logger;
         }
 
-        public async Task<NutritionLog?> CreateNutritionLogAsync(NutritionLog nutritionLog, int loggedinUser)
+        public async Task<NutritionLog?> CreateNutritionLogAsync(NutritionLog nutritionLog)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<NutritionLog?> DeleteNutritionLogAsync(int userId, int logId)
+        public async Task<NutritionLog?> DeleteNutritionLogAsync(int logId)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<NutritionLog?> UpdateNutritionLogAsync(NutritionLog nutritionLogDTO, int logId, int loggedinUser)
+        public async Task<NutritionLog?> UpdateNutritionLogAsync(NutritionLog nutritionLogDTO, int logId)
         {
             try
             {

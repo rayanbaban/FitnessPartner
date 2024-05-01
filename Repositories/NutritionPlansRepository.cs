@@ -16,7 +16,7 @@ public class NutritionPlansRepository : INutritionPlansRepository
         _logger = logger;
     }
 
-    public async Task<NutritionPlans?> CreateNutritionPlanAsync(NutritionPlans nutritionPlan, int loggedinUser)
+    public async Task<NutritionPlans?> CreateNutritionPlanAsync(NutritionPlans nutritionPlan)
     {
         try
         {
@@ -38,7 +38,7 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
-    public async Task<NutritionPlans?> DeleteNutritionPlanAsync(int userId, int planId)
+    public async Task<NutritionPlans?> DeleteNutritionPlanAsync(int planId)
     {
         try
         {
@@ -113,7 +113,7 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
-    public async Task<NutritionPlans?> UpdateNutritionPlanAsync(NutritionPlans nutritionPlanDTO, int planId, int loggedinUser)
+    public async Task<NutritionPlans?> UpdateNutritionPlanAsync(NutritionPlans nutritionPlanDTO, int planId)
     {
         try
         {

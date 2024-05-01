@@ -20,8 +20,12 @@ namespace FitnessPartner.Models.DTOs
 			Created = created;
 
 		}
+        public UserDTO()
+        {
+            
+        }
 
-		[Required]
+        [Required]
 		public int AppUserId { get; set; }
         [Required]
         public int Age { get; set; }

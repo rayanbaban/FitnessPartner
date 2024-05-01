@@ -67,33 +67,37 @@ namespace FitnessPartner.Services
 
 		public async Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id)
 		{
-			var sessionToDelete = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
-
-
 			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 			if (string.IsNullOrEmpty(userId))
 			{
 				throw new UnauthorizedAccessException();
 			}
 
+			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
+			if (inloggedAppUser == null)
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			var sessionToDelete = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
 			if (sessionToDelete == null)
 			{
 				_logger?.LogError("ExersiceSession med ID {ExerciseId} ble ikke funnet for sletting", id);
 				return null;
 			}
 
-			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
-			if (inloggedAppUser != null && inloggedAppUser.Id == sessionToDelete.User.Id)
+			// Sjekk om økten tilhører den innloggede brukeren
+			if (sessionToDelete.User.Id != inloggedAppUser.Id)
 			{
-				throw new UnauthorizedAccessException("Du har ikke tilgang til å endre dette");
-
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å slette dette");
 			}
 
+			// Slett økten og returner DTO
 			var deletedExerciseSession = await _exerciseSessionRepository.DeleteSessionsAsync(id);
-
 			return deletedExerciseSession != null ? _exerciseSessionMapper.MapToDto(deletedExerciseSession) : null;
-
 		}
+
+
 		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int id)
 		{
 			var sessionToUpdtate = await _exerciseSessionRepository.GetSessionsByIdAsync(id);

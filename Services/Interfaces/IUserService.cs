@@ -10,7 +10,7 @@ namespace FitnessPartner.Services.Interfaces
 
         Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO);
 
-        Task<UserDTO?> DeleteUserAsync(int id, int loginUserId);
+        Task<UserDTO?> DeleteUserAsync(int id);
 
         Task<UserDTO?> GetUserByIdAsync(int userId);
         //Task<UserDTO?> GetAuthenticatedIdAsync(string userName, string password);
