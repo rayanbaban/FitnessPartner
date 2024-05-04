@@ -29,7 +29,8 @@ namespace FitnessPartner.Controllers
         }
 
         // GET api/<ExerciseSessionController>/5
-        [HttpGet("{Id}", Name = "GetExerciseSessionById")]
+        [HttpGet]
+        [Route("GetById")]
         public async Task<ActionResult<ExerciseSessionDTO>> GetExerciseById(int exerciseId)
         {
             var ExerciseSesId = await _exersiceSessionService.GetSessionByIdAsync(exerciseId);
@@ -79,7 +80,7 @@ namespace FitnessPartner.Controllers
         }
 
         // DELETE api/<ExerciseSessionController>/5
-        [HttpDelete("{id}", Name = "DeleteExersiceSession")]
+        [HttpDelete(Name = "DeleteExersiceSession")]
         public async Task<ActionResult<ExerciseSessionDTO>> DeleteExercise(int exerciseSesID)
         {
 

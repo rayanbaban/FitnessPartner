@@ -2,6 +2,7 @@
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 
 namespace FitnessPartner.Repositories;
@@ -70,19 +71,45 @@ public class UserRepository : IUserRepository
 
 	public async Task<AppUser?> UpdateUserAsync(int id, AppUser user)
 	{
-		_logger?.LogDebug("Sletter bruker med id: {@id}", id);
+		_logger?.LogDebug("Oppdaterer bruker med id: {@id}", id);
+
 		var bruker = await _dbContext.Users.FirstOrDefaultAsync(x => x.AppUserId == id);
 
-		if (user == null)
+		if (bruker == null)
+		{
+			_logger?.LogWarning("Kunne ikke finne bruker med id: {@id}", id);
 			return null;
+		}
+		bruker.UserName = bruker.UserName;
+		bruker.UserName = string.IsNullOrEmpty(user.UserName) ? user.UserName : user.UserName;
+		bruker.FirstName = string.IsNullOrEmpty(user.FirstName) ? user.FirstName : user.FirstName;
+		bruker.LastName = string.IsNullOrEmpty(user.LastName) ? user.LastName : user.LastName;
+		bruker.Email = string.IsNullOrEmpty(user.Email) ? user.Email : user.Email;
+		bruker.AppUserEmail = string.IsNullOrEmpty(user.AppUserEmail) ? user.AppUserEmail : user.AppUserEmail;
+		bruker.AppUserName = string.IsNullOrEmpty(user.AppUserName) ? user.AppUserName : user.AppUserName;
+		bruker.Weight = user.Weight != 0 ? user.Weight : user.Weight;
+		bruker.Height = user.Height != 0 ? user.Height : user.Height;
+		bruker.Age = user.Age != 0 ? user.Age : user.Age;
+		bruker.Email = string.IsNullOrEmpty(user.Email) ? user.Email : user.Email;
+		bruker.Email = string.IsNullOrEmpty(user.Email) ? user.Email : user.Email;
+		bruker.Email = string.IsNullOrEmpty(user.Email) ? user.Email : user.Email;
 
-		await _dbContext.Users.Where(x => x.AppUserId == id)
-			.ExecuteDeleteAsync();
 
-		_dbContext.SaveChanges();
-
-		return user;
+		try
+		{
+			// Lagrer endringene til databasen
+			await _dbContext.SaveChangesAsync();
+			_logger?.LogInformation("Bruker med id {Id} oppdatert", id);
+			return bruker;
+		}
+		catch (Exception ex)
+		{
+			// Logg feil hvis oppdateringen mislykkes
+			_logger?.LogError(ex, "Feil ved oppdatering av bruker med id {Id}", id);
+			throw;
+		}
 	}
+
 
 	public async Task<ICollection<AppUser>> GetPageAsync(int pageNr, int pageSize)
 	{

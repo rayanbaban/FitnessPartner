@@ -10,16 +10,16 @@ namespace FitnessPartner.Mappers
 		{
 			throw new NotImplementedException();
 		}
+		private  int _lastAppUserId = 0;
 
 		public AppUser MapToModel(UserRegDTO dto)
 		{
 			var dtNow = DateTime.Now;
 			var dateOfBirth = dtNow.AddYears(-dto.Age);
-			int appuserId = 0;
-			appuserId++;
+			_lastAppUserId++;
 			return new AppUser()
 			{
-				AppUserId = appuserId,
+				AppUserId = _lastAppUserId,
 				Email = dto.Email,
 				FirstName = dto.FirstName,
 				LastName = dto.LastName,

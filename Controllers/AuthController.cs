@@ -1,4 +1,5 @@
-﻿using FitnessPartner.Models;
+﻿using FitnessPartner.Data;
+using FitnessPartner.Models;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.OtherObjects;
@@ -21,10 +22,12 @@ namespace FitnessPartner.Controllers
 	public class AuthController : ControllerBase
 	{
 		private readonly IAuthService _authService;
+		private readonly FitnessPartnerDbContext _dbContext;
 
-		public AuthController(IAuthService authService)
+		public AuthController(IAuthService authService, FitnessPartnerDbContext dbContext)
 		{
 			_authService = authService;
+			_dbContext = dbContext;
 		}
 
 		// route for seeding roles to database

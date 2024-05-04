@@ -20,7 +20,7 @@ namespace FitnessPartner.Controllers
         }
 
         [HttpGet(Name = "GetAllNutritionLogs")]
-        [Authorize (Roles = StaticUserRoles.ADMIN )]
+        [Authorize (Roles = StaticUserRoles.USER )]
         public async Task<ActionResult<ICollection<NutritionLogDTO>>> GetAllNutritionLogsAsync(int pageNr = 1, int pageSize = 10)
         {
             return Ok(await _nutritionLogService.GetPageAsync(pageNr, pageSize));

@@ -30,7 +30,8 @@ namespace FitnessPartner.Controllers
         }
 
         // GET api/<ExerciseLibraryController>/5
-        [HttpGet("{id}", Name = "GetExerciseLibraryeById")]
+        [HttpGet]
+        [Route("getById")]
         [Authorize(Roles = StaticUserRoles.USER)]
         public async Task<ActionResult<ExerciseLibraryDTO>> GetExerciseById(int exerciseId)
         {
@@ -41,7 +42,7 @@ namespace FitnessPartner.Controllers
 
         // POST api/<ExerciseLibraryController>
         [HttpPost]
-		[Authorize(Roles = StaticUserRoles.USER)]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<ExerciseLibraryDTO>> PostExercise([FromBody] ExerciseLibraryDTO exerciselibraryDTO)
         {
             try
@@ -51,8 +52,7 @@ namespace FitnessPartner.Controllers
                     return BadRequest("Ugyldige exercise data");
                 }
 
-                //int loginUserId = (int)HttpContext.Items["UserId"]!;
-                var addedEvent = await _exersiceLibraryService.AddExerciseLibraryAsync(/*loginUserId,*/ exerciselibraryDTO);
+                var addedEvent = await _exersiceLibraryService.AddExerciseLibraryAsync(exerciselibraryDTO);
 
                 if (addedEvent != null)
                 {
@@ -70,12 +70,11 @@ namespace FitnessPartner.Controllers
 
         // PUT api/<ExerciseLibraryController>/5
         [HttpPut( Name = "UpdateExerciseLibrary")]
-		[Authorize(Roles = StaticUserRoles.USER)]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<ExerciseLibraryDTO>> UpdateExercise(int id, ExerciseLibraryDTO exerciseLibraryDTO)
         {
-            //int loginMemberId = (int)HttpContext.Items["UserId"]!;
 
-            var updatedPost = await _exersiceLibraryService.UpdateExerciseAsync(id, /*loginMemberId,*/ exerciseLibraryDTO);
+            var updatedPost = await _exersiceLibraryService.UpdateExerciseAsync(id, exerciseLibraryDTO);
 
             if (updatedPost != null)
             {
@@ -86,7 +85,7 @@ namespace FitnessPartner.Controllers
 
         // DELETE api/<ExerciseLibraryController>/5
         [HttpDelete(Name = "DeleteExersiceLibrary")]
-		[Authorize(Roles = StaticUserRoles.USER)]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<ExerciseLibraryDTO>> DeleteExercise(int exerciseID)
         {
 

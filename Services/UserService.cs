@@ -3,6 +3,7 @@ using FitnessPartner.Mappers.Interfaces;
 using FitnessPartner.Models;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
@@ -171,9 +172,9 @@ namespace FitnessPartner.Services
 
 
 				var loggedInUser = await _userManager.FindByIdAsync(userId);
-				if (userToUpdate.Id != loggedInUser.Id)
+				if (userToUpdate.Id != loggedInUser.Id && !loggedInUser.IsAdminUser)
 				{
-					throw new UnauthorizedAccessException("Du har ikke tilgang til å oppdatere denne NutritionLog");
+					throw new UnauthorizedAccessException("Du har ikke tilgang til å oppdatere denne Brukeren");
 				}
 
 				_logger?.LogInformation("Inlogget Bruker: {@LoginUser}", userId);
@@ -181,8 +182,6 @@ namespace FitnessPartner.Services
 
 
                 var updatedUser = _userMapper.MapToModel(userDTO);
-                updatedUser.Id = userId;
-
 
                 await _userRepository.UpdateUserAsync(id, userToUpdate);
 

@@ -10,18 +10,23 @@ namespace FitnessPartner.Repositories
 
         private readonly FitnessPartnerDbContext _dbContext;
         private readonly ILogger<ExerciseSessionRepository> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ExerciseSessionRepository(FitnessPartnerDbContext dbContext, ILogger<ExerciseSessionRepository> logger)
-        {
-            _dbContext = dbContext;
-            _logger = logger;
-        }
+		public ExerciseSessionRepository(FitnessPartnerDbContext dbContext, ILogger<ExerciseSessionRepository> logger, IHttpContextAccessor httpContextAccessor)
+		{
+			_dbContext = dbContext;
+			_logger = logger;
+			_httpContextAccessor = httpContextAccessor;
+		}
 
-        public async Task<ExerciseSession?> AddSessionAsync(ExerciseSession session)
+		public async Task<ExerciseSession?> AddSessionAsync(ExerciseSession session)
         {
             try
             {
-                var newSession = await _dbContext.AddAsync(session);
+				string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+				var newSession = await _dbContext.AddAsync(session);
+                session.User.Id = userId;
                 _logger.LogDebug("Legger til en ny session {@nysession}", newSession.Entity);
 
                 await _dbContext.SaveChangesAsync();
@@ -85,9 +90,9 @@ namespace FitnessPartner.Repositories
         {
             var totCount = _dbContext.ExerciseSession.Count();
             var totPages = (int)Math.Ceiling((double)totCount / pageSize);
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 
-            return await _dbContext.ExerciseSession
-                .OrderBy(x => x.SessionId)
+			return await _dbContext.ExerciseSession
                 .Skip((pageNr - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -112,12 +117,14 @@ namespace FitnessPartner.Repositories
             try
             {
                 var existingSession = await _dbContext.ExerciseSession.FirstOrDefaultAsync(x => x.SessionId == id );
+				string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 
-                if (existingSession == null)
+				if (existingSession == null)
                 {
                     _logger.LogWarning("Kunne ikke finne session med ID {sessionId}", id);
                     return null;
                 }
+                existingSession.User.Id = userId;
                 existingSession.DurationMinutes = session.DurationMinutes;
                 existingSession.Result = session.Result;
                 existingSession.MusclesTrained = session.MusclesTrained;

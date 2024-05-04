@@ -6,6 +6,7 @@ using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System.Net;
 using System.Security.Claims;
 
 namespace FitnessPartner.Services
@@ -110,19 +111,20 @@ namespace FitnessPartner.Services
 				throw new UnauthorizedAccessException();
 			}
 
-			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
-			if (inloggedAppUser != null && inloggedAppUser.Id == sessionToUpdtate.User.Id)
-			{
-				throw new UnauthorizedAccessException("Du har ikke tilgang til å endre dette");
-
-			}
-
 
 			if (sessionToUpdtate == null)
 			{
 				_logger?.LogError("ExerciseSession med Id {exerciseId} ble ikke funnet for oppdatering.", id);
-				return null;
+				throw new UnauthorizedAccessException($"ExerciseSession med Id {id} ble ikke funnet for oppdatering");
 			}
+
+			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
+			if (sessionToUpdtate?.User?.Id != inloggedAppUser?.Id)
+			{
+				throw new UnauthorizedAccessException("Ingen tilgang til denne handlingen");
+
+			}
+
 
 			var updatedExerciseSession = await _exerciseSessionRepository.UpdateSessionsAsync(_exerciseSessionMapper.MapToModel(exerciseSession), id);
 
@@ -141,7 +143,6 @@ namespace FitnessPartner.Services
 			var sessions = await _exerciseSessionRepository.GetAllSessionsAsync(pageNr, pageSize);
 
 			return sessions.Select(ExerciseSessions => _exerciseSessionMapper.MapToDto(ExerciseSessions)).ToList();
-
 
 		}
 

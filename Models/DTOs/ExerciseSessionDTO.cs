@@ -3,11 +3,10 @@
 	public class ExerciseSessionDTO
 	{
 		public ExerciseSessionDTO(int sessionId, 
-			int userId, DateTime date, 
+			 DateTime date, 
 			string musclesTrained, int durationMinutes, string result, string intensity)
 		{
 			SessionId = sessionId;
-			UserId = userId;
 			Date = date;
 			MusclesTrained = musclesTrained;
 			DurationMinutes = durationMinutes;
@@ -16,7 +15,6 @@
 		}
 
 		public int SessionId { get; set; }
-        public int UserId { get; set; }
 		
 		public DateTime Date { get; set; }
 

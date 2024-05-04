@@ -47,8 +47,8 @@ namespace FitnessPartner.Repositories
                 if (resourceToDel == null)
                 {
                     _logger.LogWarning("Kunne ikke finne nutritionResource med ID {NutritionResourceID} for sletting.", resourceId);
-                    return null;
-                }
+					throw new InvalidOperationException("Nutrition resourcen som ble forsøkt slettet ble ikke funnet.");
+				}
 
                 _dbContext.NutritionResources.Remove(resourceToDel);
                 await _dbContext.SaveChangesAsync();

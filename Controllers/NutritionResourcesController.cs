@@ -1,5 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessPartner.Controllers
@@ -29,6 +31,7 @@ namespace FitnessPartner.Controllers
         }
 
         [HttpPut("{id}", Name = "UpdateNutritionResource")]
+        [Authorize (Roles = StaticUserRoles.ADMIN)]
         public async Task<ActionResult<NutritionResourcesDTO>> UpdateNutritionResourceAsync(int id, NutritionResourcesDTO nutritionResourceDTO)
         {
 
@@ -41,7 +44,8 @@ namespace FitnessPartner.Controllers
         }
 
         [HttpDelete(Name = "DeleteNutritionResource")]
-        public async Task<ActionResult<NutritionResourcesDTO>> DeleteNutritionResource(int nutritionResourceId)
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
+		public async Task<ActionResult<NutritionResourcesDTO>> DeleteNutritionResource(int nutritionResourceId)
         {
 
             var deletedNutritionResource = await _nutritionResourcesService.DeleteNutritionResourceAsync( nutritionResourceId);
@@ -54,7 +58,8 @@ namespace FitnessPartner.Controllers
         }
 
         [HttpPost(Name = "CreateNutritionResource")]
-        public async Task<ActionResult<NutritionResourcesDTO>> PostNutritionResource([FromBody] NutritionResourcesDTO nutritionResource)
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
+		public async Task<ActionResult<NutritionResourcesDTO>> PostNutritionResource([FromBody] NutritionResourcesDTO nutritionResource)
         {
             try
             {

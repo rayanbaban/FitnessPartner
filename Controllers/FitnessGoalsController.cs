@@ -27,7 +27,8 @@ namespace FitnessPartner.Controllers
 			return Ok(await _fitnessGoalsService.GetMyFitnessGoalsAsync(pageNr, pageSize));
 		}
 
-		[HttpGet("{id}", Name = "GetFitnessGoalById")]
+		[HttpGet]
+		[Route("Id")]
 		public async Task<ActionResult<FitnessGoalsDTO>> GetFitnessGoalById(int goalId)
 		{
 			var result = await _fitnessGoalsService.GetFitnessGoalByIdAsync(goalId);
