@@ -1,7 +1,6 @@
 using FitnessPartner.Data;
 using FitnessPartner.Extensions;
 using FitnessPartner.Middleware;
-using FitnessPartner.Models;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
@@ -12,7 +11,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,8 +34,6 @@ builder.Services.AddScoped<INutritionPlanService, NutritionPlanService>();
 builder.Services.AddScoped<INutritionResourceService, NutritionResourceService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-
-
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IExerciseLibraryRepository, ExerciseLibraryRepository>();
@@ -47,20 +43,14 @@ builder.Services.AddScoped<INutritionLogRepository, NutritionLogRepository>();
 builder.Services.AddScoped<INutritionPlansRepository, NutritionPlansRepository>();
 builder.Services.AddScoped<INutritionResourcesRepository, NutritionResourcesRepository>();
 
-
-
 builder.Services.AddTransient<GlobalExcpetionMiddleware>();
 builder.Services.AddScoped<JwtMiddleware>();
 
-
 //builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = false);
 
-
 builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
-				options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-				new MySqlServerVersion(new Version(8, 0))));
-
-
+                options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+                new MySqlServerVersion(new Version(8, 0))));
 
 // Add Identity
 builder.Services
@@ -127,3 +117,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
