@@ -3,6 +3,7 @@ using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace FitnessPartner.Services
 {
@@ -12,50 +13,76 @@ namespace FitnessPartner.Services
         private readonly IMapper<NutritionLog, NutritionLogDTO> _nutritionLogMapper;
         private readonly INutritionLogRepository _nutritionLogRepository;
         private readonly ILogger<NutritionLogService> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+		private readonly UserManager<AppUser> _userManager;
 
-        public NutritionLogService(IUserRepository userRepository, IMapper<NutritionLog, NutritionLogDTO> nutritionLogMapper, INutritionLogRepository nutritionLogRepository, ILogger<NutritionLogService> logger)
+
+		public NutritionLogService(IUserRepository userRepository, IMapper<NutritionLog, NutritionLogDTO> nutritionLogMapper, INutritionLogRepository nutritionLogRepository, ILogger<NutritionLogService> logger, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager)
+		{
+			_userRepository = userRepository;
+			_nutritionLogMapper = nutritionLogMapper;
+			_nutritionLogRepository = nutritionLogRepository;
+			_logger = logger;
+			_httpContextAccessor = httpContextAccessor;
+			_userManager = userManager;
+		}
+
+		public async Task<NutritionLogDTO?> CreateNutritionLogAsync(NutritionLogDTO nutritionLog)
         {
-            _userRepository = userRepository;
-            _nutritionLogMapper = nutritionLogMapper;
-            _nutritionLogRepository = nutritionLogRepository;
-            _logger = logger;
-        }
 
-        public async Task<NutritionLogDTO?> CreateNutritionLogAsync(NutritionLogDTO nutritionLog, int loggedinUser)
-        {
-            var inloggedUser = await _userRepository.GetUserByIdAsync(loggedinUser);
+			var nutritionLogToAdd = _nutritionLogMapper.MapToModel(nutritionLog);
 
-            var nutritionLogToAdd = _nutritionLogMapper.MapToModel(nutritionLog);
-            nutritionLog.UserId = loggedinUser;
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
 
-            var addedNutritionLog = await _nutritionLogRepository.CreateNutritionLogAsync(nutritionLogToAdd, loggedinUser);
+			var inloggedUser = await _userManager.FindByIdAsync(userId);
+			if (inloggedUser is null)
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+            nutritionLogToAdd.User = inloggedUser;
+
+
+			var addedNutritionLog = await _nutritionLogRepository.CreateNutritionLogAsync(nutritionLogToAdd);
 
             return addedNutritionLog != null ? _nutritionLogMapper.MapToDto(addedNutritionLog) : null;
         }
 
-        public async Task<NutritionLogDTO?> DeleteNutritionLogAsync(int userId, int logId)
-        {
-            var nutritionLogToDelete = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
+		public async Task<NutritionLogDTO?> DeleteNutritionLogAsync(int logId)
+		{
+			var nutritionLogToDelete = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
 
-            if (nutritionLogToDelete == null)
-            {
-                _logger?.LogError("NutritionLog med ID {NutritionLogId} ble ikke funnet for sletting", logId);
-                return null;
-            }
+			if (nutritionLogToDelete == null)
+			{
+				_logger?.LogError("NutritionLog med ID {NutritionLogId} ble ikke funnet for sletting", logId);
+				return null;
+			}
 
-            if (!(userId == nutritionLogToDelete.AppUserId || (nutritionLogToDelete.AppUserId != null && nutritionLogToDelete.User.IsAdminUser)))
-            {
-                _logger?.LogError("User {UserId} har ikke tilgang til å slette denne NutritionLog", userId);
-                throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette NutritionLog");
-            }
+			var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 
-            var deletedNutritionLog = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException("Ugyldig bruker.");
+			}
 
-            return nutritionLogToDelete != null ? _nutritionLogMapper.MapToDto(nutritionLogToDelete) : null;
+			var loggedInUser = await _userManager.FindByIdAsync(userId);
+				
+			if (nutritionLogToDelete.User != loggedInUser)
+			{
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å slette denne NutritionLog");
+			}
 
-        }
+			var deletedNutritionLog = await _nutritionLogRepository.DeleteNutritionLogAsync(logId);
 
-        public async Task<ICollection<NutritionLogDTO>> GetMyNutritionLogsAsync(int pageNr, int pageSize)
+			return deletedNutritionLog != null ? _nutritionLogMapper.MapToDto(deletedNutritionLog) : null;
+		}
+
+
+		public async Task<ICollection<NutritionLogDTO>> GetMyNutritionLogsAsync(int pageNr, int pageSize)
         {
             var nutritionLogs = await _nutritionLogRepository.GetMyNutritionLogsAsync(pageNr, pageSize);
 
@@ -66,7 +93,27 @@ namespace FitnessPartner.Services
         {
             var nutritionLogToGet = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
 
-            return nutritionLogToGet != null ? _nutritionLogMapper.MapToDto(nutritionLogToGet) : null;
+			if (nutritionLogToGet == null)
+			{
+				_logger?.LogError("Fitnessmålet med ID {goalId} ble ikke funnet.", logId);
+				return null;
+			}
+
+			var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException("Ugyldig bruker.");
+			}
+
+			var loggedInUser = await _userManager.FindByIdAsync(userId);
+
+			if (nutritionLogToGet.User != loggedInUser)
+			{
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å vise dette fitnessmålet.");
+			}
+
+			return nutritionLogToGet != null ? _nutritionLogMapper.MapToDto(nutritionLogToGet) : null;
         }
 
         public async Task<ICollection<NutritionLogDTO>> GetPageAsync(int pageNr, int pageSize)
@@ -78,35 +125,42 @@ namespace FitnessPartner.Services
             return res.Select(pages => _nutritionLogMapper.MapToDto(pages)).ToList();
         }
 
-        public async Task<NutritionLogDTO?> UpdateNutritionLogAsync(NutritionLogDTO nutritionLogDTO, int logId, int loggedinUser)
-        {
-            var nutritionLogToUpd = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
+		public async Task<NutritionLogDTO?> UpdateNutritionLogAsync(NutritionLogDTO nutritionLogDTO, int logId)
+		{
+			var nutritionLogToUpdate = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
 
-            if (nutritionLogToUpd == null)
-            {
-                _logger?.LogError("NutritionLog med ID {NutritionLogId} ble ikke funnet for oppdatering", logId);
-                return null;
-            }
+			if (nutritionLogToUpdate == null)
+			{
+				
+				_logger?.LogError("NutritionLog med ID {NutritionLogId} ble ikke funnet for oppdatering", logId);
+				return null;
+			}
 
+			var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 
-            //if (memberId != exerciseToUpd.MemberID && !eventToUpdate.Member.IsAdminMember)
-            //{
-            //	_logger?.LogError("Medlem {LoggedInUserId} har ikke tilgang til å oppdatere dette arrangementet", loggedInMember);
-            //	_logger?.LogError($"Detaljer: LoggedInMemberId: {loggedInMember}, EventMemberId: {eventToUpdate.MemberID}, IsAdminMember: {eventToUpdate.Member.IsAdminMember}");
+			if (string.IsNullOrEmpty(userId))
+			{
+				
+				throw new UnauthorizedAccessException("Ugyldig bruker.");
+			}
 
-            //	throw new UnauthorizedAccessException($"Medlem {loggedInMember} har ikke tilgang til å oppdatere arrangementet");
-            //}
+			var loggedInUser = await _userManager.FindByIdAsync(userId);
+			
+			if (nutritionLogToUpdate.User != loggedInUser)
+			{
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å oppdatere denne NutritionLog");
+			}
+			
+			var updatedNutritionLog = await _nutritionLogRepository.UpdateNutritionLogAsync(_nutritionLogMapper.MapToModel(nutritionLogDTO), logId);
+			
+			if (updatedNutritionLog != null)
+			{
+				_logger?.LogInformation("NutritionLog med ID {NutritionLogId} ble oppdatert.", logId);
+				return _nutritionLogMapper.MapToDto(updatedNutritionLog);
+			}
 
-            var updatedNutritionLog = await _nutritionLogRepository.UpdateNutritionLogAsync(_nutritionLogMapper.MapToModel(nutritionLogDTO), loggedinUser, logId);
+			return null;
+		}
 
-            if (updatedNutritionLog != null)
-            {
-                _logger?.LogInformation("NutritionLog med ID {NutritionLogId} ble oppdatert.", logId);
-                return _nutritionLogMapper.MapToDto(updatedNutritionLog);
-            }
-
-            return null;
-
-        }
-    }
+	}
 }

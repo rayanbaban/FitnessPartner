@@ -6,6 +6,7 @@ using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace FitnessPartner.Services
 {
@@ -16,53 +17,58 @@ namespace FitnessPartner.Services
         private readonly IMapper<AppUser, UserDTO> _userMapper;
         private readonly IUserRepository _userRepository;
         private readonly IMapper<AppUser, UserRegDTO> _userRegMapper;
-        private readonly IHttpContextAccessor httpContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<AppUser> _userManager;
+
+
 
         public UserService(FitnessPartnerDbContext dbContext,
             ILogger<UserRepository> logger,
             IMapper<AppUser, UserDTO> userMapper,
             IUserRepository userRepository, IMapper<AppUser,
-            UserRegDTO> userRegMapper, IHttpContextAccessor httpContext)
+            UserRegDTO> userRegMapper, IHttpContextAccessor httpContext, UserManager<AppUser> userManager)
         {
             _dbContext = dbContext;
             _logger = logger;
             _userMapper = userMapper;
             _userRepository = userRepository;
             _userRegMapper = userRegMapper;
-            this.httpContext = httpContext;
+            _httpContextAccessor = httpContext;
+            _userManager = userManager;
         }
 
-        public async Task<UserDTO?> DeleteUserAsync(int deleteUserId, int inloggedUser)
+        public async Task<UserDTO?> DeleteUserAsync(int deleteUserId)
         {
 
             try
             {
-                _logger?.LogInformation("Forsøker å slette bruker med ID {DeleteUserId} av Bruker med ID {InloggedUser}", DeleteUserAsync, inloggedUser);
 
-                // Sjekk om brukeren som prøver å slette er admin eller eier av kontoen som skal slettes
-                var loginUser = await _userRepository.GetUserByIdAsync(inloggedUser);
-                var userToDelete = await _userRepository.GetUserByIdAsync(deleteUserId);
+                var loginUser = await _userRepository.GetUserByIdAsync(deleteUserId);
 
-                if (loginUser == null || userToDelete == null)
+                if (loginUser == null || deleteUserId == null)
                 {
                     // Hvis inlogget bruker som skal slettes ikke er funnet, kast en feil
                     _logger?.LogError("Inlogget Bruker som skal slettes ble ikke funnet. Inlogget bruker:" +
-                        " {@LoginUser}, Bruker som skal slettes: {@UserToDelete}", loginUser, userToDelete);
+                        " {@LoginUser}, Bruker som skal slettes: {@UserToDelete}", loginUser, deleteUserId);
                     throw new InvalidOperationException("Inlogget bruker som skal slettes ble ikke funnet.");
                 }
 
-                if (inloggedUser != deleteUserId && !loginUser.IsAdminUser)
+                var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+                if (string.IsNullOrEmpty(userId))
                 {
-                    // Hvis inlogget bruker ikke er admin og prøver å slette en annen bruker, meld en feil
-                    _logger?.LogError("Ikke autorisert: Bruker {InloggedBruker} har ikke tilgang til å slette bruker" +
-                        " {DeleteUserId}", inloggedUser, deleteUserId);
-                    throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å slette Bruker {deleteUserId}");
+                    throw new UnauthorizedAccessException("Ugyldig bruker.");
                 }
 
-                // Slett bruker fra databasen
+                var loggedInUser = await _userManager.FindByIdAsync(userId);
+
+                if (loginUser.Id != loggedInUser.Id)
+                {
+                    throw new UnauthorizedAccessException("Du har ikke tilgang til å slette denne NutritionLog");
+                }
+
                 var deletedUser = await _userRepository.DeleteUserByIdAsync(deleteUserId);
 
-                _logger?.LogInformation("Bruker med ID {DeleteUserId} ble slettet av Bruker med ID {InloggedUser}", deleteUserId, inloggedUser);
+                _logger?.LogInformation("Bruker med ID {DeleteUserId} ble slettet av Bruker med ID {InloggedUser}", deleteUserId, userId);
 
                 return deletedUser != null ? _userMapper.MapToDto(deletedUser) : null;
             }
@@ -140,48 +146,46 @@ namespace FitnessPartner.Services
         }
 
         public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userDTO)
-
         {
             try
             {
-                _logger?.LogInformation("Forsøker å oppdatere bruker med ID {BrukerId} av Bruker med ID {LoginUserId}", id);
 
-                // Sjekk om brukeren som prøver å oppdatere er admin eller eier av kontoen som skal oppdateres
-                var loginUser = await _userRepository.GetUserByIdAsync(id);
                 var userToUpdate = await _userRepository.GetUserByIdAsync(id);
 
-                _logger?.LogInformation("Inlogget Bruker: {@LoginUser}", loginUser);
+                if (userToUpdate == null)
+                {
+
+                    _logger?.LogError("NutritionLog med ID {NutritionLogId} ble ikke funnet for oppdatering", id);
+                    return null;
+                }
+
+                var userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+                if (string.IsNullOrEmpty(userId))
+                {
+
+                    throw new UnauthorizedAccessException("Ugyldig bruker.");
+                }
+
+
+                var loggedInUser = await _userManager.FindByIdAsync(userId);
+                if (userToUpdate.Id != loggedInUser.Id && !loggedInUser.IsAdminUser)
+                {
+                    throw new UnauthorizedAccessException("Du har ikke tilgang til å oppdatere denne Brukeren");
+                }
+
+                _logger?.LogInformation("Inlogget Bruker: {@LoginUser}", userId);
                 _logger?.LogInformation("Bruker som skal oppdateres: {@UserToUpdate}", userToUpdate);
 
 
-                if (loginUser == null || userToUpdate == null)
-                {
-                    // Hvis enten inlogget bruker eller bruker som skal oppdateres ikke er funnet, meld en feil
-                    _logger?.LogError("Inlogget Bruker som skal oppdateres ble ikke funnet. Inlogget Bruker: {@LoginUser}, " +
-                        "Bruker som skal oppdateres: {@BrukerToUpdate}", loginUser, userToUpdate);
-                    throw new InvalidOperationException("Inlogget Bruker som skal oppdateres ble ikke funnet.");
-                }
-
-                //if (id != inloggedUser && !loginUser.IsAdminUser)
-                //{
-                //    // Hvis inlogget bruker ikke er admin og prøver å oppdatere en annen bruker, meld en feil
-                //    _logger?.LogError("Ikke autorisert: Bruker {LoginUserId} har ikke tilgang til å oppdatere Bruker {BrukerId}", inloggedUser, id);
-                //    throw new UnauthorizedAccessException($"Bruker {inloggedUser} har ikke tilgang til å oppdatere Bruker {id}");
-                //}
-
-                // Oppdater brukeren med de nye verdiene
                 var updatedUser = _userMapper.MapToModel(userDTO);
-                //updatedUser.UserId = id;
 
-
-                // Oppdater brukeren i databasen
                 await _userRepository.UpdateUserAsync(id, userToUpdate);
 
 
-                // Hent den oppdaterte brukeren fra databasen
                 var result = await _userRepository.GetUserByIdAsync(id);
 
-                _logger?.LogInformation("Bruker med ID {BrukerId} ble oppdatert av Bruker med ID {LoginUserId}", id/*, inloggedUser*/);
+                _logger?.LogInformation("Bruker med ID {BrukerId} ble oppdatert av Bruker med ID {LoginUserId}", id, userId);
 
                 return result != null ? _userMapper.MapToDto(result) : null;
             }
@@ -190,11 +194,6 @@ namespace FitnessPartner.Services
                 _logger?.LogError(ex, "Feil ved oppdatering av bruker med ID {MemberId}", id);
                 throw;
             }
-        }
-        private bool IsAuthorized(int loginUserId, UserDTO user)
-        {
-            // Sjekk om brukeren har tilgang til å slette den angitte brukeren
-            return loginUserId == user.AppUserId || user.IsUserAdmin;
         }
     }
 }

@@ -6,6 +6,7 @@ using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System.Net;
 using System.Security.Claims;
 
 namespace FitnessPartner.Services
@@ -55,7 +56,6 @@ namespace FitnessPartner.Services
 			}
 
 			exerciseToAdd.User = inloggedAppUser;
-			exerciseToAdd.AppUserId = inloggedAppUser.AppUserId;
 			
 			var addedExercise = await _exerciseSessionRepository.AddSessionAsync(exerciseToAdd);
 
@@ -66,63 +66,65 @@ namespace FitnessPartner.Services
 
 
 
-		public async Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id, int userId)
+		public async Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id)
 		{
-			var sessionToDelete = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
 
+			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
+			if (inloggedAppUser == null)
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			var sessionToDelete = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
 			if (sessionToDelete == null)
 			{
 				_logger?.LogError("ExersiceSession med ID {ExerciseId} ble ikke funnet for sletting", id);
 				return null;
 			}
 
-			if (!(userId == sessionToDelete.AppUserId || (sessionToDelete.AppUserId != null && sessionToDelete.User.IsAdminUser)))
+			// Sjekk om økten tilhører den innloggede brukeren
+			if (sessionToDelete.User.Id != inloggedAppUser.Id)
 			{
-				_logger?.LogError("User {UserId} har ikke tilgang til å slette denne Exercisesession", userId);
-				throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette Exercisesession");
+				throw new UnauthorizedAccessException("Du har ikke tilgang til å slette dette");
 			}
 
+			// Slett økten og returner DTO
 			var deletedExerciseSession = await _exerciseSessionRepository.DeleteSessionsAsync(id);
-
 			return deletedExerciseSession != null ? _exerciseSessionMapper.MapToDto(deletedExerciseSession) : null;
-
 		}
 
 
-		public async Task<ICollection<ExerciseSessionDTO>> GetAllSessionsAsync(int pageNr, int pageSize)
-		{
-			var sessions = await _exerciseSessionRepository.GetAllSessionsAsync(pageNr, pageSize);
-
-			return sessions.Select(ExerciseSessions => _exerciseSessionMapper.MapToDto(ExerciseSessions)).ToList();
-
-
-		}
-
-		public async Task<ExerciseSessionDTO?> GetSessionByIdAsync(int id)
-		{
-			var sessionToGet = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
-
-			return sessionToGet != null ? _exerciseSessionMapper.MapToDto(sessionToGet) : null;
-		}
-
-		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int inloggedUser ,int id)
+		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int id)
 		{
 			var sessionToUpdtate = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
 
-			if (sessionToUpdtate == null || sessionToUpdtate.User == null)
+
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+
+			if (sessionToUpdtate == null)
 			{
 				_logger?.LogError("ExerciseSession med Id {exerciseId} ble ikke funnet for oppdatering.", id);
-				return null;
+				throw new UnauthorizedAccessException($"ExerciseSession med Id {id} ble ikke funnet for oppdatering");
 			}
 
-
-			if (inloggedUser != sessionToUpdtate.AppUserId && !sessionToUpdtate.User.IsAdminUser)
+			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
+			if (sessionToUpdtate?.User?.Id != inloggedAppUser?.Id)
 			{
-				_logger?.LogError("User {LoggedInUserId} har ikke tilgang til å oppdatere denne exercise sessionen", inloggedUser);
-				_logger?.LogError($"Detaljer: LoggedInUserId: {inloggedUser}, ExerciseSesUserId: {sessionToUpdtate.AppUserId}, IsAdminUser: {sessionToUpdtate.User.IsAdminUser}");
+				throw new UnauthorizedAccessException("Ingen tilgang til denne handlingen");
 
-				throw new UnauthorizedAccessException($"User {inloggedUser} har ikke tilgang til å oppdatere Exercise Session");
 			}
+
 
 			var updatedExerciseSession = await _exerciseSessionRepository.UpdateSessionsAsync(_exerciseSessionMapper.MapToModel(exerciseSession), id);
 
@@ -134,5 +136,23 @@ namespace FitnessPartner.Services
 
 			return null;
 		}
+
+
+		public async Task<ICollection<ExerciseSessionDTO>> GetAllSessionsAsync(int pageNr, int pageSize)
+		{
+			var sessions = await _exerciseSessionRepository.GetAllSessionsAsync(pageNr, pageSize);
+
+			return sessions.Select(ExerciseSessions => _exerciseSessionMapper.MapToDto(ExerciseSessions)).ToList();
+
+		}
+
+		public async Task<ExerciseSessionDTO?> GetSessionByIdAsync(int id)
+		{
+			var sessionToGet = await _exerciseSessionRepository.GetSessionsByIdAsync(id);
+
+			return sessionToGet != null ? _exerciseSessionMapper.MapToDto(sessionToGet) : null;
+		}
+
+		
 	}
 }

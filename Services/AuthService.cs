@@ -1,4 +1,5 @@
-﻿using FitnessPartner.Models.DTOs;
+﻿using FitnessPartner.Data;
+using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
@@ -19,14 +20,16 @@ namespace FitnessPartner.Services
 		private readonly SignInManager<AppUser> _signinManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IConfiguration _configuration;
+		private readonly FitnessPartnerDbContext _dbContext;
 
 
-		public AuthService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, SignInManager<AppUser> signinManager)
+		public AuthService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, SignInManager<AppUser> signinManager, FitnessPartnerDbContext dbContext)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
 			_configuration = configuration;
 			_signinManager = signinManager;
+			_dbContext = dbContext;
 		}
 		public async Task<AuthServiceResponseDTO> LoginAsync(LoginDTO loginDTO)
 		{
@@ -86,6 +89,8 @@ namespace FitnessPartner.Services
 
 			await _userManager.AddToRoleAsync(user, StaticUserRoles.ADMIN);
 
+			user.IsAdminUser = true;
+			await _userManager.UpdateAsync(user);
 			return new AuthServiceResponseDTO()
 			{
 				IsSucceed = true,
@@ -96,8 +101,6 @@ namespace FitnessPartner.Services
 		public async Task<AuthServiceResponseDTO> RegisterAsync(UserRegDTO registerDTO)
 		{
 			var isExistsUser = await _userManager.FindByNameAsync(registerDTO.UserName);
-			int appuserid = 0;
-			appuserid++;
 			if (isExistsUser != null)
 				return new AuthServiceResponseDTO()
 				{
@@ -105,9 +108,15 @@ namespace FitnessPartner.Services
 					Message = "Username already exists"
 				};
 
+
+
+			int lastAppUserId = _dbContext.Users.Any() ? _dbContext.Users.Max(u => u.AppUserId) : 0;
+			int newAppUserId = lastAppUserId + 1;
+
+
 			AppUser newUser = new AppUser()
 			{
-				AppUserId = appuserid,
+				AppUserId = newAppUserId,
 				AppUserName = registerDTO.UserName,
 				AppUserEmail = registerDTO.Email,
 				FirstName = registerDTO.FirstName,

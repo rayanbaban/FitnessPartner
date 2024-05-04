@@ -10,7 +10,6 @@ namespace FitnessPartner.Mappers
 		{
 			return new ExerciseSessionDTO(
 				model.SessionId,
-				model.AppUserId,
 				model.Date,
 				model.MusclesTrained,
 				model.DurationMinutes,
@@ -24,7 +23,6 @@ namespace FitnessPartner.Mappers
 			return new ExerciseSession()
 			{
 				SessionId = dto.SessionId,
-				AppUserId = dto.UserId,
 				Date = dto.Date,
 				MusclesTrained = dto.MusclesTrained,
 				DurationMinutes = dto.DurationMinutes,

@@ -7,9 +7,9 @@ namespace FitnessPartner.Services.Interfaces
 	public interface IExerciseSessionService
 	{
 		Task<ExerciseSessionDTO?> AddSessionAsync(ExerciseSessionDTO exerciseSessionDTO);
-		Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int inloggedUser, int id);
+		Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int id);
 
-		Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id, int userId);
+		Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id);
 
 		Task<ICollection<ExerciseSessionDTO>> GetAllSessionsAsync(int pageNr, int pageSize);
 

@@ -7,9 +7,9 @@ namespace FitnessPartner.Services.Interfaces
 	{
 
 		Task<ICollection<FitnessGoalsDTO?>> GetMyFitnessGoalsAsync(int pageNr, int pageSize);
-		Task<FitnessGoalsDTO?> UpdateFitnessGoalAsync(FitnessGoalsDTO fitnessGoalDTO, int goalId, int loggedinUser);
-		Task<FitnessGoalsDTO?> DeleteFitnessGoalAsync(int userId,int goalId);
-		Task<FitnessGoalsDTO?> CreateFitnessGoalAsync(FitnessGoalsDTO fitnessGoals, int loggedinUser);
+		Task<FitnessGoalsDTO?> UpdateFitnessGoalAsync(FitnessGoalsDTO fitnessGoalDTO, int goalId);
+		Task<FitnessGoalsDTO?> DeleteFitnessGoalAsync(int goalId);
+		Task<FitnessGoalsDTO?> CreateFitnessGoalAsync(FitnessGoalsDTO fitnessGoals);
 		Task<FitnessGoalsDTO?> GetFitnessGoalByIdAsync(int goalId);
 		Task<ICollection<FitnessGoalsDTO?>> GetPageAsync(int pageNr, int pageSize);
 

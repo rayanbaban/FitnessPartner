@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FitnessPartnerTests", "Fitn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessPartnerAPI.IntergrationTests", "..\Tests\FitnessPartnerAPI.UnitTests\FitnessPartnerAPI.IntergrationTests.csproj", "{770A1486-E173-4023-B683-4FE1A23B15B1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessPartnerAPI.IntegrationTests", "..\Tests\FitnessPartnerAPI.IntegrationTests\FitnessPartnerAPI.IntegrationTests.csproj", "{EEC5A206-24E3-4D97-88C4-9568C05A0424}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{770A1486-E173-4023-B683-4FE1A23B15B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{770A1486-E173-4023-B683-4FE1A23B15B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{770A1486-E173-4023-B683-4FE1A23B15B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC5A206-24E3-4D97-88C4-9568C05A0424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC5A206-24E3-4D97-88C4-9568C05A0424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC5A206-24E3-4D97-88C4-9568C05A0424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC5A206-24E3-4D97-88C4-9568C05A0424}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{770A1486-E173-4023-B683-4FE1A23B15B1} = {23340EEB-E31D-4799-8A08-1707647B82EE}
+		{EEC5A206-24E3-4D97-88C4-9568C05A0424} = {23340EEB-E31D-4799-8A08-1707647B82EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBA53F7F-BC94-486D-AD22-FE1BDAD32C58}

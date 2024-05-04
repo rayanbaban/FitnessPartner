@@ -1,5 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -20,13 +22,15 @@ namespace FitnessPartner.Controllers
 
         // GET: api/<ExerciseSessionController>
         [HttpGet(Name = "GetAllExerciseSession")]
+
         public async Task<ActionResult<IEnumerable<ExerciseSessionDTO>>> GetAllSessions(int pageNr = 1, int pageSize = 10)
         {
             return Ok(await _exersiceSessionService.GetAllSessionsAsync(pageNr, pageSize));
         }
 
         // GET api/<ExerciseSessionController>/5
-        [HttpGet("{Id}", Name = "GetExerciseSessionById")]
+        [HttpGet]
+        [Route("GetById")]
         public async Task<ActionResult<ExerciseSessionDTO>> GetExerciseById(int exerciseId)
         {
             var ExerciseSesId = await _exersiceSessionService.GetSessionByIdAsync(exerciseId);
@@ -35,6 +39,7 @@ namespace FitnessPartner.Controllers
 
         // POST api/<ExerciseSessionController>
         [HttpPost]
+        [Authorize(Roles = StaticUserRoles.USER)]
         public async Task<ActionResult<ExerciseSessionDTO>> PostExercise([FromBody] ExerciseSessionDTO exerciseSesDTO)
         {
             try
@@ -44,9 +49,7 @@ namespace FitnessPartner.Controllers
                     return BadRequest("Ugyldige exercise session data");
                 }
 
-                //string id = HttpContext.Items["UserId"];
-				//int loginUserId = (int)HttpContext.Items["UserId"]!;
-				var addedExerciseSes = await _exersiceSessionService.AddSessionAsync(exerciseSesDTO/*, loginUserId*/);
+				var addedExerciseSes = await _exersiceSessionService.AddSessionAsync(exerciseSesDTO);
 
                 if (addedExerciseSes != null)
                 {
@@ -66,9 +69,8 @@ namespace FitnessPartner.Controllers
         [HttpPut(Name = "UpdateExerciseSession")]
         public async Task<ActionResult<ExerciseSessionDTO>> UpdateExerciseSession(int exercisesesId, ExerciseSessionDTO exerciseSesLibraryDTO)
         {
-            int loginMemberId = (int)HttpContext.Items["UserId"]!;
 
-            var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesLibraryDTO, loginMemberId, exercisesesId);
+            var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesLibraryDTO, exercisesesId);
 
             if (updatedExerciseSes != null)
             {
@@ -78,12 +80,11 @@ namespace FitnessPartner.Controllers
         }
 
         // DELETE api/<ExerciseSessionController>/5
-        [HttpDelete("{id}", Name = "DeleteExersiceSession")]
+        [HttpDelete(Name = "DeleteExersiceSession")]
         public async Task<ActionResult<ExerciseSessionDTO>> DeleteExercise(int exerciseSesID)
         {
-            int loginMemberId = (HttpContext.Items["UserId"] as int?) ?? 0;
 
-            var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID, loginMemberId);
+            var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID);
 
             if (deletedExerciseSes != null)
             {

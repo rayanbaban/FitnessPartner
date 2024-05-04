@@ -16,7 +16,7 @@ namespace FitnessPartner.Repositories
             _logger = logger;
         }
 
-        public async Task<NutritionResources?> CreateNutritionResourceAsync(NutritionResources nutritionResource, int loggedinUser)
+        public async Task<NutritionResources?> CreateNutritionResourceAsync(NutritionResources nutritionResource)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<NutritionResources?> DeleteNutritionResourceAsync(int userId, int resourceId)
+        public async Task<NutritionResources?> DeleteNutritionResourceAsync( int resourceId)
         {
             try
             {
@@ -47,8 +47,8 @@ namespace FitnessPartner.Repositories
                 if (resourceToDel == null)
                 {
                     _logger.LogWarning("Kunne ikke finne nutritionResource med ID {NutritionResourceID} for sletting.", resourceId);
-                    return null;
-                }
+					throw new InvalidOperationException("Nutrition resourcen som ble forsøkt slettet ble ikke funnet.");
+				}
 
                 _dbContext.NutritionResources.Remove(resourceToDel);
                 await _dbContext.SaveChangesAsync();
@@ -111,7 +111,7 @@ namespace FitnessPartner.Repositories
                 return null;
             }
         }
-        public async Task<NutritionResources?> UpdateNutritionResourceAsync(NutritionResources nutritionResourceDTO, int resourceId, int loggedinUser)
+        public async Task<NutritionResources?> UpdateNutritionResourceAsync(NutritionResources nutritionResourceDTO, int resourceId)
         {
             try
             {

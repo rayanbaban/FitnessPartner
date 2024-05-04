@@ -1,5 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessPartner.Controllers
@@ -28,34 +30,33 @@ namespace FitnessPartner.Controllers
             return res != null ? Ok(res) : NotFound("Fant ikke NutritionPlan");
         }
 
-        [HttpPut("{id}", Name = "UpdateNutritionPlan")]
-        public async Task<ActionResult<NutritionPlansDTO>> UpdateNutritionPlanAsync(int id, NutritionPlansDTO nutritionPlanDTO)
+        [HttpPut(Name = "UpdateNutritionPlan")]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
+		public async Task<ActionResult<NutritionPlansDTO>> UpdateNutritionPlanAsync(int id, NutritionPlansDTO nutritionPlanDTO)
         {
-            int loginUserId = (int)HttpContext.Items["UserId"]!;
-
-            var updatedNutritionPlan = await _nutritionPlanService.UpdateNutritionPlanAsync(nutritionPlanDTO, id, loginUserId);
+            var updatedNutritionPlan = await _nutritionPlanService.UpdateNutritionPlanAsync(nutritionPlanDTO, id);
 
             return updatedNutritionPlan != null ?
                        Ok(updatedNutritionPlan) :
                        NotFound($"Klarte ikke å oppdatere bruker med ID: {id}");
         }
 
-        [HttpDelete("{id}", Name = "DeleteNutritionPlan")]
-        public async Task<ActionResult<NutritionPlansDTO>> DeleteNutritionPlan(int id, int nutritionPlanId)
+        [HttpDelete(Name = "DeleteNutritionPlan")]
+        [Authorize(Roles = StaticUserRoles.ADMIN)]
+        public async Task<ActionResult<NutritionPlansDTO>> DeleteNutritionPlan(int id)
         {
-            int loginMemberId = (HttpContext.Items["UserId"] as int?) ?? 0;
-
-            var deletedNutritionPlan = await _nutritionPlanService.DeleteNutritionPlanAsync(id, nutritionPlanId);
+            var deletedNutritionPlan = await _nutritionPlanService.DeleteNutritionPlanAsync(id);
 
             if (deletedNutritionPlan != null)
             {
-                return Ok($"Exercise med ID {nutritionPlanId} ble slettet vellykket");
+                return Ok($"Exercise med ID {id} ble slettet vellykket");
             }
-            return NotFound($"Exercise med ID {nutritionPlanId} ble ikke funnet");
+            return NotFound($"Exercise med ID {id} ble ikke funnet");
         }
 
         [HttpPost(Name = "CreateNutritionPlan")]
-        public async Task<ActionResult<NutritionPlansDTO>> PostNutritionPlan([FromBody] NutritionPlansDTO nutritionPlan, int loggedinUser)
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
+		public async Task<ActionResult<NutritionPlansDTO>> PostNutritionPlan([FromBody] NutritionPlansDTO nutritionPlan)
         {
             try
             {
@@ -64,12 +65,10 @@ namespace FitnessPartner.Controllers
                     return BadRequest("Ugyldige nutritionPlan data");
                 }
 
-                //int loginUserId = (int)HttpContext.Items["UserId"]!;
-                var addedNutritionPlan = await _nutritionPlanService.CreateNutritionPlanAsync(/*loginUserId,*/ nutritionPlan, loggedinUser);
+                var addedNutritionPlan = await _nutritionPlanService.CreateNutritionPlanAsync(nutritionPlan);
 
                 if (addedNutritionPlan != null)
                 {
-
                     return Ok(addedNutritionPlan);
                 }
 

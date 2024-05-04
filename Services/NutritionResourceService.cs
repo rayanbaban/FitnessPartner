@@ -4,6 +4,7 @@ using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace FitnessPartner.Services
 {
@@ -12,36 +13,54 @@ namespace FitnessPartner.Services
         private readonly IUserRepository _userRepository;
         private readonly IMapper<NutritionResources, NutritionResourcesDTO> _nutritionResourcesMapper;
         private readonly INutritionResourcesRepository _nutritionResourcesRepository;
-        private readonly ILogger _logger;
+        private readonly ILogger<NutritionResourceService> _logger;
         private readonly FitnessPartnerDbContext _dbContext;
+        private readonly IHttpContextAccessor _httpContnextAccessor;
+        private readonly UserManager<AppUser> _userManager;
 
-        public NutritionResourceService
-            (IUserRepository userRepository,
-            IMapper<NutritionResources, NutritionResourcesDTO> nutritionResourcesMapper,
-            INutritionResourcesRepository nutritionResourcesRepository,
-            ILogger<NutritionResourceService> logger,
-            FitnessPartnerDbContext dbContext)
+		public NutritionResourceService(IUserRepository userRepository, 
+            IMapper<NutritionResources, 
+                NutritionResourcesDTO> nutritionResourcesMapper, 
+            INutritionResourcesRepository nutritionResourcesRepository, 
+            ILogger<NutritionResourceService> logger, FitnessPartnerDbContext dbContext, 
+            IHttpContextAccessor httpContnextAccessor, 
+            UserManager<AppUser> userManager)
+		{
+			_userRepository = userRepository;
+			_nutritionResourcesMapper = nutritionResourcesMapper;
+			_nutritionResourcesRepository = nutritionResourcesRepository;
+			_logger = logger;
+			_dbContext = dbContext;
+			_httpContnextAccessor = httpContnextAccessor;
+			_userManager = userManager;
+		}
+
+		public async Task<NutritionResourcesDTO?> CreateNutritionResourceAsync(NutritionResourcesDTO nutritionResources)
         {
-            _userRepository = userRepository;
-            _nutritionResourcesMapper = nutritionResourcesMapper;
-            _nutritionResourcesRepository = nutritionResourcesRepository;
-            _logger = logger;
-            _dbContext = dbContext;
-        }
 
-        public async Task<NutritionResourcesDTO?> CreateNutritionResourceAsync(NutritionResourcesDTO nutritionResources, int loggedinUser)
-        {
-            var inloggedUser = await _userRepository.GetUserByIdAsync(loggedinUser);
+			var nutritionResourcesToAdd = _nutritionResourcesMapper.MapToModel(nutritionResources);
 
-            var nutritionResourcesToAdd = _nutritionResourcesMapper.MapToModel(nutritionResources);
-            nutritionResources.ResourceId = loggedinUser;
 
-            var addedNutritionResources = await _nutritionResourcesRepository.CreateNutritionResourceAsync(nutritionResourcesToAdd, loggedinUser);
+			string userId = _httpContnextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			var inloggedUser = await _userManager.FindByIdAsync(userId);
+			if (inloggedUser is null)
+			{
+				throw new UnauthorizedAccessException();
+			}
+
+			nutritionResourcesToAdd.User = inloggedUser;
+
+            var addedNutritionResources = await _nutritionResourcesRepository.CreateNutritionResourceAsync(nutritionResourcesToAdd);
 
             return addedNutritionResources != null ? _nutritionResourcesMapper.MapToDto(addedNutritionResources) : null;
         }
 
-        public async Task<NutritionResourcesDTO?> DeleteNutritionResourceAsync(int userId, int resourcesId)
+        public async Task<NutritionResourcesDTO?> DeleteNutritionResourceAsync(int resourcesId)
         {
             var nutritionResourceToDelete = await _nutritionResourcesRepository.GetNutritionResourceByIdAsync(resourcesId);
 
@@ -51,15 +70,23 @@ namespace FitnessPartner.Services
                 return null;
             }
 
-            if (!(userId == nutritionResourceToDelete.ResourceId || (nutritionResourceToDelete.Content != null && nutritionResourceToDelete.User.IsAdminUser)))
-            {
-                _logger?.LogError("User {UserId} har ikke tilgang til å slette denne NutritionResources", userId);
-                throw new UnauthorizedAccessException($"User {userId} har ikke tilgang til å slette NutritionResources");
-            }
+			string userId = _httpContnextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
 
-            var deletedNutritionResources = await _nutritionResourcesRepository.GetNutritionResourceByIdAsync(resourcesId);
+			var inloggedUser = await _userManager.FindByIdAsync(userId);
+			if (inloggedUser is null)
+			{
+				throw new UnauthorizedAccessException();
+			}
 
-            return nutritionResourceToDelete != null ? _nutritionResourcesMapper.MapToDto(nutritionResourceToDelete) : null;
+			nutritionResourceToDelete.User = inloggedUser;
+
+			var deletedNutritionResources = await _nutritionResourcesRepository.GetNutritionResourceByIdAsync(resourcesId);
+
+            return deletedNutritionResources != null ? _nutritionResourcesMapper.MapToDto(deletedNutritionResources) : null;
         }
 
         public async Task<ICollection<NutritionResourcesDTO>> GetMyNutritionResourceAsync(int pageNr, int pageSize)
@@ -85,7 +112,7 @@ namespace FitnessPartner.Services
             return res.Select(pages => _nutritionResourcesMapper.MapToDto(pages)).ToList();
         }
 
-        public async Task<NutritionResourcesDTO?> UpdateNutritionResourceAsync(NutritionResourcesDTO nutritionResourcesDTO, int resourceId, int loggedinUser)
+        public async Task<NutritionResourcesDTO?> UpdateNutritionResourceAsync(NutritionResourcesDTO nutritionResourcesDTO, int resourceId)
         {
             var nutritionResourceToUpd = await _nutritionResourcesRepository.GetNutritionResourceByIdAsync(resourceId);
 
@@ -95,16 +122,17 @@ namespace FitnessPartner.Services
                 return null;
             }
 
+			string userId = _httpContnextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+			if (string.IsNullOrEmpty(userId))
+			{
+				throw new UnauthorizedAccessException();
+			}
 
-            //if (memberId != exerciseToUpd.MemberID && !eventToUpdate.Member.IsAdminMember)
-            //{
-            //	_logger?.LogError("Medlem {LoggedInUserId} har ikke tilgang til å oppdatere dette arrangementet", loggedInMember);
-            //	_logger?.LogError($"Detaljer: LoggedInMemberId: {loggedInMember}, EventMemberId: {eventToUpdate.MemberID}, IsAdminMember: {eventToUpdate.Member.IsAdminMember}");
+			var inloggedAppUser = await _userManager.FindByIdAsync(userId);
 
-            //	throw new UnauthorizedAccessException($"Medlem {loggedInMember} har ikke tilgang til å oppdatere arrangementet");
-            //}
+			var updatedNutritionResource = await _nutritionResourcesRepository.UpdateNutritionResourceAsync(_nutritionResourcesMapper.MapToModel(nutritionResourcesDTO), resourceId);
 
-            var updatedNutritionResource = await _nutritionResourcesRepository.UpdateNutritionResourceAsync(_nutritionResourcesMapper.MapToModel(nutritionResourcesDTO), loggedinUser, resourceId);
+            nutritionResourceToUpd.User = inloggedAppUser;
 
             if (updatedNutritionResource != null)
             {

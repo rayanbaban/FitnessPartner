@@ -38,7 +38,7 @@ namespace FitnessPartner.Services
             return addedExercise != null ? _exerciseLibraryMapper.MapToDto(addedExercise) : null;
         }
 
-		public async Task<ExerciseLibraryDTO?> DeleteExerciseAsync(int exerciseId, int userId)
+		public async Task<ExerciseLibraryDTO?> DeleteExerciseAsync(int exerciseId)
 		{
 			var exerciseToDelete = await _exerciseLibraryRepo.GetExerciseByIdAsync(exerciseId);
 
