@@ -2,10 +2,16 @@
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FitnessPartner.Controllers
 {
+	/// <summary>
+	/// Kontrolleren for treningsmål.
+	/// </summary>
 	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class FitnessGoalsController : ControllerBase
@@ -21,12 +27,21 @@ namespace FitnessPartner.Controllers
 			_httpContextAccessor = httpContextAccessor;
 		}
 
+		/// <summary>
+		/// Henter alle treningsmål.
+		/// </summary>
+		/// <param name="pageNr">Sidenummer for paginering.</param>
+		/// <param name="pageSize">Antall mål per side.</param>
 		[HttpGet(Name = "GetFitnessGoals")]
 		public async Task<ActionResult<IEnumerable<FitnessGoalsDTO>>> GetFitnessGoals(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _fitnessGoalsService.GetMyFitnessGoalsAsync(pageNr, pageSize));
 		}
 
+		/// <summary>
+		/// Henter et treningsmål basert på ID.
+		/// </summary>
+		/// <param name="goalId">ID-en til treningsmålet.</param>
 		[HttpGet]
 		[Route("Id")]
 		public async Task<ActionResult<FitnessGoalsDTO>> GetFitnessGoalById(int goalId)
@@ -35,6 +50,10 @@ namespace FitnessPartner.Controllers
 			return goalId != 0 ? Ok(result) : NotFound();
 		}
 
+		/// <summary>
+		/// Legger til et nytt treningsmål.
+		/// </summary>
+		/// <param name="fitnessgoalsDTO">Informasjon om det nye treningsmålet.</param>
 		[HttpPost]
 		public async Task<ActionResult<FitnessGoalsDTO>> PostFitnessGoals([FromBody] FitnessGoalsDTO fitnessgoalsDTO)
 		{
@@ -49,7 +68,6 @@ namespace FitnessPartner.Controllers
 
 				if (addedFitnessGoal != null)
 				{
-
 					return Ok(addedFitnessGoal);
 				}
 
@@ -61,10 +79,14 @@ namespace FitnessPartner.Controllers
 			}
 		}
 
+		/// <summary>
+		/// Oppdaterer et treningsmål.
+		/// </summary>
+		/// <param name="goalId">ID-en til treningsmålet som skal oppdateres.</param>
+		/// <param name="fitnessGoalsDTO">Oppdatert informasjon om treningsmålet.</param>
 		[HttpPut(Name = "UpdateFitnessGoal")]
-		public async Task<ActionResult<FitnessGoalsDTO>> UpdateExerciseSession(int goalId, FitnessGoalsDTO fitnessGoalsDTO)
+		public async Task<ActionResult<FitnessGoalsDTO>> UpdateFitnessGoal(int goalId, FitnessGoalsDTO fitnessGoalsDTO)
 		{
-
 			var updatedFitnessGoal = await _fitnessGoalsService.UpdateFitnessGoalAsync(fitnessGoalsDTO, goalId);
 
 			if (updatedFitnessGoal != null)

@@ -16,7 +16,9 @@ using System.Text;
 
 namespace FitnessPartner.Controllers
 {
-
+	/// <summary>
+	/// Kontrolleren for autentisering og autorisasjon.
+	/// </summary>
 	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class AuthController : ControllerBase
@@ -30,8 +32,9 @@ namespace FitnessPartner.Controllers
 			_dbContext = dbContext;
 		}
 
-		// route for seeding roles to database
-
+		/// <summary>
+		/// Sår frødata for roller i systemet.
+		/// </summary>
 		[HttpPost]
 		[Route("seed-roles")]
 		public async Task<ActionResult> SeedRoles()
@@ -41,18 +44,25 @@ namespace FitnessPartner.Controllers
 			return Ok(seedRoles);
 		}
 
+		/// <summary>
+		/// Registrerer en ny bruker.
+		/// </summary>
+		/// <param name="registerDTO">Informasjon om registrering av bruker.</param>
 		[HttpPost]
 		[Route("register")]
 		public async Task<ActionResult> Register([FromBody] UserRegDTO registerDTO)
 		{
 			var registerResult = await _authService.RegisterAsync(registerDTO);
 
-			if(registerResult.IsSucceed)
+			if (registerResult.IsSucceed)
 				return Ok(registerResult);
 			return BadRequest(registerResult);
-			
 		}
 
+		/// <summary>
+		/// Utfører pålogging for en bruker.
+		/// </summary>
+		/// <param name="loginDTO">Informasjon om pålogging.</param>
 		[HttpPost]
 		[Route("login")]
 		public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
@@ -61,15 +71,15 @@ namespace FitnessPartner.Controllers
 
 			if (loginResult.IsSucceed)
 				return Ok(loginResult);
-            await Console.Out.WriteLineAsync($"{loginResult}");
-
-            return Unauthorized(loginResult);
+			return Unauthorized(loginResult);
 		}
 
-
-
+		/// <summary>
+		/// Tildeler admin-rettigheter til en bruker.
+		/// </summary>
+		/// <param name="upadtePermission">Informasjon om oppdatering av tillatelser.</param>
 		[HttpPost]
-		[Route ("MakeAdmin")]
+		[Route("MakeAdmin")]
 		public async Task<ActionResult> MakeAdmin([FromBody] UpdatePermissionDTO upadtePermission)
 		{
 			var operationResult = await _authService.MakeAdminAsync(upadtePermission);
@@ -78,7 +88,5 @@ namespace FitnessPartner.Controllers
 				return Ok(operationResult);
 			return BadRequest(operationResult);
 		}
-
-		
 	}
 }

@@ -3,95 +3,113 @@ using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FitnessPartner.Controllers
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class ExerciseSessionController : ControllerBase
-    {
-        private readonly IExerciseSessionService _exersiceSessionService;
-        private readonly ILogger<ExerciseSessionController> _logger;
+	/// <summary>
+	/// Kontrolleren for øvelsessesjoner.
+	/// </summary>
+	[Route("api/v1/[controller]")]
+	[ApiController]
+	public class ExerciseSessionController : ControllerBase
+	{
+		private readonly IExerciseSessionService _exersiceSessionService;
+		private readonly ILogger<ExerciseSessionController> _logger;
 
-        public ExerciseSessionController(IExerciseSessionService exersiceSessionService, ILogger<ExerciseSessionController> logger)
-        {
-            _exersiceSessionService = exersiceSessionService;
-            _logger = logger;
-        }
+		public ExerciseSessionController(IExerciseSessionService exersiceSessionService, ILogger<ExerciseSessionController> logger)
+		{
+			_exersiceSessionService = exersiceSessionService;
+			_logger = logger;
+		}
 
-        // GET: api/<ExerciseSessionController>
-        [HttpGet(Name = "GetAllExerciseSession")]
+		/// <summary>
+		/// Henter alle øvelsessesjoner.
+		/// </summary>
+		/// <param name="pageNr">Sidenummer for paginering.</param>
+		/// <param name="pageSize">Antall øvelser per side.</param>
+		[HttpGet(Name = "GetAllExerciseSession")]
+		public async Task<ActionResult<IEnumerable<ExerciseSessionDTO>>> GetAllSessions(int pageNr = 1, int pageSize = 10)
+		{
+			return Ok(await _exersiceSessionService.GetAllSessionsAsync(pageNr, pageSize));
+		}
 
-        public async Task<ActionResult<IEnumerable<ExerciseSessionDTO>>> GetAllSessions(int pageNr = 1, int pageSize = 10)
-        {
-            return Ok(await _exersiceSessionService.GetAllSessionsAsync(pageNr, pageSize));
-        }
+		/// <summary>
+		/// Henter en øvelsessesjon basert på ID.
+		/// </summary>
+		/// <param name="exerciseId">ID-en til øvelsessesjonen.</param>
+		[HttpGet]
+		[Route("GetById")]
+		public async Task<ActionResult<ExerciseSessionDTO>> GetExerciseById(int exerciseId)
+		{
+			var ExerciseSesId = await _exersiceSessionService.GetSessionByIdAsync(exerciseId);
+			return exerciseId != 0 ? Ok(ExerciseSesId) : NotFound();
+		}
 
-        // GET api/<ExerciseSessionController>/5
-        [HttpGet]
-        [Route("GetById")]
-        public async Task<ActionResult<ExerciseSessionDTO>> GetExerciseById(int exerciseId)
-        {
-            var ExerciseSesId = await _exersiceSessionService.GetSessionByIdAsync(exerciseId);
-            return exerciseId != 0 ? Ok(ExerciseSesId) : NotFound();
-        }
-
-        // POST api/<ExerciseSessionController>
-        [HttpPost]
-        [Authorize(Roles = StaticUserRoles.USER)]
-        public async Task<ActionResult<ExerciseSessionDTO>> PostExercise([FromBody] ExerciseSessionDTO exerciseSesDTO)
-        {
-            try
-            {
-                if (exerciseSesDTO == null)
-                {
-                    return BadRequest("Ugyldige exercise session data");
-                }
+		/// <summary>
+		/// Legger til en ny øvelsessesjon.
+		/// </summary>
+		/// <param name="exerciseSesDTO">Informasjon om den nye øvelsessesjonen.</param>
+		[HttpPost]
+		[Authorize(Roles = StaticUserRoles.USER)]
+		public async Task<ActionResult<ExerciseSessionDTO>> PostExercise([FromBody] ExerciseSessionDTO exerciseSesDTO)
+		{
+			try
+			{
+				if (exerciseSesDTO == null)
+				{
+					return BadRequest("Ugyldige exercise session data");
+				}
 
 				var addedExerciseSes = await _exersiceSessionService.AddSessionAsync(exerciseSesDTO);
 
-                if (addedExerciseSes != null)
-                {
+				if (addedExerciseSes != null)
+				{
+					return Ok(addedExerciseSes);
+				}
 
-                    return Ok(addedExerciseSes);
-                }
+				return BadRequest("Feil ved opprettelse av exercise session");
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Intern feil: {ex.Message}");
+			}
+		}
 
-                return BadRequest("Feil ved opprettelse av exercise session");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Intern feil: {ex.Message}");
-            }
-        }
+		/// <summary>
+		/// Oppdaterer en øvelsessesjon.
+		/// </summary>
+		/// <param name="exercisesesId">ID-en til øvelsessesjonen som skal oppdateres.</param>
+		/// <param name="exerciseSesLibraryDTO">Oppdatert informasjon om øvelsessesjonen.</param>
+		[HttpPut(Name = "UpdateExerciseSession")]
+		public async Task<ActionResult<ExerciseSessionDTO>> UpdateExerciseSession(int exercisesesId, ExerciseSessionDTO exerciseSesLibraryDTO)
+		{
+			var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesLibraryDTO, exercisesesId);
 
-        // PUT api/<ExerciseSessionController>/5
-        [HttpPut(Name = "UpdateExerciseSession")]
-        public async Task<ActionResult<ExerciseSessionDTO>> UpdateExerciseSession(int exercisesesId, ExerciseSessionDTO exerciseSesLibraryDTO)
-        {
+			if (updatedExerciseSes != null)
+			{
+				return Ok(updatedExerciseSes);
+			}
+			return NotFound($"Exercise Session med ID {exercisesesId} ble ikke funnet");
+		}
 
-            var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesLibraryDTO, exercisesesId);
+		/// <summary>
+		/// Sletter en øvelsessesjon.
+		/// </summary>
+		/// <param name="exerciseSesID">ID-en til øvelsessesjonen som skal slettes.</param>
+		[HttpDelete(Name = "DeleteExersiceSession")]
+		public async Task<ActionResult<ExerciseSessionDTO>> DeleteExercise(int exerciseSesID)
+		{
+			var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID);
 
-            if (updatedExerciseSes != null)
-            {
-                return Ok(updatedExerciseSes);
-            }
-            return NotFound($"Exercise Session med ID {exercisesesId} ble ikke funnet");
-        }
-
-        // DELETE api/<ExerciseSessionController>/5
-        [HttpDelete(Name = "DeleteExersiceSession")]
-        public async Task<ActionResult<ExerciseSessionDTO>> DeleteExercise(int exerciseSesID)
-        {
-
-            var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID);
-
-            if (deletedExerciseSes != null)
-            {
-                return Ok($"Exercise session med ID {exerciseSesID} ble slettet vellykket");
-            }
-            return NotFound($"Exercise session med ID {exerciseSesID} ble ikke funnet");
-        }
-
-    }
+			if (deletedExerciseSes != null)
+			{
+				return Ok($"Exercise session med ID {exerciseSesID} ble slettet vellykket");
+			}
+			return NotFound($"Exercise session med ID {exerciseSesID} ble ikke funnet");
+		}
+	}
 }
