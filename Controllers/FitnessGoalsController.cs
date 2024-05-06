@@ -1,5 +1,7 @@
 ﻿using FitnessPartner.Models.DTOs;
+using FitnessPartner.OtherObjects;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -33,6 +35,8 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall mål per side.</param>
 		[HttpGet(Name = "GetFitnessGoals")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<IEnumerable<FitnessGoalsDTO>>> GetFitnessGoals(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _fitnessGoalsService.GetMyFitnessGoalsAsync(pageNr, pageSize));
@@ -44,6 +48,7 @@ namespace FitnessPartner.Controllers
 		/// <param name="goalId">ID-en til treningsmålet.</param>
 		[HttpGet]
 		[Route("Id")]
+		[Authorize(Roles = StaticUserRoles.USER)]
 		public async Task<ActionResult<FitnessGoalsDTO>> GetFitnessGoalById(int goalId)
 		{
 			var result = await _fitnessGoalsService.GetFitnessGoalByIdAsync(goalId);
@@ -55,6 +60,7 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="fitnessgoalsDTO">Informasjon om det nye treningsmålet.</param>
 		[HttpPost]
+		[Authorize(Roles = StaticUserRoles.USER)]
 		public async Task<ActionResult<FitnessGoalsDTO>> PostFitnessGoals([FromBody] FitnessGoalsDTO fitnessgoalsDTO)
 		{
 			try
@@ -85,6 +91,8 @@ namespace FitnessPartner.Controllers
 		/// <param name="goalId">ID-en til treningsmålet som skal oppdateres.</param>
 		/// <param name="fitnessGoalsDTO">Oppdatert informasjon om treningsmålet.</param>
 		[HttpPut(Name = "UpdateFitnessGoal")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<FitnessGoalsDTO>> UpdateFitnessGoal(int goalId, FitnessGoalsDTO fitnessGoalsDTO)
 		{
 			var updatedFitnessGoal = await _fitnessGoalsService.UpdateFitnessGoalAsync(fitnessGoalsDTO, goalId);

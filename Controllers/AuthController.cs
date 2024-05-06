@@ -5,6 +5,7 @@ using FitnessPartner.Models.Entities;
 using FitnessPartner.OtherObjects;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,16 +26,20 @@ namespace FitnessPartner.Controllers
 	{
 		private readonly IAuthService _authService;
 		private readonly FitnessPartnerDbContext _dbContext;
+		private readonly IHttpContextAccessor _httpContextAccessor;
+		private readonly UserManager<AppUser> _userManager;
 
-		public AuthController(IAuthService authService, FitnessPartnerDbContext dbContext)
+
+
+		public AuthController(IAuthService authService, FitnessPartnerDbContext dbContext, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager)
 		{
 			_authService = authService;
 			_dbContext = dbContext;
+			_httpContextAccessor = httpContextAccessor;
+			_userManager = userManager;
 		}
 
-		/// <summary>
-		/// Sår frødata for roller i systemet.
-		/// </summary>
+	
 		[HttpPost]
 		[Route("seed-roles")]
 		public async Task<ActionResult> SeedRoles()
@@ -43,6 +48,22 @@ namespace FitnessPartner.Controllers
 
 			return Ok(seedRoles);
 		}
+
+		[HttpGet]
+		[Route("getmyuserid")]
+		public async Task<ActionResult> GetUserId()
+		{
+			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
+
+			var result = _userManager.Users.FirstOrDefault(x => x.Id == userId);
+
+			if (result == null)
+				return BadRequest("Fant ikke brukeren");
+			return Ok(result);
+
+
+		}
+
 
 		/// <summary>
 		/// Registrerer en ny bruker.
@@ -80,6 +101,7 @@ namespace FitnessPartner.Controllers
 		/// <param name="upadtePermission">Informasjon om oppdatering av tillatelser.</param>
 		[HttpPost]
 		[Route("MakeAdmin")]
+		[Authorize (Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult> MakeAdmin([FromBody] UpdatePermissionDTO upadtePermission)
 		{
 			var operationResult = await _authService.MakeAdminAsync(upadtePermission);

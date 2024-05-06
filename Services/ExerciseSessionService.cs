@@ -46,7 +46,7 @@ namespace FitnessPartner.Services
 			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 			if (string.IsNullOrEmpty(userId))
 			{
-				throw new UnauthorizedAccessException();
+				throw new UnauthorizedAccessException("Må være innlogget");
 			}
 
 			var inloggedAppUser = await _usermanager.FindByIdAsync(userId);
@@ -109,7 +109,7 @@ namespace FitnessPartner.Services
 
 			if (string.IsNullOrEmpty(userId))
 			{
-				throw new UnauthorizedAccessException();
+				throw new UnauthorizedAccessException("Må være inlogget");
 			}
 
 
@@ -154,6 +154,14 @@ namespace FitnessPartner.Services
 			return sessionToGet != null ? _exerciseSessionMapper.MapToDto(sessionToGet) : null;
 		}
 
-		
+		public async Task<ICollection<ExerciseSessionDTO>> GetSessionsByUserIdAsync(string userId, int pageNr, int pageSize)
+		{
+			var sessions = await _exerciseSessionRepository.GetSessionsByUserId(userId, pageNr, pageSize);
+
+			if (sessions == null)
+				return null;
+			return sessions.Select(exerciseSessions => _exerciseSessionMapper.MapToDto(exerciseSessions)).ToList();
+				
+		}
 	}
 }

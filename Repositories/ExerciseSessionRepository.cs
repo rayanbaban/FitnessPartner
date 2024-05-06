@@ -119,7 +119,6 @@ namespace FitnessPartner.Repositories
         {
             var totCount = _dbContext.ExerciseSession.Count();
             var totPages = (int)Math.Ceiling((double)totCount / pageSize);
-			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
 
 			return await _dbContext.ExerciseSession
                 .Skip((pageNr - 1) * pageSize)
@@ -127,13 +126,26 @@ namespace FitnessPartner.Repositories
                 .ToListAsync();
         }
 
+		public async Task<ICollection<ExerciseSession>> GetSessionsByUserId(string userId, int pageNr, int pageSize)
+		{
+			int skip = (pageNr - 1) * pageSize;
 
-        /// <summary>
-        /// Henter en treningsøkt basert på dens ID
-        /// </summary>
-        /// <param name="id"> ID nummer på økten</param>
-        /// <returns></returns>
-        public async Task<ExerciseSession?> GetSessionsByIdAsync(int id)
+			var sessions = await _dbContext.ExerciseSession
+				.Where(session => session.User.Id == userId)
+				.Skip(skip)
+				.Take(pageSize)
+				.ToListAsync();
+
+			return sessions;
+		}
+
+
+		/// <summary>
+		/// Henter en treningsøkt basert på dens ID
+		/// </summary>
+		/// <param name="id"> ID nummer på økten</param>
+		/// <returns></returns>
+		public async Task<ExerciseSession?> GetSessionsByIdAsync(int id)
         {
             try
             {

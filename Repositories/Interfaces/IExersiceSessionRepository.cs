@@ -11,4 +11,6 @@ public interface IExersiceSessionRepository
     Task<ExerciseSession?> GetSessionsByIdAsync(int id);
     Task<ICollection<ExerciseSession>?> GetAllSessionsAsync(int pageNr, int pageSize);
 
+    Task<ICollection<ExerciseSession>?> GetSessionsByUserId(string userId, int pageNr, int pageSize);
+
 }

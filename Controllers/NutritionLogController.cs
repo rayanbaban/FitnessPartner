@@ -43,6 +43,8 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="id">ID-en til ernæringsloggen.</param>
 		[HttpGet("{id}", Name = "GetNutritionLogById")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<NutritionLogDTO>> GetNutritionLogById(int id)
 		{
 			var res = await _nutritionLogService.GetNutritionLogByIdAsync(id);
@@ -55,6 +57,8 @@ namespace FitnessPartner.Controllers
 		/// <param name="id">ID-en til ernæringsloggen som skal oppdateres.</param>
 		/// <param name="nutritionLogDTO">Oppdatert informasjon om ernæringsloggen.</param>
 		[HttpPut("{id}", Name = "UpdateNutritionLog")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<NutritionLogDTO>> UpdateNutritionLogAsync(int id, NutritionLogDTO nutritionLogDTO)
 		{
 			var updatedNutritionLog = await _nutritionLogService.UpdateNutritionLogAsync(nutritionLogDTO, id);
@@ -69,6 +73,8 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="nutritionLogId">ID-en til ernæringsloggen som skal slettes.</param>
 		[HttpDelete(Name = "DeleteNutritionLog")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<NutritionLogDTO>> DeleteNutritionLog(int nutritionLogId)
 		{
 			var deletedNutritionLog = await _nutritionLogService.DeleteNutritionLogAsync(nutritionLogId);
@@ -86,6 +92,8 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="nutritionLog">Informasjon om den nye ernæringsloggen.</param>
 		[HttpPost(Name = "CreateNutritionLog")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<NutritionLogDTO>> PostNutritionLog([FromBody] NutritionLogDTO nutritionLog)
 		{
 			try

@@ -5,31 +5,33 @@ namespace FitnessPartner.Models.DTOs
 	public class UserRegDTO
 	{
 
-		[Required(ErrorMessage = "Username is required")]
+		[Required]
 		public string UserName { get; init; } = string.Empty;
 
-		[Required(ErrorMessage = "Firstname is required")]
+		[Required]
 		public string FirstName { get; init; } = string.Empty;
 
-		[Required(ErrorMessage = "Lastname is required")]
+		[Required]
 		public string LastName { get; init; } = string.Empty;
 
 
-		[Required(ErrorMessage = "Age is required")]
+		[Required]
 		public string Gender { get; init; } = string.Empty;
 		
-		[Required(ErrorMessage = "Age is required")]
+		[Required]
 		public int Age { get; init; }
-		[Required(ErrorMessage = "Weight is required")]
+
+		
+		[Required]
 		public decimal Weight { get; init; }
 
-		[Required(ErrorMessage = "Height is required")]
+		[Required]
 		public decimal Height { get; init; }
 
-		[Required(ErrorMessage = "Email is required")]
+		[Required]
 		public string Email { get; init; } = string.Empty;
 
-		[Required(ErrorMessage = "Password is required")]
+		[Required]
 		public string Password { get; init; } = string.Empty;
 		
 	}

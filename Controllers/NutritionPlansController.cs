@@ -29,6 +29,8 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall planer per side.</param>
 		[HttpGet(Name = "GetAllNutritionPlans")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<ICollection<NutritionPlansDTO>>> GetAllNutritionPlansAsync(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _nutritionPlanService.GetPageAsync(pageNr, pageSize));
@@ -39,6 +41,8 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="id">ID-en til ernæringsplanen.</param>
 		[HttpGet("{id}", Name = "GetNutritionPlanById")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<NutritionPlansDTO>> GetNutritionPlanById(int id)
 		{
 			var res = await _nutritionPlanService.GetNutritionPlanByIdAsync(id);
@@ -99,7 +103,6 @@ namespace FitnessPartner.Controllers
 				{
 					return Ok(addedNutritionPlan);
 				}
-
 				return BadRequest("Feil ved opprettelse av nutritionPlan");
 			}
 			catch (Exception ex)

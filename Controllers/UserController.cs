@@ -74,7 +74,6 @@ namespace FitnessPartner.Controllers
 		/// <param name="id">ID-en til brukeren som skal slettes.</param>
 		[HttpDelete(Name = "DeleteUser")]
 		[Authorize(Roles = StaticUserRoles.USER)]
-		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<UserDTO>> DeleteUserAsync(int id)
 		{
 			try

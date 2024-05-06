@@ -31,6 +31,23 @@ namespace FitnessPartner.Validators
 				.Matches(@"[A-Z]+").WithMessage("Må ha minst en stor bokstav")
 				.Matches(@"[a-z]+").WithMessage("Må ha minst en liten bokstav")
 				.Matches(@"[!?*#_+]").WithMessage("Må ha minst et spesial tegn");
+			
+			
+			RuleFor(x => x.Email)
+				.NotEmpty().EmailAddress().WithMessage("Må være en gyldig Email adresse");
+
+			RuleFor(x => x.Age)
+				.NotEmpty().WithMessage("Age kan ikke være null.")
+				.InclusiveBetween(16, 100).WithMessage("Aldersgrense på 16 år for registrering.");
+
+			RuleFor(x => x.Weight)
+				.NotEmpty().WithMessage("Weight kan ikke være null.")
+				.InclusiveBetween(20, 500);
+
+			RuleFor(x => x.Height).
+				NotEmpty().WithMessage("Height kan ikke være null.")
+				.InclusiveBetween(50, 300);
+
 		}
 	}
 }

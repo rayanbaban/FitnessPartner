@@ -33,7 +33,7 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall øvelser per side.</param>
 		[HttpGet(Name = "GetAllLibraryExercises")]
-		[Authorize(Roles = StaticUserRoles.USER)]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<IEnumerable<ExerciseLibraryDTO>>> GetAllExercises(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _exersiceLibraryService.GetAllExerciesAsync(pageNr, pageSize));

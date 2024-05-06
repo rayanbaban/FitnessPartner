@@ -12,8 +12,11 @@ namespace FitnessPartner.Services.Interfaces
 		Task<ExerciseSessionDTO?> DeleteSessionByIdAsync(int id);
 
 		Task<ICollection<ExerciseSessionDTO>> GetAllSessionsAsync(int pageNr, int pageSize);
+		Task<ICollection<ExerciseSessionDTO>> GetSessionsByUserIdAsync(string userId, int pageNr, int pageSize);
 
 		Task<ExerciseSessionDTO?> GetSessionByIdAsync(int id);
+
+
 
 	}
 }

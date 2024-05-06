@@ -29,6 +29,8 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall ressurser per side.</param>
 		[HttpGet(Name = "GetAllNutritionResources")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<ICollection<NutritionResourcesDTO>>> GetAllNutritionResourcesAsync(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _nutritionResourcesService.GetPageAsync(pageNr, pageSize));
@@ -39,6 +41,8 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="id">ID-en til ernæringsressursen.</param>
 		[HttpGet("{id}", Name = "GetNutritionResourcesById")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<NutritionResourcesDTO>> GetNutritionResourceById(int id)
 		{
 			var res = await _nutritionResourcesService.GetNutritionResourceByIdAsync(id);

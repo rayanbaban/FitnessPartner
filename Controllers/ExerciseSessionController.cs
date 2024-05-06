@@ -32,6 +32,7 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall øvelser per side.</param>
 		[HttpGet(Name = "GetAllExerciseSession")]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<IEnumerable<ExerciseSessionDTO>>> GetAllSessions(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _exersiceSessionService.GetAllSessionsAsync(pageNr, pageSize));
@@ -85,6 +86,7 @@ namespace FitnessPartner.Controllers
 		/// <param name="exercisesesId">ID-en til øvelsessesjonen som skal oppdateres.</param>
 		/// <param name="exerciseSesLibraryDTO">Oppdatert informasjon om øvelsessesjonen.</param>
 		[HttpPut(Name = "UpdateExerciseSession")]
+		[Authorize(Roles = StaticUserRoles.USER)]
 		public async Task<ActionResult<ExerciseSessionDTO>> UpdateExerciseSession(int exercisesesId, ExerciseSessionDTO exerciseSesLibraryDTO)
 		{
 			var updatedExerciseSes = await _exersiceSessionService.UpdateSessionAsync(exerciseSesLibraryDTO, exercisesesId);
@@ -101,6 +103,8 @@ namespace FitnessPartner.Controllers
 		/// </summary>
 		/// <param name="exerciseSesID">ID-en til øvelsessesjonen som skal slettes.</param>
 		[HttpDelete(Name = "DeleteExersiceSession")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+
 		public async Task<ActionResult<ExerciseSessionDTO>> DeleteExercise(int exerciseSesID)
 		{
 			var deletedExerciseSes = await _exersiceSessionService.DeleteSessionByIdAsync(exerciseSesID);
@@ -110,6 +114,17 @@ namespace FitnessPartner.Controllers
 				return Ok($"Exercise session med ID {exerciseSesID} ble slettet vellykket");
 			}
 			return NotFound($"Exercise session med ID {exerciseSesID} ble ikke funnet");
+		}
+
+
+		[HttpGet ("GetSessionsByUsers",Name = "GetSessionsByUserId")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+		public async Task<ActionResult<ExerciseSessionDTO>> GetSesionsByUserAsync(string userId, int pageNr = 1, int pageSize = 10)
+		{
+			var getSessions = await _exersiceSessionService.GetSessionsByUserIdAsync(userId, pageNr, pageSize);
+
+			if (getSessions == null) return NotFound($"Exercise session med ID {userId} ble ikke funnet");
+			return Ok(getSessions);
 		}
 	}
 }

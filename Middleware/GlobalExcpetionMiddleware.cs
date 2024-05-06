@@ -22,9 +22,15 @@
 				Environment.MachineName,
 				System.Diagnostics.Activity.Current?.Id);
 
+				var statusCode = StatusCodes.Status500InternalServerError;
+				if (ex.GetType() == typeof(UnauthorizedAccessException)) 
+				{
+					statusCode = StatusCodes.Status401Unauthorized;
+				}
+
 				await Results.Problem(
-					title: "Noe har gått galt",
-					statusCode: StatusCodes.Status500InternalServerError,
+					title: ex.Message,
+					statusCode: statusCode,
 					extensions: new Dictionary<string, object?>
 					{
 					{

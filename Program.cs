@@ -70,16 +70,6 @@ builder.Services
     .AddEntityFrameworkStores<FitnessPartnerDbContext>()
     .AddDefaultTokenProviders();
 
-// config IDentity
-
-builder.Services.Configure<IdentityOptions>(options =>
-{
-    options.Password.RequiredLength = 5;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequireDigit = false;
-});
 
 
 builder.Services.AddAuthentication(options =>
@@ -120,6 +110,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<GlobalExcpetionMiddleware>();
 app.UseMiddleware<JwtMiddleware>();
 app.UseHttpsRedirection();
 
