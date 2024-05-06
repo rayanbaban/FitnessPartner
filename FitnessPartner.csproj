@@ -40,7 +40,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="FitnessPartnerAPI.UnitTests"/>
+		<InternalsVisibleTo Include="FitnessPartnerAPI.IntegrationTests"/>
 	</ItemGroup>
 
 </Project>
