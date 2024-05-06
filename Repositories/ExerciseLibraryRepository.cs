@@ -15,8 +15,11 @@ namespace FitnessPartner.Repositories
             _dbContext = dbContext;
             _logger = logger;
         }
-
-        public async Task<ExerciseLibrary?> CreateExerciseAsync(ExerciseLibrary exersiceLib)
+		/// <summary>
+		/// Oppretter en ny øvelse i øvelsesbiblioteket.
+		/// </summary>
+		/// <param name="exerciseLib">Øvelsen som skal opprettes.</param>
+		public async Task<ExerciseLibrary?> CreateExerciseAsync(ExerciseLibrary exersiceLib)
         {
 
             try
@@ -39,7 +42,12 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ExerciseLibrary?> DeleteExerciseAsync(int id)
+
+		/// <summary>
+		/// Sletter en øvelse fra øvelsesbiblioteket basert på ID.
+		/// </summary>
+		/// <param name="id">ID-en til øvelsen som skal slettes.</param>
+		public async Task<ExerciseLibrary?> DeleteExerciseAsync(int id)
         {
             try
             {
@@ -66,7 +74,13 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ICollection<ExerciseLibrary?>?> GetAllExercisesAsync(int pageNr, int pageSize)
+
+		/// <summary>
+		/// Henter alle øvelser fra øvelsesbiblioteket.
+		/// </summary>
+		/// <param name="pageNr">Sidenummer for paginering.</param>
+		/// <param name="pageSize">Antall øvelser per side.</param>
+		public async Task<ICollection<ExerciseLibrary?>?> GetAllExercisesAsync(int pageNr, int pageSize)
         {
             try
             {
@@ -82,7 +96,12 @@ namespace FitnessPartner.Repositories
 
         }
 
-        public async Task<ExerciseLibrary?> GetExerciseByIdAsync(int id)
+
+		// <summary>
+		/// Henter en øvelse fra øvelsesbiblioteket basert på ID.
+		/// </summary>
+		/// <param name="id">ID-en til øvelsen som skal hentes.</param>
+		public async Task<ExerciseLibrary?> GetExerciseByIdAsync(int id)
         {
             try
             {
@@ -97,14 +116,24 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ExerciseLibrary?> GetExerciseByMuscleNameAsync(string muscleName)
+		/// <summary>
+		/// Henter en øvelse fra øvelsesbiblioteket basert på muskelnavn.
+		/// </summary>
+		/// <param name="muscleName">Navnet på muskelen som øvelsen trener.</param>
+		public async Task<ExerciseLibrary?> GetExerciseByNameAsync(string exerciseName)
         {
             var muscle = await _dbContext.ExerciseLibrary
-                .FirstOrDefaultAsync(x => x.MusclesTrained!.Equals(muscleName));
+                .FirstOrDefaultAsync(x => x.ExerciseName!.Equals(exerciseName));
             return muscle is null ? null : muscle;
         }
 
-        public async Task<ExerciseLibrary?> UpdateExerciseAsync(ExerciseLibrary updatedExercise, int id)
+
+		/// <summary>
+		/// Oppdaterer en eksisterende øvelse i øvelsesbiblioteket.
+		/// </summary>
+		/// <param name="updatedExercise">Oppdatert informasjon om øvelsen.</param>
+		/// <param name="id">ID-en til øvelsen som skal oppdateres.</param>
+		public async Task<ExerciseLibrary?> UpdateExerciseAsync(ExerciseLibrary updatedExercise, int id)
         {
             try
             {

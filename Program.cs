@@ -7,6 +7,8 @@ using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -52,8 +54,8 @@ builder.Services.AddScoped<INutritionResourcesRepository, NutritionResourcesRepo
 builder.Services.AddTransient<GlobalExcpetionMiddleware>();
 builder.Services.AddScoped<JwtMiddleware>();
 
-
-//builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = false);
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = false);
 
 
 builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
