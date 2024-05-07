@@ -1,39 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{EEC5A206-24E3-4D97-88C4-9568C05A0424}|..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\tests\\fitnesspartnerapi.integrationtests\\controller\\userscontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEC5A206-24E3-4D97-88C4-9568C05A0424}|..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\tests\\fitnesspartnerapi.integrationtests\\customwebapplicationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEC5A206-24E3-4D97-88C4-9568C05A0424}|..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\tests\\fitnesspartnerapi.integrationtests\\globalusings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:fitnesspartner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEC5A206-24E3-4D97-88C4-9568C05A0424}|..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\tests\\fitnesspartnerapi.integrationtests\\fitnesspartnerapi.integrationtests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEC5A206-24E3-4D97-88C4-9568C05A0424}|..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\tests\\fitnesspartnerapi.integrationtests\\fitnesspartnerapi.integrationtests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|c:\\users\\idris\\onedrive\\gokstad akademiet\\fjerde semester\\prosjektarbeid\\fitnesspartner\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{673F6967-E556-4E1E-9001-BBBFEB9523F8}|FitnessPartner.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -41,127 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsersControllerTests.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\Controller\\UsersControllerTests.cs",
-              "RelativeDocumentMoniker": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\Controller\\UsersControllerTests.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\Controller\\UsersControllerTests.cs",
-              "RelativeToolTip": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\Controller\\UsersControllerTests.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-04T18:31:43.391Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GlobalUsings.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\GlobalUsings.cs",
-              "RelativeDocumentMoniker": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\GlobalUsings.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\GlobalUsings.cs",
-              "RelativeToolTip": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\GlobalUsings.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-04T19:09:56.429Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FitnessPartner",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeDocumentMoniker": "FitnessPartner.csproj",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\FitnessPartner.csproj",
-              "RelativeToolTip": "FitnessPartner.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-04T19:01:57.634Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FitnessPartnerAPI.IntegrationTests",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "RelativeDocumentMoniker": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "RelativeToolTip": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-04T18:53:49.781Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FitnessPartnerAPI.IntegrationTests",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "RelativeDocumentMoniker": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "RelativeToolTip": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\FitnessPartnerAPI.IntegrationTests.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-04T18:44:32.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CustomWebApplicationFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "RelativeDocumentMoniker": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\Tests\\FitnessPartnerAPI.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "RelativeToolTip": "..\\Tests\\FitnessPartnerAPI.IntegrationTests\\CustomWebApplicationFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-04T17:13:58.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-04T17:11:51.999Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AQIAAJQAAAAAAAAAAAAAALcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-04T17:04:05.761Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Idris\\OneDrive\\Gokstad Akademiet\\Fjerde semester\\ProsjektArbeid\\FitnessPartner\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAAEkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T07:47:28.644Z",
-              "EditorCaption": ""
             }
           ]
         }

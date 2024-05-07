@@ -1,18 +1,18 @@
 using FitnessPartner.Data;
 using FitnessPartner.Extensions;
 using FitnessPartner.Middleware;
-using FitnessPartner.Models;
 using FitnessPartner.Models.Entities;
 using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,13 +52,13 @@ builder.Services.AddScoped<INutritionResourcesRepository, NutritionResourcesRepo
 builder.Services.AddTransient<GlobalExcpetionMiddleware>();
 builder.Services.AddScoped<JwtMiddleware>();
 
-
-//builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = false);
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = false);
 
 
 builder.Services.AddDbContext<FitnessPartnerDbContext>(options =>
-				options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-				new MySqlServerVersion(new Version(8, 0))));
+                options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+                new MySqlServerVersion(new Version(8, 0))));
 
 
 

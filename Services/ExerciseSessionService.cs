@@ -88,7 +88,7 @@ namespace FitnessPartner.Services
 			}
 
 			// Sjekk om økten tilhører den innloggede brukeren
-			if (sessionToDelete.User.Id != inloggedAppUser.Id)
+			if (sessionToDelete.User?.Id != inloggedAppUser.Id)
 			{
 				throw new UnauthorizedAccessException("Du har ikke tilgang til å slette dette");
 			}
@@ -97,6 +97,7 @@ namespace FitnessPartner.Services
 			var deletedExerciseSession = await _exerciseSessionRepository.DeleteSessionsAsync(id);
 			return deletedExerciseSession != null ? _exerciseSessionMapper.MapToDto(deletedExerciseSession) : null;
 		}
+
 
 
 		public async Task<ExerciseSessionDTO?> UpdateSessionAsync(ExerciseSessionDTO exerciseSession, int id)

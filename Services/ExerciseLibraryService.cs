@@ -69,7 +69,7 @@ namespace FitnessPartner.Services
 
 		public async Task<ExerciseLibraryDTO?> GetExerciseByNameAsync(string name)
 		{
-			var exerciseToGet = await _exerciseLibraryRepo.GetExerciseByMuscleNameAsync(name);
+			var exerciseToGet = await _exerciseLibraryRepo.GetExerciseByNameAsync(name);
 
 			return exerciseToGet != null ? _exerciseLibraryMapper.MapToDto(exerciseToGet) : null;
 		}

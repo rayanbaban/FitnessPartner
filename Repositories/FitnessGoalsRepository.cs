@@ -16,6 +16,12 @@ namespace FitnessPartner.Repositories
             _dbContext = dbContext;
         }
 
+
+        /// <summary>
+        /// Metode for å lage et treningsmål for en bruker
+        /// </summary>
+        /// <param name="fitnessGoals"></param>
+        /// <returns></returns>
         public async Task<FitnessGoals?> CreateFitnessGoalAsync(FitnessGoals fitnessGoals)
         {
 
@@ -39,6 +45,11 @@ namespace FitnessPartner.Repositories
             }
         }
 
+        /// <summary>
+        /// Metode for å slette et treningsmål
+        /// </summary>
+        /// <param name="goalId"> Unik ID for metoden som ønskes slettet</param>
+        /// <returns></returns>
         public async Task<FitnessGoals?> DeleteFitnessGoalAsync(int goalId)
         {
             try
@@ -64,6 +75,12 @@ namespace FitnessPartner.Repositories
             }
         }
 
+
+        /// <summary>
+        /// Metode som returnerer det ønskede treningsmålet.
+        /// </summary>
+        /// <param name="goalId"> Unik ID for fitnessmålet som ønskes å hente ut </param>
+        /// <returns></returns>
         public async Task<FitnessGoals?> GetFitnessGoalByIdAsync(int goalId)
         {
             try
@@ -79,6 +96,13 @@ namespace FitnessPartner.Repositories
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageNr"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public async Task<ICollection<FitnessGoals>?> GetMyFitnessGoalsAsync(int pageNr, int pageSize)
         {
             try
@@ -93,6 +117,13 @@ namespace FitnessPartner.Repositories
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageNr"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public async Task<ICollection<FitnessGoals>?> GetPageAsync(int pageNr, int pageSize)
         {
             try

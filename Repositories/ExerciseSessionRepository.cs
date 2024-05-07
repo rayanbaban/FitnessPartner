@@ -7,8 +7,13 @@ namespace FitnessPartner.Repositories
 {
     public class ExerciseSessionRepository : IExersiceSessionRepository
     {
+		/// <summary>
+		/// Repository for håndtering av øktdata i databasen.
+		/// </summary>
+        
 
-        private readonly FitnessPartnerDbContext _dbContext;
+
+		private readonly FitnessPartnerDbContext _dbContext;
         private readonly ILogger<ExerciseSessionRepository> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -19,6 +24,12 @@ namespace FitnessPartner.Repositories
 			_httpContextAccessor = httpContextAccessor;
 		}
 
+
+        /// <summary>
+        /// Metode for å legge til en treningsøkt
+        /// </summary>
+        /// <param name="session"> data som brukerern må legge til om sin treningsøkt</param>
+        /// 
 		public async Task<ExerciseSession?> AddSessionAsync(ExerciseSession session)
         {
             try
@@ -46,6 +57,11 @@ namespace FitnessPartner.Repositories
         }
 
 
+        /// <summary>
+        /// Metode for å slette en treningsøkt 
+        /// </summary>
+        /// <param name="id"> unik id som økten har fått og brukes til å identifisere økten for sletting </param>
+        /// <returns></returns>
         public async Task<ExerciseSession?> DeleteSessionsAsync(int id)
         {
             try
@@ -72,6 +88,13 @@ namespace FitnessPartner.Repositories
             }
         }
 
+
+        /// <summary>
+        /// Returnerer alle treningsøktene
+        /// </summary>
+        /// <param name="pageNr"> Side nummer som vises </param>
+        /// <param name="pageSize"> Antall økter som vises av gangen</param>
+        /// <returns></returns>
         public async Task<ICollection<ExerciseSession?>?> GetAllSessionsAsync(int pageNr, int pageSize)
         {
             try
@@ -86,7 +109,13 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<IEnumerable<ExerciseSession?>> GetPageAsync(int pageNr, int pageSize)
+		/// <summary>
+		/// Metode for å bestemme hvor mange sider som vises av gangen samt antall økter
+		/// </summary>
+		/// <param name="pageNr"> Side nummer som vises </param>
+		/// <param name="pageSize"> Antall økter som vises av gangen</param>
+		/// <returns></returns>
+		public async Task<IEnumerable<ExerciseSession?>> GetPageAsync(int pageNr, int pageSize)
         {
             var totCount = _dbContext.ExerciseSession.Count();
             var totPages = (int)Math.Ceiling((double)totCount / pageSize);
@@ -98,6 +127,12 @@ namespace FitnessPartner.Repositories
                 .ToListAsync();
         }
 
+
+        /// <summary>
+        /// Henter en treningsøkt basert på dens ID
+        /// </summary>
+        /// <param name="id"> ID nummer på økten</param>
+        /// <returns></returns>
         public async Task<ExerciseSession?> GetSessionsByIdAsync(int id)
         {
             try
@@ -112,6 +147,13 @@ namespace FitnessPartner.Repositories
             }
         }
 
+
+        /// <summary>
+        /// Metode for å oppdatere en treningsøkt
+        /// </summary>
+        /// <param name="session"> Returnerer dto objekt for økten som skal oppdateres </param>
+        /// <param name="id"> ID på økten som skal oppdateres</param>
+        /// <returns></returns>
         public async Task<ExerciseSession?> UpdateSessionsAsync(ExerciseSession session, int id)
         {
             try
