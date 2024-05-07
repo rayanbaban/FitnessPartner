@@ -1,6 +1,8 @@
-﻿using FitnessPartner.Mappers.Interfaces;
+﻿using FitnessPartner.Mappers;
+using FitnessPartner.Mappers.Interfaces;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
+using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -82,14 +84,23 @@ namespace FitnessPartner.Services
 		}
 
 
-		public async Task<ICollection<NutritionLogDTO>> GetMyNutritionLogsAsync(int pageNr, int pageSize)
+		public async Task<ICollection<NutritionLogDTO>> GetAllNutritionLogsAsync(int pageNr, int pageSize)
         {
-            var nutritionLogs = await _nutritionLogRepository.GetMyNutritionLogsAsync(pageNr, pageSize);
+            var nutritionLogs = await _nutritionLogRepository.GetAllNutritionLogsAsync(pageNr, pageSize);
 
             return nutritionLogs.Select(nutritionLogs => _nutritionLogMapper.MapToDto(nutritionLogs)).ToList();
         }
 
-        public async Task<NutritionLogDTO?> GetNutritionLogByIdAsync(int logId)
+		public async Task<ICollection<NutritionLogDTO>> GetMyNutritionLogsAsync(string userId, int pageNr, int pageSize)
+		{
+			var logs = await _nutritionLogRepository.GetMyNutritionLogsAsync(userId, pageNr, pageSize);
+
+			if (logs == null)
+				return null;
+			return logs.Select(exerciseSessions => _nutritionLogMapper.MapToDto(exerciseSessions)).ToList();
+		}
+
+		public async Task<NutritionLogDTO?> GetNutritionLogByIdAsync(int logId)
         {
             var nutritionLogToGet = await _nutritionLogRepository.GetNutritionLogByIdAsync(logId);
 

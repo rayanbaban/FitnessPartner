@@ -1,6 +1,8 @@
-﻿using FitnessPartner.Mappers.Interfaces;
+﻿using FitnessPartner.Mappers;
+using FitnessPartner.Mappers.Interfaces;
 using FitnessPartner.Models.DTOs;
 using FitnessPartner.Models.Entities;
+using FitnessPartner.Repositories;
 using FitnessPartner.Repositories.Interfaces;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -164,14 +166,17 @@ namespace FitnessPartner.Services
 		}
 
 
-		public async Task<ICollection<FitnessGoalsDTO?>> GetMyFitnessGoalsAsync(int pageNr, int pageSize)
+		public async Task<ICollection<FitnessGoalsDTO>> GetMyFitnessGoalsAsync(string userId, int pageNr, int pageSize)
         {
-            var fitnessGoals = await _fitnessGoalsRepository.GetMyFitnessGoalsAsync(pageNr, pageSize);
+			var goals = await _fitnessGoalsRepository.GetMyFitnessGoalsAsync(userId, pageNr, pageSize);
 
-            return fitnessGoals.Select(fitnessGoals => _fitnessGoalsMapper.MapToDto(fitnessGoals)).ToList();
-        }
+			if (goals == null)
+				return null;
+			return goals.Select(exerciseSessions => _fitnessGoalsMapper.MapToDto(exerciseSessions)).ToList();
 
-        public async Task<ICollection<FitnessGoalsDTO>> GetPageAsync(int pageNr, int pageSize)
+		}
+
+		public async Task<ICollection<FitnessGoalsDTO>> GetPageAsync(int pageNr, int pageSize)
         {
             var res = await _fitnessGoalsRepository.GetPageAsync(pageNr, pageSize);
 
@@ -180,6 +185,11 @@ namespace FitnessPartner.Services
             return res.Select(pages => _fitnessGoalsMapper.MapToDto(pages)).ToList();
         }
 
-       
-    }
+		public async Task<ICollection<FitnessGoalsDTO>> GetAllFitnessGoalsAsync(int pageNr, int pageSize)
+		{
+			var goals = await _fitnessGoalsRepository.GetAllFitnessGoalsAsync(pageNr, pageSize);
+
+			return goals.Select(ExerciseSessions => _fitnessGoalsMapper.MapToDto(ExerciseSessions)).ToList();
+		}
+	}
 }

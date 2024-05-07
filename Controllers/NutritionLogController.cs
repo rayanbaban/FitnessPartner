@@ -32,24 +32,13 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall logger per side.</param>
 		[HttpGet(Name = "GetAllNutritionLogs")]
-		[Authorize(Roles = StaticUserRoles.USER)]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 		public async Task<ActionResult<ICollection<NutritionLogDTO>>> GetAllNutritionLogsAsync(int pageNr = 1, int pageSize = 10)
 		{
 			return Ok(await _nutritionLogService.GetPageAsync(pageNr, pageSize));
 		}
 
-		/// <summary>
-		/// Henter en ernæringslogg basert på ID.
-		/// </summary>
-		/// <param name="id">ID-en til ernæringsloggen.</param>
-		[HttpGet("{id}", Name = "GetNutritionLogById")]
-		[Authorize(Roles = StaticUserRoles.USER)]
-
-		public async Task<ActionResult<NutritionLogDTO>> GetNutritionLogById(int id)
-		{
-			var res = await _nutritionLogService.GetNutritionLogByIdAsync(id);
-			return res != null ? Ok(res) : NotFound("Fant ikke NutritionLog");
-		}
+		
 
 		/// <summary>
 		/// Oppdaterer en ernæringslogg.
@@ -116,6 +105,24 @@ namespace FitnessPartner.Controllers
 			{
 				return StatusCode(500, $"Intern feil: {ex.Message}");
 			}
+		}
+
+
+		[HttpGet("GetLogsByUsers", Name = "GetLogsByUserId")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+		
+		public async Task<ActionResult<NutritionLogDTO>> GetLogsByUsers(int pageNr = 1, int pageSize = 10)
+		{
+			var userId = HttpContext.Items["UserId"] ?? string.Empty;
+			if (userId is null)
+			{
+				throw new UnauthorizedAccessException("");
+			}
+
+			var getGoals = await _nutritionLogService.GetMyNutritionLogsAsync(userId.ToString()!, pageNr, pageSize);
+
+			if (getGoals == null) return NotFound($"Exercise sessions for bruker {userId} ble ikke funnet");
+			return Ok(getGoals);
 		}
 	}
 }

@@ -90,7 +90,7 @@ namespace FitnessPartner.Services
 			// Sjekk om økten tilhører den innloggede brukeren
 			if (sessionToDelete.User?.Id != inloggedAppUser.Id)
 			{
-				throw new UnauthorizedAccessException("Du har ikke tilgang til å slette dette");
+				throw new UnauthorizedAccessException($"Exercise session med ID {id} ble ikke funnet, tast inn en gyldig session Id");
 			}
 
 			// Slett økten og returner DTO

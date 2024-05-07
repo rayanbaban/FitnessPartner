@@ -49,20 +49,6 @@ namespace FitnessPartner.Controllers
 			return Ok(seedRoles);
 		}
 
-		[HttpGet]
-		[Route("getmyuserid")]
-		public async Task<ActionResult> GetUserId()
-		{
-			string userId = _httpContextAccessor!.HttpContext!.Items["UserId"]!.ToString() ?? string.Empty;
-
-			var result = _userManager.Users.FirstOrDefault(x => x.Id == userId);
-
-			if (result == null)
-				return BadRequest("Fant ikke brukeren");
-			return Ok(result);
-
-
-		}
 
 
 		/// <summary>

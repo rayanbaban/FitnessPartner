@@ -75,13 +75,27 @@ namespace FitnessPartner.Repositories
             }
         }
 
+		public async Task<ICollection<FitnessGoals>> GetAllFitnessGoalsAsync(int pageNr, int pageSize)
+		{
+			try
+			{
+				var fitnessGoals = await _dbContext.FitnessGoals.ToListAsync();
+				return fitnessGoals;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Feil ved henting av alle ExerciseSessions: {ErrorMessage}", ex.Message);
+				return null;
+			}
+		}
 
-        /// <summary>
-        /// Metode som returnerer det ønskede treningsmålet.
-        /// </summary>
-        /// <param name="goalId"> Unik ID for fitnessmålet som ønskes å hente ut </param>
-        /// <returns></returns>
-        public async Task<FitnessGoals?> GetFitnessGoalByIdAsync(int goalId)
+
+		/// <summary>
+		/// Metode som returnerer det ønskede treningsmålet.
+		/// </summary>
+		/// <param name="goalId"> Unik ID for fitnessmålet som ønskes å hente ut </param>
+		/// <returns></returns>
+		public async Task<FitnessGoals?> GetFitnessGoalByIdAsync(int goalId)
         {
             try
             {
@@ -103,16 +117,24 @@ namespace FitnessPartner.Repositories
         /// <param name="pageNr"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public async Task<ICollection<FitnessGoals>?> GetMyFitnessGoalsAsync(int pageNr, int pageSize)
+        public async Task<ICollection<FitnessGoals>?> GetMyFitnessGoalsAsync(string userId, int pageNr, int pageSize)
         {
             try
             {
-                var allFitnessGoals = await _dbContext.FitnessGoals.ToListAsync();
-                return allFitnessGoals;
+                int skip = (pageNr - 1) * pageSize;
+
+                var sessions = await _dbContext.FitnessGoals
+                    .Where(session => session.User.Id == userId)
+                    .Skip(skip)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+                return sessions;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError("Feil ved henting av alle fitness goals: {ErrorMessage}", ex.Message);
+
+                _logger.LogError("Feil ved henting av fitnessgoals");
                 return null;
             }
         }

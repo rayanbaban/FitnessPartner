@@ -1,5 +1,6 @@
 ﻿using FitnessPartner.Models.DTOs;
 using FitnessPartner.OtherObjects;
+using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,24 +36,30 @@ namespace FitnessPartner.Controllers
 		/// <param name="pageNr">Sidenummer for paginering.</param>
 		/// <param name="pageSize">Antall mål per side.</param>
 		[HttpGet(Name = "GetFitnessGoals")]
-		[Authorize(Roles = StaticUserRoles.USER)]
+		[Authorize(Roles = StaticUserRoles.ADMIN)]
 
 		public async Task<ActionResult<IEnumerable<FitnessGoalsDTO>>> GetFitnessGoals(int pageNr = 1, int pageSize = 10)
 		{
-			return Ok(await _fitnessGoalsService.GetMyFitnessGoalsAsync(pageNr, pageSize));
+			return Ok(await _fitnessGoalsService.GetAllFitnessGoalsAsync(pageNr, pageSize));
 		}
 
-		/// <summary>
-		/// Henter et treningsmål basert på ID.
-		/// </summary>
-		/// <param name="goalId">ID-en til treningsmålet.</param>
-		[HttpGet]
-		[Route("Id")]
+		
+
+
+		[HttpGet("GetMyGoals", Name = "GetMyGoals")]
 		[Authorize(Roles = StaticUserRoles.USER)]
-		public async Task<ActionResult<FitnessGoalsDTO>> GetFitnessGoalById(int goalId)
+		public async Task<ActionResult<ExerciseSessionDTO>> GetGoalsByUserAsync(int pageNr = 1, int pageSize = 10)
 		{
-			var result = await _fitnessGoalsService.GetFitnessGoalByIdAsync(goalId);
-			return goalId != 0 ? Ok(result) : NotFound();
+			var userId = HttpContext.Items["UserId"] ?? string.Empty;
+			if (userId is null)
+			{
+				throw new UnauthorizedAccessException("");
+			}
+
+			var getSessions = await _fitnessGoalsService.GetMyFitnessGoalsAsync(userId.ToString()!, pageNr, pageSize);
+
+			if (getSessions == null) return NotFound($"Exercise sessions for bruker {userId} ble ikke funnet");
+			return Ok(getSessions);
 		}
 
 		/// <summary>
@@ -102,6 +109,23 @@ namespace FitnessPartner.Controllers
 				return Ok(updatedFitnessGoal);
 			}
 			return NotFound($"Fitness goal med goalId {goalId} ble ikke funnet");
+		}
+
+		/// <summary>
+		/// Sletter et treningsmål.
+		/// </summary>
+		/// <param name="id">ID-en til treningsmålet som skal slettes.</param>
+		[HttpDelete(Name = "DeleteFitnessGoal")]
+		[Authorize(Roles = StaticUserRoles.USER)]
+		public async Task<ActionResult<NutritionPlansDTO>> DeleteFitnessGoal(int id)
+		{
+			var goalToDelete = await _fitnessGoalsService.DeleteFitnessGoalAsync(id);
+
+			if (goalToDelete != null)
+			{
+				return Ok($"Goal med ID {id} ble slettet vellykket");
+			}
+			return NotFound($"Goal med ID {id} ble ikke funnet");
 		}
 	}
 }

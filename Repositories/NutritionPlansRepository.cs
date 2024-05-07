@@ -65,7 +65,7 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
-    public async Task<ICollection<NutritionPlans>?> GetMyNutritionPlanAsync(int pageNr, int pageSize)
+    public async Task<ICollection<NutritionPlans>?> GetAllNutritionPlanAsync(int pageNr, int pageSize)
     {
         try
         {
@@ -80,7 +80,20 @@ public class NutritionPlansRepository : INutritionPlansRepository
         }
     }
 
-    public async Task<NutritionPlans?> GetNutritionPlanByIdAsync(int planId)
+	public async Task<ICollection<NutritionPlans>> GetMyNutritionPlansAsync(string userId, int pageNr, int pageSize)
+	{
+		int skip = (pageNr - 1) * pageSize;
+
+		var plans = await _dbContext.NutritionPlans
+			.Where(session => session.User.Id == userId)
+			.Skip(skip)
+			.Take(pageSize)
+			.ToListAsync();
+
+		return plans;
+	}
+
+	public async Task<NutritionPlans?> GetNutritionPlanByIdAsync(int planId)
     {
         try
         {

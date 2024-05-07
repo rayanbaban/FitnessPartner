@@ -95,7 +95,7 @@ namespace FitnessPartner.Repositories
         /// <param name="pageNr"> Side nummer som vises </param>
         /// <param name="pageSize"> Antall økter som vises av gangen</param>
         /// <returns></returns>
-        public async Task<ICollection<ExerciseSession?>?> GetAllSessionsAsync(int pageNr, int pageSize)
+        public async Task<ICollection<ExerciseSession?>> GetAllSessionsAsync(int pageNr, int pageSize)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace FitnessPartner.Repositories
                 .ToListAsync();
         }
 
-		public async Task<ICollection<ExerciseSession>> GetSessionsByUserId(string userId, int pageNr, int pageSize)
+		public async Task<ICollection<ExerciseSession>?> GetSessionsByUserId(string userId, int pageNr, int pageSize)
 		{
 			int skip = (pageNr - 1) * pageSize;
 

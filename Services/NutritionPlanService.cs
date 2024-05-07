@@ -73,9 +73,9 @@ namespace FitnessPartner.Services
             return nutritionPlanToDelete != null ? _nutritionPlanMapper.MapToDto(nutritionPlanToDelete) : null;
         }
 
-        public async Task<ICollection<NutritionPlansDTO>> GetMyNutritionPlanAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionPlansDTO>> GetAllNutritionPlanAsync(int pageNr, int pageSize)
         {
-            var nutritionPlans = await _nutritionPlanRepository.GetMyNutritionPlanAsync(pageNr, pageSize);
+            var nutritionPlans = await _nutritionPlanRepository.GetAllNutritionPlanAsync(pageNr, pageSize);
 
             return nutritionPlans.Select(nutritionPlans => _nutritionPlanMapper.MapToDto(nutritionPlans)).ToList();
         }
@@ -116,5 +116,14 @@ namespace FitnessPartner.Services
 
             return res.Select(pages => _nutritionPlanMapper.MapToDto(pages)).ToList();
         }
-    }
+
+		public async Task<ICollection<NutritionPlansDTO>> GetMyNutritionPlansAsync(string userId, int pageNr, int pageSize)
+		{
+			var plans = await _nutritionPlanRepository.GetMyNutritionPlansAsync(userId, pageNr, pageSize);
+
+			if (plans == null)
+				return null;
+			return plans.Select(nutrtionPlans => _nutritionPlanMapper.MapToDto(nutrtionPlans)).ToList();
+		}
+	}
 }

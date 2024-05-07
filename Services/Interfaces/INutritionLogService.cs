@@ -4,7 +4,8 @@ namespace FitnessPartner.Services.Interfaces
 {
     public interface INutritionLogService
     {
-        Task<ICollection<NutritionLogDTO>> GetMyNutritionLogsAsync(int pageNr, int pageSize);
+        Task<ICollection<NutritionLogDTO>> GetAllNutritionLogsAsync(int pageNr, int pageSize);
+        Task<ICollection<NutritionLogDTO>> GetMyNutritionLogsAsync(string userId, int pageNr, int pageSize);
         Task<NutritionLogDTO?> UpdateNutritionLogAsync(NutritionLogDTO nutritionLogDTO, int logId);
         Task<NutritionLogDTO?> DeleteNutritionLogAsync(int logId);
         Task<NutritionLogDTO?> CreateNutritionLogAsync(NutritionLogDTO nutritionLog);

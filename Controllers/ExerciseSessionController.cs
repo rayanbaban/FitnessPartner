@@ -38,17 +38,7 @@ namespace FitnessPartner.Controllers
 			return Ok(await _exersiceSessionService.GetAllSessionsAsync(pageNr, pageSize));
 		}
 
-		/// <summary>
-		/// Henter en øvelsessesjon basert på ID.
-		/// </summary>
-		/// <param name="exerciseId">ID-en til øvelsessesjonen.</param>
-		[HttpGet]
-		[Route("GetById")]
-		public async Task<ActionResult<ExerciseSessionDTO>> GetExerciseById(int exerciseId)
-		{
-			var ExerciseSesId = await _exersiceSessionService.GetSessionByIdAsync(exerciseId);
-			return exerciseId != 0 ? Ok(ExerciseSesId) : NotFound();
-		}
+		
 
 		/// <summary>
 		/// Legger til en ny øvelsessesjon.
@@ -111,7 +101,7 @@ namespace FitnessPartner.Controllers
 
 			if (deletedExerciseSes != null)
 			{
-				return Ok($"Exercise session med ID {exerciseSesID} ble slettet vellykket");
+				return Ok($"Exercise session ID {exerciseSesID} ble slettet vellykket");
 			}
 			return NotFound($"Exercise session med ID {exerciseSesID} ble ikke funnet");
 		}
@@ -119,11 +109,16 @@ namespace FitnessPartner.Controllers
 
 		[HttpGet ("GetSessionsByUsers",Name = "GetSessionsByUserId")]
 		[Authorize(Roles = StaticUserRoles.USER)]
-		public async Task<ActionResult<ExerciseSessionDTO>> GetSesionsByUserAsync(string userId, int pageNr = 1, int pageSize = 10)
+		public async Task<ActionResult<ExerciseSessionDTO>> GetSesionsByUserAsync( int pageNr = 1, int pageSize = 10)
 		{
-			var getSessions = await _exersiceSessionService.GetSessionsByUserIdAsync(userId, pageNr, pageSize);
+			var userId = HttpContext.Items["UserId"] ?? string.Empty;
+			if (userId is null)
+			{
+				throw new UnauthorizedAccessException("");
+			}
+			var getSessions = await _exersiceSessionService.GetSessionsByUserIdAsync(userId.ToString()!, pageNr, pageSize);
 
-			if (getSessions == null) return NotFound($"Exercise session med ID {userId} ble ikke funnet");
+			if (getSessions == null) return NotFound($"Exercise sessions for bruker {userId} ble ikke funnet");
 			return Ok(getSessions);
 		}
 	}

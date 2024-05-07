@@ -65,7 +65,7 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<ICollection<NutritionLog>?> GetMyNutritionLogsAsync(int pageNr, int pageSize)
+        public async Task<ICollection<NutritionLog>?> GetAllNutritionLogsAsync(int pageNr, int pageSize)
         {
             try
             {
@@ -80,7 +80,20 @@ namespace FitnessPartner.Repositories
             }
         }
 
-        public async Task<NutritionLog?> GetNutritionLogByIdAsync(int logId)
+		public async Task<ICollection<NutritionLog>> GetMyNutritionLogsAsync(string userId, int pageNr, int pageSize)
+		{
+			int skip = (pageNr - 1) * pageSize;
+
+			var logs = await _dbContext.NutritionLog
+				.Where(session => session.User.Id == userId)
+				.Skip(skip)
+				.Take(pageSize)
+				.ToListAsync();
+
+			return logs;
+		}
+
+		public async Task<NutritionLog?> GetNutritionLogByIdAsync(int logId)
         {
             try
             {

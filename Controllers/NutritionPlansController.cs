@@ -1,5 +1,6 @@
 ﻿using FitnessPartner.Models.DTOs;
 using FitnessPartner.OtherObjects;
+using FitnessPartner.Services;
 using FitnessPartner.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,18 +37,6 @@ namespace FitnessPartner.Controllers
 			return Ok(await _nutritionPlanService.GetPageAsync(pageNr, pageSize));
 		}
 
-		/// <summary>
-		/// Henter en ernæringsplan basert på ID.
-		/// </summary>
-		/// <param name="id">ID-en til ernæringsplanen.</param>
-		[HttpGet("{id}", Name = "GetNutritionPlanById")]
-		[Authorize(Roles = StaticUserRoles.USER)]
-
-		public async Task<ActionResult<NutritionPlansDTO>> GetNutritionPlanById(int id)
-		{
-			var res = await _nutritionPlanService.GetNutritionPlanByIdAsync(id);
-			return res != null ? Ok(res) : NotFound("Fant ikke NutritionPlan");
-		}
 
 		/// <summary>
 		/// Oppdaterer en ernæringsplan.
@@ -110,5 +99,6 @@ namespace FitnessPartner.Controllers
 				return StatusCode(500, $"Intern feil: {ex.Message}");
 			}
 		}
+
 	}
 }
