@@ -11,7 +11,7 @@ namespace FitnessPartner.Validators
 			RuleFor(x => x.UserName)
 				.NotEmpty().WithMessage("Username kan ikke være null")
 				.MinimumLength(3).WithMessage("Username må ha minst 3 tegn")
-				.MaximumLength(10).WithMessage("Username kan ikke ha flere en 30 tegn");
+				.MaximumLength(30).WithMessage("Username kan ikke ha flere en 30 tegn");
 
 			RuleFor(x => x.Email)
 				.NotEmpty().WithMessage("Email må være med.")
@@ -33,8 +33,6 @@ namespace FitnessPartner.Validators
 				.Matches(@"[!?*#_+]").WithMessage("Må ha minst et spesial tegn");
 			
 			
-			RuleFor(x => x.Email)
-				.NotEmpty().EmailAddress().WithMessage("Må være en gyldig Email adresse");
 
 			RuleFor(x => x.Age)
 				.NotEmpty().WithMessage("Age kan ikke være null.")
